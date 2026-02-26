@@ -1,0 +1,39 @@
+{
+  "id": "ed704d13-ccab-4771-b10e-33f986de6305",
+  "name": "cotizar_servicio_seleccionar",
+  "auto": true,
+  "contexts": [
+    "cotizacion_servicio"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cotizacion_items",
+          "lifespan": 8
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

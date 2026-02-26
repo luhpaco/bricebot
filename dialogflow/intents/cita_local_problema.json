@@ -1,0 +1,59 @@
+{
+  "id": "abcb36bf-030b-4359-ba61-858057ccff7a",
+  "name": "cita_local_problema",
+  "auto": true,
+  "contexts": [
+    "cita_local_en_curso"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cita_local_en_curso",
+          "lifespan": 10
+        }
+      ],
+      "parameters": [
+        {
+          "id": "bcfcaa3d-aa80-4d55-ab2e-796971eb2d0a",
+          "name": "descripcion_problema",
+          "required": true,
+          "dataType": "@sys.any",
+          "value": "$descripcion_problema",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿Podría describir el problema o servicio que necesita?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

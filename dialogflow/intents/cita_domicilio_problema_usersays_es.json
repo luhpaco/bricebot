@@ -1,0 +1,122 @@
+[
+  {
+    "id": "8bb7c8b3-915f-485d-aa0a-fe92fbf48ac3",
+    "data": [
+      {
+        "text": "El teclado no funciona",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "17cc3811-20f8-4a47-93b9-052884728b83",
+    "data": [
+      {
+        "text": "La pantalla está rota",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2a1a6007-8fc9-4e42-85bd-33ce8ddff8fc",
+    "data": [
+      {
+        "text": "No imprime",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "562589c3-f943-4e12-9be2-a2aec38d3aa0",
+    "data": [
+      {
+        "text": "Tiene virus",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1bc2b541-186d-456c-a7f9-11d31d94e2b0",
+    "data": [
+      {
+        "text": "Se apaga sola",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b5b8bb36-22f8-4bc1-8812-6ae88e6b4af3",
+    "data": [
+      {
+        "text": "Necesita mantenimiento",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "47e3b263-7247-4271-a5e4-87cf153523f5",
+    "data": [
+      {
+        "text": "Está lenta",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "30844413-2cce-4712-968c-f729a9c11fff",
+    "data": [
+      {
+        "text": "No enciende",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

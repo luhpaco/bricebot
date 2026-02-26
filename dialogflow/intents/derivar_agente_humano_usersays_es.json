@@ -1,0 +1,213 @@
+[
+  {
+    "id": "b7f91cd4-bc86-4315-adf4-6be242c5ea40",
+    "data": [
+      {
+        "text": "No quiero chatbot",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "91b46acc-c221-49ff-b918-459a19778d20",
+    "data": [
+      {
+        "text": "Quiero que me atienda una persona",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4e0ef085-0927-4f25-88eb-cb5f4fdbba9e",
+    "data": [
+      {
+        "text": "Prefiero hablar con alguien",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5239f211-8dfa-4961-8f32-b46dd88da59c",
+    "data": [
+      {
+        "text": "Atención humana",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "645ae767-5dd8-47b3-8148-6f828d40c2c4",
+    "data": [
+      {
+        "text": "Derivar a agente",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6d55e957-6bac-4bf6-ba89-13c5a49335b9",
+    "data": [
+      {
+        "text": "Hablar con asesor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "64cb7b5f-db1c-45f9-8b9e-2e0bfad32f90",
+    "data": [
+      {
+        "text": "Comunícame con alguien",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9a6b8705-4f95-4363-ad9a-a9868a043f37",
+    "data": [
+      {
+        "text": "Necesito ayuda humana",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a4f0457b-4f1b-49f9-ae3c-f57869c51fea",
+    "data": [
+      {
+        "text": "Quiero hablar con alguien",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3efa484d-4f2f-446e-86ca-12ab54b98e7d",
+    "data": [
+      {
+        "text": "No me entiendes",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "68c85437-e4c6-4dc2-9217-c7998d5cde33",
+    "data": [
+      {
+        "text": "Persona real",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2593593f-c89d-4454-9284-3441447a29a2",
+    "data": [
+      {
+        "text": "Asesor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "68f60274-e4df-4857-a31e-6de6860e378e",
+    "data": [
+      {
+        "text": "Agente",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "99dee5ff-a92f-4321-89e4-774ae771d88e",
+    "data": [
+      {
+        "text": "Quiero hablar con ",
+        "userDefined": false
+      },
+      {
+        "text": "una",
+        "userDefined": false
+      },
+      {
+        "text": " persona",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a77b8061-a85d-4aea-afc5-123258ebf298",
+    "data": [
+      {
+        "text": "Quiero hablar con ",
+        "userDefined": false
+      },
+      {
+        "text": "un",
+        "userDefined": false
+      },
+      {
+        "text": " humano",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

@@ -1,0 +1,326 @@
+[
+  {
+    "id": "6619c6ea-036e-4e5b-af55-fc4973c95159",
+    "data": [
+      {
+        "text": "Repuestos",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      },
+      {
+        "text": " para laptop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "da9dfbf0-f72d-4896-8eda-b6b96ef10c56",
+    "data": [
+      {
+        "text": "Pieza",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      },
+      {
+        "text": " para laptop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "84bb8df5-d6f3-4eee-8a0d-2e51830b433d",
+    "data": [
+      {
+        "text": "Partes",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      },
+      {
+        "text": " de laptop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "22b8d8a0-1e06-45d3-b81e-68525f8832dc",
+    "data": [
+      {
+        "text": "Quiero un ",
+        "userDefined": false
+      },
+      {
+        "text": "repuesto",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      },
+      {
+        "text": " para mi laptop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "934a2519-da56-43f5-be58-11372cdea53a",
+    "data": [
+      {
+        "text": "Repuesto",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      },
+      {
+        "text": " para laptop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6fcb36be-2296-4243-aad1-bf34dfe3d1d5",
+    "data": [
+      {
+        "text": "Repuestos",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      },
+      {
+        "text": " de laptop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "03b81d46-5bfd-44f7-a8ea-3fc5370d050a",
+    "data": [
+      {
+        "text": "Macbook Pro 15",
+        "meta": "@sys.any",
+        "alias": "modelo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "aca4ec5d-0da2-4f4c-859d-326f998e206f",
+    "data": [
+      {
+        "text": "Asus TUF",
+        "meta": "@sys.any",
+        "alias": "modelo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "eae4160f-1ba3-482d-abc9-676ae18ff42c",
+    "data": [
+      {
+        "text": "Dell Inspiron",
+        "meta": "@sys.any",
+        "alias": "modelo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "34ac36bd-0647-4030-80f7-71727c627da0",
+    "data": [
+      {
+        "text": "HP Pavilion 15",
+        "meta": "@sys.any",
+        "alias": "modelo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e4ce1e68-e5f2-47f9-b71c-77db1de63de2",
+    "data": [
+      {
+        "text": "La segunda",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1c985ab2-3ba8-41c0-b899-3f5f017fcada",
+    "data": [
+      {
+        "text": "Opción 2",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c6a80232-4e9a-4872-b9ad-a75054824ee3",
+    "data": [
+      {
+        "text": "2",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5cd2d95e-b660-4734-a823-5f02754330a1",
+    "data": [
+      {
+        "text": "Quiero cotizar un ",
+        "userDefined": false
+      },
+      {
+        "text": "repuesto",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1887f05d-8a3a-4da5-bf30-9625c8c44634",
+    "data": [
+      {
+        "text": "Necesito un ",
+        "userDefined": false
+      },
+      {
+        "text": "repuesto",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "78ab599b-08c6-40ea-aefd-f399520480e5",
+    "data": [
+      {
+        "text": "Batería para laptop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "466c8c8e-33da-4832-afb8-e4d58dee7373",
+    "data": [
+      {
+        "text": "Teclado de laptop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3b029e30-a2d0-495a-a84f-5b84c1fd8945",
+    "data": [
+      {
+        "text": "Pantalla para laptop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "608303ee-2508-4104-b1b3-dea54c2f5b39",
+    "data": [
+      {
+        "text": "Repuestos",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cac23107-9502-40b9-adfd-51cb78c28d2f",
+    "data": [
+      {
+        "text": "Repuesto de laptop",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

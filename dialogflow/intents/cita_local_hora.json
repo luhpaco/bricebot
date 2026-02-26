@@ -1,0 +1,59 @@
+{
+  "id": "9fb4789d-6e22-460f-b80d-82ec2e8bde4d",
+  "name": "cita_local_hora",
+  "auto": true,
+  "contexts": [
+    "cita_local_en_curso"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cita_local_en_curso",
+          "lifespan": 3
+        }
+      ],
+      "parameters": [
+        {
+          "id": "d4387027-5d5b-4b20-90a3-9a38a73652ec",
+          "name": "hora",
+          "required": true,
+          "dataType": "@sys.time",
+          "value": "$hora",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿A qué hora le conviene?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

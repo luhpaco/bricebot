@@ -1,0 +1,61 @@
+[
+  {
+    "value": "mantenimiento",
+    "synonyms": [
+      "mantenimiento",
+      "limpieza",
+      "mantenimiento preventivo",
+      "mantenimiento correctivo",
+      "revisión",
+      "revision"
+    ]
+  },
+  {
+    "value": "cambio_teclado",
+    "synonyms": [
+      "cambio_teclado",
+      "teclado roto",
+      "cambiar teclado",
+      "reparar teclado"
+    ]
+  },
+  {
+    "value": "cambio_pantalla",
+    "synonyms": [
+      "cambio_pantalla",
+      "pantalla rota",
+      "cambiar pantalla",
+      "display roto"
+    ]
+  },
+  {
+    "value": "repotenciacion",
+    "synonyms": [
+      "repotenciacion",
+      "upgrade",
+      "mejora",
+      "aumentar ram",
+      "cambiar disco",
+      "ssd"
+    ]
+  },
+  {
+    "value": "instalacion_software",
+    "synonyms": [
+      "instalacion_software",
+      "instalar windows",
+      "instalar office",
+      "formatear",
+      "formateo"
+    ]
+  },
+  {
+    "value": "instalacion_camaras",
+    "synonyms": [
+      "instalacion_camaras",
+      "instalar camaras",
+      "instalación de cámaras",
+      "poner camaras"
+    ]
+  }
+]

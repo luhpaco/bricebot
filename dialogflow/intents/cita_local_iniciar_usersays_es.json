@@ -1,0 +1,132 @@
+[
+  {
+    "id": "614f72f8-88b9-4940-b676-ee84130b9786",
+    "data": [
+      {
+        "text": "Llevar mi equipo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b6956644-862f-440b-afd5-668b77c09949",
+    "data": [
+      {
+        "text": "Local",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "522c6da8-43e1-45fb-9363-4a4acecad47c",
+    "data": [
+      {
+        "text": "La primera",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1c561e6e-ce21-4bc6-9357-05acf916de7c",
+    "data": [
+      {
+        "text": "Opción 1",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7ec5c492-9953-473a-9177-f386b6ae19d3",
+    "data": [
+      {
+        "text": "1",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ed6d31e8-2263-435d-be0b-c9de9d9e083a",
+    "data": [
+      {
+        "text": "Presencial",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "58da946b-4834-48e5-bb82-163d7b822190",
+    "data": [
+      {
+        "text": "En el local",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "afc67f81-f66c-437d-a843-f5be614c6bc9",
+    "data": [
+      {
+        "text": "Prefiero ir yo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "81233529-3b4a-4d48-8d16-0680bf89ac7c",
+    "data": [
+      {
+        "text": "Voy a ir al local",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cd6ba56e-e464-4184-8b3d-e6e22bca1747",
+    "data": [
+      {
+        "text": "Visitar local",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

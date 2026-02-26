@@ -1,0 +1,119 @@
+[
+  {
+    "id": "96afa92b-083b-4729-9738-52ec6e5094b2",
+    "data": [
+      {
+        "text": "Esta semana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "51387fcc-3d20-4bb5-84d2-916807c2fbd2",
+    "data": [
+      {
+        "text": "El ",
+        "userDefined": false
+      },
+      {
+        "text": "lunes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1e6eb50f-6cb1-4c82-82d3-d7be0a7439cc",
+    "data": [
+      {
+        "text": "Pasado mañana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "20f2d315-3c4a-4916-b0d9-ab3e73a7f331",
+    "data": [
+      {
+        "text": "Mañana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d349bdc1-6f8a-4e2e-b7fd-bbc38257f071",
+    "data": [
+      {
+        "text": "14 de febrero",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "15c1502c-e32c-43df-90a3-da88e641dce0",
+    "data": [
+      {
+        "text": "Para el ",
+        "userDefined": false
+      },
+      {
+        "text": "viernes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c055bdfb-05f6-4115-82b2-4de23a90c9d2",
+    "data": [
+      {
+        "text": "El ",
+        "userDefined": false
+      },
+      {
+        "text": "18 de febrero",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

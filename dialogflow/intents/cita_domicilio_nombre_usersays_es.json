@@ -1,0 +1,112 @@
+[
+  {
+    "id": "87ca9e2c-e1f4-42a5-84f7-2011b9c6f17c",
+    "data": [
+      {
+        "text": "Julián Javier Magallanes Sifuentes",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1114190b-f601-4827-9d5c-e7eeaedf7437",
+    "data": [
+      {
+        "text": "Soy ",
+        "userDefined": false
+      },
+      {
+        "text": "Jaime Vega",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": false
+      },
+      {
+        "text": " Orbegoso",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "deb5258d-dbda-40d1-929f-fe47cafbca77",
+    "data": [
+      {
+        "text": "Mi nombre es ",
+        "userDefined": false
+      },
+      {
+        "text": "Sofía Mendoza",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c39d1168-6aa1-4b9a-9f0c-ddf989640d19",
+    "data": [
+      {
+        "text": "Roberto Díaz",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3941f631-b3aa-4580-adb8-b9f3efafaca7",
+    "data": [
+      {
+        "text": "Soy ",
+        "userDefined": false
+      },
+      {
+        "text": "Laura Sánchez",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fb85323e-ea02-44e3-95fd-bfc2e02e0a1f",
+    "data": [
+      {
+        "text": "Me llamo ",
+        "userDefined": false
+      },
+      {
+        "text": "Pedro Ruiz",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

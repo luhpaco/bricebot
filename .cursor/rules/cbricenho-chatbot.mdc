@@ -1,0 +1,728 @@
+---
+alwaysApply: true
+---
+
+# CBRICENHO Chatbot - Cursor AI Rules
+
+## 📋 PROJECT OVERVIEW
+
+### Thesis Information
+
+- **Title**: "Desarrollo de un Agente Conversacional como Herramienta de Ayuda para el Proceso de Atención al Cliente en la Empresa CBRICENHO E.I.R.L"
+- **Author**: Bach. Luis Humberto Paz Córdova
+- **University**: Universidad Nacional de Piura - Escuela Profesional de Ingeniería Informática
+- **Advisor**: Dra. Carmen Lucila Infante Saavedra
+- **Methodology**: Extreme Programming (XP)
+- **Language**: Spanish (Peru)
+
+### Objectives
+
+1. Develop a conversational agent to improve customer service at CBRICENHO E.I.R.L
+2. Reduce response times for: frequent queries, appointment scheduling, quote generation
+3. Evaluate usability and functionality through software quality metrics
+4. Measure customer satisfaction improvement (PRE-TEST vs POST-TEST)
+
+### Key Metrics to Track
+
+| Metric                            | Formula           | Purpose                        |
+| --------------------------------- | ----------------- | ------------------------------ |
+| Average response time             | x̄ = Σxi/n         | Measure query response speed   |
+| Average appointment creation time | x̄ = Σxi/n         | Measure scheduling efficiency  |
+| Average quote generation time     | x̄ = Σxi/n         | Measure quote processing speed |
+| Customer satisfaction index       | p = Σ(pi/n) × 100 | LIKERT scale (1-5) evaluation  |
+
+---
+
+## 🏢 COMPANY CONTEXT
+
+### CBRICENHO E.I.R.L Information
+
+- **Commercial Name**: CBRICENHO EIRL
+- **RUC**: 20606300825
+- **Type**: Empresa Individual de Responsabilidad Limitada
+- **Economic Activity**: 6399 - Otras actividades de servicios de información N.C.P.
+- **Location**: A.H. Marco Jara Schennone Mz D Lote 36, Paita - Piura, Perú
+
+### Services Offered
+
+1. **Enterprise Management Systems Development**
+2. **Website Development** (businesses, professionals)
+3. **Technical Support** (computers, laptops, printers, tablets, phones)
+4. **Technology Products Sales**
+
+### Current Problem
+
+- Single digital channel: WhatsApp
+- Long wait times when >3 simultaneous clients
+- Frequent queries take too long to answer
+- Customer dissatisfaction due to lack of communication fluidity
+- Risk of losing company image and prestige
+
+---
+
+## 🛠️ TECHNOLOGY STACK
+
+```
+Frontend Channel:    WhatsApp Business API
+NLP Platform:        Google Dialogflow Essentials Edition
+Backend:             Node.js (Fulfillment/Webhook)
+Database:            MongoDB
+External APIs:       Google Calendar API
+Language:            JavaScript (ES6+)
+```
+
+---
+
+## 📁 PROJECT STRUCTURE
+
+```
+cbricenho-chatbot/
+├── .env                        # Environment variables
+├── .cursorrules                # This file
+├── package.json
+├── README.md
+│
+├── dialogflow/
+│   ├── intents/                # Intent JSON definitions
+│   ├── entities/               # Custom entity definitions
+│   └── agent.json              # Agent configuration
+│
+├── fulfillment/
+│   ├── src/
+│   │   ├── index.js            # Main webhook entry point
+│   │   ├── handlers/           # Intent handlers
+│   │   │   ├── faq.handler.js
+│   │   │   ├── appointments.handler.js
+│   │   │   └── quotes.handler.js
+│   │   ├── services/           # Business logic
+│   │   │   ├── calendar.service.js
+│   │   │   ├── database.service.js
+│   │   │   ├── whatsapp.service.js
+│   │   │   └── metrics.service.js
+│   │   ├── models/             # MongoDB schemas
+│   │   │   ├── Appointment.js
+│   │   │   ├── Quote.js
+│   │   │   ├── Product.js
+│   │   │   ├── Client.js
+│   │   │   └── Conversation.js
+│   │   ├── utils/              # Helper functions
+│   │   │   ├── validators.js
+│   │   │   ├── formatters.js
+│   │   │   └── dateHelpers.js
+│   │   └── config/             # Configuration files
+│   │       ├── dialogflow.js
+│   │       ├── database.js
+│   │       └── constants.js
+│   ├── tests/                  # Unit and integration tests
+│   └── package.json
+│
+└── docs/
+    ├── user-stories/           # XP User Stories
+    ├── crc-cards/              # CRC Cards from design phase
+    └── conversation-flows/     # Conversation flow diagrams
+```
+
+---
+
+## 🎯 CHATBOT MODULES & INTENTS
+
+### Module 1: FAQ (Frequent Queries)
+
+**Purpose**: Automatically answer common customer questions
+
+**Intents**:
+
+```
+faq_bienvenida              # Welcome message
+faq_informacion_empresa     # Company information
+faq_horarios                # Business hours
+faq_ubicacion               # Location
+faq_servicios               # Available services
+faq_productos               # Available products
+faq_precios                 # Pricing information
+faq_garantias               # Warranty policies
+faq_problemas_frecuentes    # Common technical issues
+faq_despedida               # Goodbye
+Default Fallback Intent     # When not understood
+```
+
+### Module 2: Appointment Scheduling (Citas)
+
+**Purpose**: Automate technical service appointment booking
+
+**Intents**:
+
+```
+cita_solicitar              # Request appointment
+cita_tipo_servicio          # Select service type
+cita_local_fecha            # In-store: select date
+cita_local_hora             # In-store: select time
+cita_local_datos            # In-store: client data
+cita_local_confirmar        # In-store: confirm
+cita_domicilio_fecha        # Home service: select date
+cita_domicilio_hora         # Home service: select time
+cita_domicilio_direccion    # Home service: address
+cita_domicilio_datos        # Home service: client data
+cita_domicilio_confirmar    # Home service: confirm
+cita_cancelar               # Cancel appointment
+cita_reprogramar            # Reschedule
+cita_consultar              # Check existing appointment
+```
+
+**Entities**:
+
+```
+@tipo_equipo        # pc, laptop, impresora, celular, tablet
+@tipo_servicio      # reparacion, mantenimiento, instalacion, diagnostico
+@tipo_cita          # local, domicilio
+@fecha              # sys.date
+@hora               # sys.time
+@nombre_cliente     # sys.person
+@telefono           # sys.phone-number
+@direccion          # Free text
+@referencia         # Free text (address reference)
+@descripcion_problema # Free text
+```
+
+### Module 3: Quote Generation (Cotizaciones)
+
+**Purpose**: Generate automatic quotes for products/services
+
+**Intents**:
+
+```
+cotizar_solicitar           # Request quote
+cotizar_tipo                # Product or service quote
+cotizar_producto_categoria  # Select product category
+cotizar_producto_seleccionar # Select specific product
+cotizar_producto_cantidad   # Specify quantity
+cotizar_agregar_mas         # Add more items
+cotizar_servicio_tipo       # Select service type
+cotizar_datos_cliente       # Client information
+cotizar_confirmar           # Confirm quote
+cotizar_enviar              # Send via WhatsApp/email
+cotizar_modificar           # Modify quote
+```
+
+**Entities**:
+
+```
+@tipo_cotizacion    # producto, servicio
+@categoria_producto # computadora, laptop, impresora, accesorio, componente
+@producto           # Mapped to products collection
+@cantidad           # sys.number
+@tipo_cliente       # natural, juridico
+@email              # sys.email
+@razon_social       # Free text (for juridico)
+@ruc_cliente        # Free text (for juridico)
+```
+
+---
+
+## 💻 CODING STANDARDS
+
+### JavaScript/Node.js Conventions
+
+- Use ES6+ syntax (const/let, arrow functions, async/await)
+- Use camelCase for variables and functions
+- Use PascalCase for classes and constructors
+- Use UPPER_SNAKE_CASE for constants
+- Always use semicolons
+- Prefer async/await over callbacks/promise chains
+- Maximum line length: 100 characters
+- Use JSDoc comments for all exported functions
+
+### Intent Handler Pattern
+
+```javascript
+/**
+ * Handles the appointment scheduling intent
+ * @param {Object} agent - Dialogflow WebhookClient agent
+ * @returns {Promise<void>}
+ */
+const handleAppointmentIntent = async (agent) => {
+	const startTime = Date.now();
+	const { parameters } = agent;
+
+	try {
+		// 1. Validate required parameters
+		if (!parameters['fecha'] || !parameters['hora']) {
+			agent.add('Por favor, indique la fecha y hora para su cita.');
+			return;
+		}
+
+		// 2. Execute business logic
+		const result = await appointmentService.scheduleAppointment({
+			date: parameters['fecha'],
+			time: parameters['hora'],
+			clientName: parameters['nombre_cliente'],
+			phone: parameters['telefono'],
+		});
+
+		// 3. Record metrics (for thesis evaluation)
+		await metricsService.recordInteraction({
+			intent: agent.intent,
+			startTime,
+			endTime: Date.now(),
+			success: true,
+		});
+
+		// 4. Respond to user
+		agent.add(`✅ Su cita ha sido agendada para el ${result.formattedDate}`);
+	} catch (error) {
+		logger.error('Appointment scheduling failed:', error);
+
+		await metricsService.recordInteraction({
+			intent: agent.intent,
+			startTime,
+			endTime: Date.now(),
+			success: false,
+			error: error.message,
+		});
+
+		agent.add(
+			'Lo sentimos, hubo un problema al agendar su cita. ¿Desea intentar nuevamente?',
+		);
+	}
+};
+```
+
+### Error Handling Pattern
+
+```javascript
+const handleIntent = async (agent) => {
+	try {
+		// Intent logic
+	} catch (error) {
+		if (error instanceof ValidationError) {
+			agent.add(error.userMessage);
+		} else if (error instanceof ExternalServiceError) {
+			agent.add(MESSAGES.EXTERNAL_SERVICE_ERROR);
+			await notifyAdmin(error);
+		} else {
+			agent.add(MESSAGES.GENERIC_ERROR);
+			logger.error('Unexpected error:', error);
+		}
+	}
+};
+```
+
+### Webhook Response Builder
+
+```javascript
+const buildResponse = (message, suggestions = []) => {
+	return {
+		fulfillmentText: message,
+		fulfillmentMessages: [
+			{ text: { text: [message] } },
+			suggestions.length > 0
+				? {
+						quickReplies: {
+							title: '¿Qué desea hacer?',
+							quickReplies: suggestions,
+						},
+				  }
+				: null,
+		].filter(Boolean),
+	};
+};
+```
+
+---
+
+## 🗄️ MONGODB SCHEMAS
+
+### appointments Collection
+
+```javascript
+{
+  _id: ObjectId,
+  referenceNumber: String,        // Auto-generated: CITA-YYYYMMDD-XXX
+  clientName: String,
+  phone: String,
+  email: String,
+  equipmentType: String,          // @tipo_equipo value
+  serviceType: String,            // @tipo_servicio value
+  problemDescription: String,
+  appointmentType: String,        // 'local' | 'domicilio'
+  scheduledDate: Date,
+  scheduledTime: String,
+  address: String,                // Only for domicilio
+  addressReference: String,       // Only for domicilio
+  status: String,                 // 'pendiente' | 'confirmada' | 'completada' | 'cancelada'
+  googleCalendarEventId: String,
+  // Metrics fields (for thesis)
+  creationStartTime: Date,        // When user started the flow
+  creationEndTime: Date,          // When appointment was confirmed
+  creationDurationMs: Number,     // Calculated duration
+  createdByChatbot: Boolean,      // Always true for this project
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+### quotes Collection
+
+```javascript
+{
+  _id: ObjectId,
+  quoteNumber: String,            // Auto-generated: COT-YYYYMMDD-XXX
+  clientName: String,
+  phone: String,
+  email: String,
+  clientType: String,             // 'natural' | 'juridico'
+  ruc: String,                    // Only for juridico
+  companyName: String,            // Only for juridico
+  quoteType: String,              // 'producto' | 'servicio'
+  items: [{
+    productId: ObjectId,
+    name: String,
+    quantity: Number,
+    unitPrice: Number,
+    subtotal: Number
+  }],
+  subtotal: Number,
+  igv: Number,                    // 18% for Peru
+  totalAmount: Number,
+  validUntil: Date,               // Quote validity (7 days default)
+  status: String,                 // 'generada' | 'enviada' | 'aceptada' | 'rechazada'
+  sentVia: String,                // 'whatsapp' | 'email'
+  // Metrics fields
+  creationStartTime: Date,
+  creationEndTime: Date,
+  creationDurationMs: Number,
+  createdByChatbot: Boolean,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+### products Collection
+
+```javascript
+{
+  _id: ObjectId,
+  sku: String,
+  category: String,               // 'computadora', 'laptop', 'impresora', etc.
+  name: String,
+  brand: String,
+  model: String,
+  description: String,
+  specifications: Object,
+  price: Number,
+  stock: Number,
+  isActive: Boolean,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+### services Collection
+
+```javascript
+{
+  _id: ObjectId,
+  code: String,
+  name: String,
+  description: String,
+  category: String,               // 'reparacion', 'mantenimiento', 'instalacion'
+  equipmentTypes: [String],       // Compatible equipment types
+  basePrice: Number,
+  estimatedDuration: String,      // e.g., "1-2 horas"
+  isActive: Boolean,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+### conversations Collection (Analytics for Thesis)
+
+```javascript
+{
+  _id: ObjectId,
+  sessionId: String,
+  userId: String,                 // WhatsApp phone number
+  channel: String,                // 'whatsapp' | 'web'
+  messages: [{
+    role: String,                 // 'user' | 'bot'
+    content: String,
+    intent: String,
+    confidence: Number,
+    timestamp: Date
+  }],
+  resolved: Boolean,
+  escalatedToHuman: Boolean,
+  satisfactionRating: Number,     // 1-5 if collected
+  // Metrics
+  totalMessages: Number,
+  totalDurationMs: Number,
+  startedAt: Date,
+  endedAt: Date
+}
+```
+
+---
+
+## 📝 DIALOGFLOW GUIDELINES
+
+### Intent Naming Convention
+
+- Use snake_case for intent names
+- Prefix with category: `faq_`, `cita_`, `cotizar_`
+- Examples: `faq_horarios`, `cita_local_confirmar`, `cotizar_laptop`
+
+### Entity Naming Convention
+
+- Use snake_case with @ prefix in documentation
+- Custom entities: `@tipo_equipo`, `@tipo_servicio`, `@modelo_equipo`
+- System entities: `@sys.date`, `@sys.time`, `@sys.phone-number`
+
+### Context Naming Convention
+
+- Use descriptive names: `cita_local_en_curso`, `cotizacion_pendiente`
+- Set appropriate lifespan (typically 5 for multi-turn conversations)
+
+### Training Phrases Requirements
+
+- Minimum 10-15 training phrases per intent
+- Include variations with typos, colloquialisms
+- Cover formal and informal Spanish
+- Include Peruvian Spanish expressions
+- Examples:
+  - "quiero sacar una cita"
+  - "quisiera agendar una cita"
+  - "necesito una cita para mi laptop"
+  - "pueden revisar mi compu?"
+  - "mi pc no prende, puedo llevarla?"
+
+---
+
+## 💬 RESPONSE MESSAGES (Spanish - Peru)
+
+### Tone Guidelines
+
+- Friendly but professional
+- Use "usted" form (formal Spanish)
+- Include emojis sparingly: ✅ ❌ 📅 📍 💬 📋 🔧
+- Always offer next steps or alternatives
+
+### Standard Messages
+
+```javascript
+const MESSAGES = {
+	// Greetings
+	WELCOME:
+		'¡Hola! 👋 Soy el asistente virtual de CBRICENHO. ¿En qué puedo ayudarle hoy?',
+	GOODBYE: '¡Gracias por contactarnos! Que tenga un excelente día. 😊',
+
+	// Fallback & Escalation
+	FALLBACK:
+		'Disculpe, no entendí su mensaje. ¿Podría reformularlo o elegir una opción?',
+	FALLBACK_RETRY: 'Sigo sin entender. ¿Desea que lo comunique con un asesor?',
+	ESCALATE:
+		'Entiendo. Lo comunicaré con un asesor humano. Por favor, espere un momento.',
+
+	// Appointments
+	APPOINTMENT_TYPE_ASK:
+		'¿Prefiere traer su equipo a nuestro local o desea servicio a domicilio?',
+	APPOINTMENT_DATE_ASK: '📅 ¿Qué fecha le gustaría para su cita?',
+	APPOINTMENT_TIME_ASK: '🕐 ¿A qué hora le convendría?',
+	APPOINTMENT_CONFIRMED: '✅ ¡Listo! Su cita ha sido agendada.',
+	APPOINTMENT_ERROR:
+		'Lo sentimos, no pudimos agendar su cita. ¿Desea intentar con otra fecha?',
+	APPOINTMENT_SLOT_UNAVAILABLE:
+		'Ese horario no está disponible. ¿Desea elegir otro?',
+
+	// Quotes
+	QUOTE_TYPE_ASK: '¿Desea cotizar un producto o un servicio?',
+	QUOTE_PRODUCT_CATEGORY:
+		'¿Qué tipo de producto le interesa? (computadora, laptop, impresora, etc.)',
+	QUOTE_READY:
+		'📋 Su cotización está lista. ¿Desea recibirla por WhatsApp o correo?',
+	QUOTE_SENT: '✅ Cotización enviada. Tiene validez de 7 días.',
+
+	// Errors
+	GENERIC_ERROR:
+		'Lo sentimos, ocurrió un error inesperado. Por favor, intente nuevamente.',
+	EXTERNAL_SERVICE_ERROR:
+		'Tenemos problemas técnicos momentáneos. ¿Podemos contactarlo más tarde?',
+
+	// Validation
+	INVALID_PHONE:
+		'El número de teléfono no parece válido. Por favor, ingrese un número de 9 dígitos.',
+	INVALID_EMAIL: 'El correo electrónico no parece válido. ¿Podría verificarlo?',
+	INVALID_DATE:
+		'Esa fecha no es válida o ya pasó. Por favor, elija una fecha futura.',
+};
+```
+
+---
+
+## ⚙️ BUSINESS RULES
+
+### Appointment Rules
+
+- Maximum booking window: 7 calendar days ahead
+- Operating hours: Mon-Fri 8:00-18:00, Sat 8:00-13:00
+- Maximum simultaneous appointments: 3 (configurable)
+- Session timeout: 30 minutes of inactivity
+- Home service coverage: Paita district only
+
+### Quote Rules
+
+- Products must exist in database with isActive: true
+- Services have fixed or calculated pricing
+- Quotes valid for: 7 days (configurable)
+- IGV (tax): 18% for Peru
+- Minimum quote amount: S/ 50.00
+
+---
+
+## 🧪 TESTING REQUIREMENTS
+
+### Unit Test Pattern (Jest)
+
+```javascript
+describe('AppointmentService', () => {
+	describe('scheduleAppointment', () => {
+		it('should create appointment when slot is available', async () => {
+			const mockData = {
+				date: '2026-02-15',
+				time: '10:00',
+				clientName: 'Juan Pérez',
+				phone: '+51975123456',
+			};
+
+			const result = await appointmentService.scheduleAppointment(mockData);
+
+			expect(result.status).toBe('confirmada');
+			expect(result.googleCalendarEventId).toBeDefined();
+			expect(result.creationDurationMs).toBeGreaterThan(0);
+		});
+
+		it('should throw error when slot is not available', async () => {
+			// Test unavailable slot scenario
+		});
+
+		it('should record metrics for thesis evaluation', async () => {
+			// Test metrics recording
+		});
+	});
+});
+```
+
+### Integration Tests Required
+
+- [ ] Dialogflow webhook responses
+- [ ] Google Calendar integration
+- [ ] MongoDB CRUD operations
+- [ ] WhatsApp message formatting
+- [ ] Metrics recording accuracy
+
+---
+
+## 🔄 XP METHODOLOGY REMINDERS
+
+### Development Phases
+
+1. **Planning**: User stories, release plan, iterations
+2. **Design**: Architecture, Dialogflow flows, CRC cards
+3. **Coding**: Implementation with pair programming, unit tests
+4. **Testing**: Acceptance tests with client, refactoring
+
+### Iterations
+
+1. **Iteration 1**: FAQ module (frequent queries)
+2. **Iteration 2**: Appointment scheduling module
+3. **Iteration 3**: Quote generation module
+
+### Before Each Commit
+
+- [ ] All unit tests pass
+- [ ] Code follows style guidelines
+- [ ] JSDoc comments added for new functions
+- [ ] No console.log statements in production code
+- [ ] Error handling implemented
+- [ ] Metrics recording verified
+
+---
+
+## 🔐 ENVIRONMENT VARIABLES
+
+```env
+# Dialogflow
+DIALOGFLOW_PROJECT_ID=cbricenho-chatbot
+GOOGLE_APPLICATION_CREDENTIALS=./service-account.json
+
+# MongoDB
+MONGODB_URI=mongodb://localhost:27017/cbricenho
+MONGODB_DB_NAME=cbricenho
+
+# Google Calendar
+GOOGLE_CALENDAR_ID=primary
+
+# WhatsApp Business API
+WHATSAPP_API_URL=
+WHATSAPP_API_TOKEN=
+WHATSAPP_PHONE_NUMBER_ID=
+
+# App Configuration
+NODE_ENV=development
+PORT=3000
+SESSION_TIMEOUT_MINUTES=30
+MAX_BOOKING_DAYS=7
+QUOTE_VALIDITY_DAYS=7
+IGV_PERCENTAGE=18
+
+# Company Info
+COMPANY_NAME=CBRICENHO E.I.R.L
+COMPANY_RUC=20606300825
+COMPANY_ADDRESS=A.H. Marco Jara Schennone Mz D Lote 36, Paita
+COMPANY_PHONE=+51XXX
+```
+
+---
+
+## 📌 GIT COMMIT CONVENTION
+
+```
+feat: add new feature
+fix: bug fix
+docs: documentation changes
+style: formatting, no code change
+refactor: code restructuring
+test: adding tests
+chore: maintenance tasks
+metrics: changes related to thesis metrics
+
+Examples:
+feat(appointments): add domicilio appointment flow
+fix(quotes): correct IGV calculation
+metrics(conversations): add duration tracking
+test(faq): add unit tests for horarios intent
+```
+
+---
+
+## 📚 GLOSSARY
+
+| Term                 | Definition                                               |
+| -------------------- | -------------------------------------------------------- |
+| **Intent**           | Classification of user intention in Dialogflow           |
+| **Entity**           | Data type extracted from user expressions                |
+| **Context**          | State that controls conversation flow                    |
+| **Webhook**          | HTTP endpoint receiving Dialogflow notifications         |
+| **Fulfillment**      | Backend code processing intents and generating responses |
+| **NLU**              | Natural Language Understanding                           |
+| **PLN**              | Procesamiento del Lenguaje Natural (Spanish)             |
+| **Training phrases** | Example phrases to train an intent                       |
+| **Fallback intent**  | Intent activated when no match found                     |
+| **Session**          | Unique identifier for a conversation                     |
+| **CRC Cards**        | Class-Responsibility-Collaborator design cards (XP)      |
+| **User Story**       | XP requirement format from user perspective              |
+
+---
+
+_Project: Thesis 2023-2025_
+_Company: CBRICENHO E.I.R.L - Paita, Piura, Perú_
+_Author: Bach. Luis Humberto Paz Córdova_

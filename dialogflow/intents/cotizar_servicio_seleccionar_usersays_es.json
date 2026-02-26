@@ -1,0 +1,166 @@
+[
+  {
+    "id": "ed6e94d4-247c-4e8b-a194-5df190684bef",
+    "data": [
+      {
+        "text": "Quiero la tercera opción",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e2df2089-290b-40b2-9ebf-e598908047fa",
+    "data": [
+      {
+        "text": "Quiero la segunda opción",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6c6b074c-1bf9-40ed-9402-008e103af17e",
+    "data": [
+      {
+        "text": "Quiero la primera opción",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f7bcc27d-9913-4b07-b5fb-756cb670d5bf",
+    "data": [
+      {
+        "text": "Esa opción",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7a0b9764-eb91-4dd4-bb9b-01943f72741a",
+    "data": [
+      {
+        "text": "Me interesa el segundo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8890943d-34f3-421f-8409-f2ac418e504a",
+    "data": [
+      {
+        "text": "Me interesa el primero",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0d693b08-a793-4a45-b558-778ee3f620ab",
+    "data": [
+      {
+        "text": "Quiero ese",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fdce0331-631c-44d6-a65c-486ddc3d2eb3",
+    "data": [
+      {
+        "text": "El segundo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "56a1ed8a-aa62-4cd6-b682-25d62d41b14f",
+    "data": [
+      {
+        "text": "El primero",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3a3125cf-d4c9-489e-8fa5-cc27799d71f0",
+    "data": [
+      {
+        "text": "La tercera",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b831ae58-977e-4c26-a777-b515b8d0186b",
+    "data": [
+      {
+        "text": "La",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "segunda",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "321aa41b-83dd-48ca-a926-398670152424",
+    "data": [
+      {
+        "text": "La primera",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

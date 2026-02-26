@@ -1,0 +1,46 @@
+[
+  {
+    "value": "computadora",
+    "synonyms": [
+      "computadora",
+      "computadora de escritorio",
+      "PC",
+      "desktop",
+      "equipo de escritorio",
+      "cpu",
+      "compu"
+    ]
+  },
+  {
+    "value": "repuesto_laptop",
+    "synonyms": [
+      "repuesto_laptop",
+      "repuesto",
+      "repuesto de laptop",
+      "parte de laptop",
+      "pieza",
+      "pantalla laptop",
+      "teclado laptop"
+    ]
+  },
+  {
+    "value": "impresora",
+    "synonyms": [
+      "impresora",
+      "printer",
+      "multifuncional",
+      "impresoras"
+    ]
+  },
+  {
+    "value": "accesorio",
+    "synonyms": [
+      "accesorio",
+      "accesorios",
+      "periférico",
+      "periferico",
+      "componente",
+      "componentes"
+    ]
+  }
+]

@@ -1,0 +1,154 @@
+[
+  {
+    "id": "b77876ad-ad6a-48fe-ae4f-a01c9d379ecc",
+    "data": [
+      {
+        "text": "La primera",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fed7cb86-b683-4862-957f-07b8556e644f",
+    "data": [
+      {
+        "text": "Opción 1",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3474f8ce-e0c9-4572-ade0-c97f30c7f6a7",
+    "data": [
+      {
+        "text": "1",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "38528e39-e8e5-477d-b3b4-40b6293782a9",
+    "data": [
+      {
+        "text": "Equipo de escritorio",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0d9de9fb-b2a2-49f2-8f5e-01998ea12d2d",
+    "data": [
+      {
+        "text": "Quiero una ",
+        "userDefined": false
+      },
+      {
+        "text": "computadora",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "407ba8a1-7051-49f1-ba05-ace04c2230bd",
+    "data": [
+      {
+        "text": "Quiero cotizar una ",
+        "userDefined": false
+      },
+      {
+        "text": "PC",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d176c28e-ddab-4c95-b774-7c54b7639ad4",
+    "data": [
+      {
+        "text": "Desktop",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1cf25798-0572-4ab1-b744-80c0858899c9",
+    "data": [
+      {
+        "text": "PC",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d91169b8-0fbc-43d0-beea-ff06c53d15dc",
+    "data": [
+      {
+        "text": "Computadora",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f622a490-b859-457b-b1f7-a8a9774371f7",
+    "data": [
+      {
+        "text": "Computadora de escritorio",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

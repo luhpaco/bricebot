@@ -1,0 +1,60 @@
+{
+  "id": "c62ed83e-d2ee-4794-9e09-5442f9d94512",
+  "name": "cita_domicilio_rango_horario",
+  "auto": true,
+  "contexts": [
+    "cita_domicilio_en_curso",
+    "cita_domicilio_paso_horario"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cita_domicilio_confirmar",
+          "lifespan": 3
+        }
+      ],
+      "parameters": [
+        {
+          "id": "57d82e5f-3f71-47e4-9f6e-e4dc3d31e542",
+          "name": "rango_horario",
+          "required": true,
+          "dataType": "@rango_horario",
+          "value": "$rango_horario",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿Qué rango horario prefiere? Mañana (8:00-12:00) o Tarde (14:00-18:00)"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

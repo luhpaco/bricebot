@@ -1,0 +1,112 @@
+[
+  {
+    "id": "528dac5a-54be-4236-b0bf-c76c9a10e149",
+    "data": [
+      {
+        "text": "Mi nombre es ",
+        "userDefined": false
+      },
+      {
+        "text": "Manuel Vargas Otiniano",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "81727e9f-4834-4e17-9f08-525db3b7b9d6",
+    "data": [
+      {
+        "text": "Soy ",
+        "userDefined": false
+      },
+      {
+        "text": "Daniel Mena Peña",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "471657a8-1c8c-41f7-aaaf-6af1cc8485a7",
+    "data": [
+      {
+        "text": "Mi nombre es ",
+        "userDefined": false
+      },
+      {
+        "text": "Ana Torres",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d2c37f89-fe6c-4969-bd65-ca13da8534b1",
+    "data": [
+      {
+        "text": "Carlos García",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5df9b2a6-db9e-487c-beec-049a8a1e1aa5",
+    "data": [
+      {
+        "text": "Soy ",
+        "userDefined": false
+      },
+      {
+        "text": "María López",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e4f9b362-99b2-47e9-bed6-0d3cc10fabee",
+    "data": [
+      {
+        "text": " Me llamo ",
+        "userDefined": false
+      },
+      {
+        "text": "Juan Pérez",
+        "meta": "@sys.person",
+        "alias": "nombre_cliente",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

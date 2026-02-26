@@ -1,0 +1,60 @@
+{
+  "id": "643d5a25-b5df-4820-98e1-1708cc1e6af3",
+  "name": "cita_domicilio_equipo",
+  "auto": true,
+  "contexts": [
+    "cita_domicilio_en_curso",
+    "cita_domicilio_paso_equipo"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cita_domicilio_en_curso",
+          "lifespan": 12
+        }
+      ],
+      "parameters": [
+        {
+          "id": "97213dda-e272-4668-8c86-579833dfa677",
+          "name": "tipo_equipo",
+          "required": true,
+          "dataType": "@tipo_equipo",
+          "value": "$tipo_equipo",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿Qué tipo de equipo es? (PC, laptop, impresora, cámara, otro)"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

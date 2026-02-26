@@ -1,0 +1,187 @@
+[
+  {
+    "id": "8201d311-61e2-4c41-9e13-61e531b9d14e",
+    "data": [
+      {
+        "text": "Su Instagram",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fd6c9dcb-f736-4e84-ad1d-3ff88ca3dd91",
+    "data": [
+      {
+        "text": "Su Facebook",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3563205e-327e-4faa-82e7-91d1bd9786e3",
+    "data": [
+      {
+        "text": "Quiero seguirlos",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "812217df-461d-4d73-a985-54a4de73a0a3",
+    "data": [
+      {
+        "text": "¿Tienen cuenta de Instagram?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b4cf562d-23d5-429c-977b-40803b8a8947",
+    "data": [
+      {
+        "text": "Páginas sociales",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b35c3b08-2387-43b3-9d3f-ea9c3a2dfdc1",
+    "data": [
+      {
+        "text": "¿Están en redes?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7ab6e68b-a46b-4662-bc2a-eff2f43f7272",
+    "data": [
+      {
+        "text": "Fan page",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2c43c921-2772-4e72-b5c8-001fd9ba6479",
+    "data": [
+      {
+        "text": "¿Dónde los sigo?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "11487adb-a609-43d3-9da2-e64deb99d365",
+    "data": [
+      {
+        "text": "Instagram",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "28fc5b95-e82a-4ab8-8998-1b5521488682",
+    "data": [
+      {
+        "text": "Facebook",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "986b0046-efcd-4ad9-95a1-3aaf229a1cee",
+    "data": [
+      {
+        "text": "Redes sociales",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f18beed1-7835-457a-ab97-b487b4c56e3d",
+    "data": [
+      {
+        "text": "¿Cuál ",
+        "userDefined": false
+      },
+      {
+        "text": "es",
+        "userDefined": false
+      },
+      {
+        "text": " su ",
+        "userDefined": false
+      },
+      {
+        "text": "Instagram",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f806765f-28ce-4041-9dd2-612ab273ad24",
+    "data": [
+      {
+        "text": "¿Tienen Facebook?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

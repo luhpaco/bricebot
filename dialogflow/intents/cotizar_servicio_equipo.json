@@ -1,0 +1,54 @@
+{
+  "id": "13f7c576-99fc-47df-9fdd-c85f3de54b3b",
+  "name": "cotizar_servicio_equipo",
+  "auto": true,
+  "contexts": [
+    "cotizacion_servicio"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cotizacion_servicio",
+          "lifespan": 8
+        }
+      ],
+      "parameters": [
+        {
+          "id": "cd910917-9a33-4b91-86ea-97ffe214e32f",
+          "name": "tipo_equipo",
+          "required": false,
+          "dataType": "@tipo_equipo",
+          "value": "$tipo_equipo",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

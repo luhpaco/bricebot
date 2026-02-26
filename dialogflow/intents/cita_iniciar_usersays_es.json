@@ -1,0 +1,217 @@
+[
+  {
+    "id": "c8eb187c-606f-4443-ade9-190519e34cf5",
+    "data": [
+      {
+        "text": "Me gustaría agendar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4412fb75-8207-47e2-ab16-7a9b12ef0fd3",
+    "data": [
+      {
+        "text": "Quiero hacer una cita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5c8b47b2-d93b-4667-a98b-d4e770d664c8",
+    "data": [
+      {
+        "text": "Cómo agendo una cita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4b1f3c03-dc11-41b2-93fb-691344d086b8",
+    "data": [
+      {
+        "text": "Puedo agendar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "95dd2910-e30e-435f-8bef-e63c33e54b88",
+    "data": [
+      {
+        "text": "Necesito una cita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "38b5747e-dba9-4e44-8fcd-66d88370ec5f",
+    "data": [
+      {
+        "text": "Agendar servicio",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "14185cf9-8f5a-4676-bf77-bca6fa1b8cbb",
+    "data": [
+      {
+        "text": "Quiero que revisen mi equipo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "dc6ae5b5-0329-4553-8379-f9121c64c0db",
+    "data": [
+      {
+        "text": "Necesito reparar mi laptop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "def31667-a59e-49f2-906e-3fa31c30a1da",
+    "data": [
+      {
+        "text": "Tengo un problema con mi computadora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "29204343-1842-473e-ac47-f8cf5f93da19",
+    "data": [
+      {
+        "text": "Mi equipo está fallando",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9526e93c-09a7-4937-801f-3902a1c702b1",
+    "data": [
+      {
+        "text": "Reservar cita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d7ac5615-4174-4527-a1ee-25b47c48fa87",
+    "data": [
+      {
+        "text": "Programar ",
+        "userDefined": false
+      },
+      {
+        "text": "una",
+        "userDefined": false
+      },
+      {
+        "text": " cita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6813bf19-cc3c-487a-b047-01df9e8766f1",
+    "data": [
+      {
+        "text": "Agendar cita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f58d1aa1-6599-4d21-958a-749eb7a5c8ac",
+    "data": [
+      {
+        "text": "Necesito ",
+        "userDefined": false
+      },
+      {
+        "text": "servicio técnico",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "889015b4-c7e0-4a3a-96a6-4ca51a980bf2",
+    "data": [
+      {
+        "text": "Quiero agendar ",
+        "userDefined": false
+      },
+      {
+        "text": "una",
+        "userDefined": false
+      },
+      {
+        "text": " cita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

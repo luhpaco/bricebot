@@ -1,0 +1,39 @@
+{
+  "id": "c3c5f07f-699b-43fa-acd5-7b3a35edfd2c",
+  "name": "cotizar_agregar_mas",
+  "auto": true,
+  "contexts": [
+    "cotizacion_items"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cotizacion_producto",
+          "lifespan": 8
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

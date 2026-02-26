@@ -1,0 +1,60 @@
+{
+  "id": "e2f92866-b399-464c-833c-3ce8f6b51f69",
+  "name": "cita_domicilio_nombre",
+  "auto": true,
+  "contexts": [
+    "cita_domicilio_en_curso",
+    "cita_domicilio_paso_nombre"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cita_domicilio_en_curso",
+          "lifespan": 12
+        }
+      ],
+      "parameters": [
+        {
+          "id": "bf0d2fe8-8f7b-441e-814f-4701bea2b8d2",
+          "name": "nombre_cliente",
+          "required": true,
+          "dataType": "@sys.person",
+          "value": "$nombre_cliente",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿Cuál es su nombre completo?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

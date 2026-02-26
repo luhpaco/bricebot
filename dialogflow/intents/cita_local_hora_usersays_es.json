@@ -1,0 +1,123 @@
+[
+  {
+    "id": "5602c598-ce7e-46d0-b676-0febd637358a",
+    "data": [
+      {
+        "text": "3 de la tarde",
+        "meta": "@sys.time",
+        "alias": "hora",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9d31868c-9892-465d-bf3a-a97e6c183086",
+    "data": [
+      {
+        "text": " A las ",
+        "userDefined": false
+      },
+      {
+        "text": "10 de la mañana",
+        "meta": "@sys.time",
+        "alias": "hora",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "80f55b61-f3b4-4047-8581-1f409282588b",
+    "data": [
+      {
+        "text": "15:00",
+        "meta": "@sys.time",
+        "alias": "hora",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8d057ef8-18e9-4c74-bcb5-f966370e1044",
+    "data": [
+      {
+        "text": "3 pm",
+        "meta": "@sys.time",
+        "alias": "hora",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0f156044-767f-4d35-b956-9b9e7cf8ef0f",
+    "data": [
+      {
+        "text": "Por la ",
+        "userDefined": false
+      },
+      {
+        "text": "tarde",
+        "meta": "@sys.time",
+        "alias": "hora",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2f1147ff-1711-4017-9344-a71760596e15",
+    "data": [
+      {
+        "text": "En la ",
+        "userDefined": false
+      },
+      {
+        "text": "mañana",
+        "meta": "@sys.time",
+        "alias": "hora",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e00beb85-19f9-401e-898d-d363e1021151",
+    "data": [
+      {
+        "text": "A las ",
+        "userDefined": false
+      },
+      {
+        "text": "10",
+        "meta": "@sys.time",
+        "alias": "hora",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

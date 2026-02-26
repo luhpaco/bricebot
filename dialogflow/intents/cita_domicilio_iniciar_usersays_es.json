@@ -1,0 +1,132 @@
+[
+  {
+    "id": "168bc61e-e9c2-4f98-b5ff-04d5c5048497",
+    "data": [
+      {
+        "text": "En mi casa",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3a745f74-adc1-40a6-afe0-07d04842075f",
+    "data": [
+      {
+        "text": "Domicilio",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "331f4a92-2d13-4d21-81b4-8fb7f8a82b76",
+    "data": [
+      {
+        "text": "La segunda",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f0cfb790-881c-4f4c-8ee5-8bb60fa544e7",
+    "data": [
+      {
+        "text": "Opción 2",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f261f340-87b9-4c7f-9eec-27ff04ce972c",
+    "data": [
+      {
+        "text": "2",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "333358c9-705b-4374-8ac9-841f872cc424",
+    "data": [
+      {
+        "text": "Que recojan mi equipo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8548e4e9-33c2-4a55-bdcf-70a1ab1d1985",
+    "data": [
+      {
+        "text": "Prefiero domicilio",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9d752d75-fb36-4af6-950f-e76d0d36ed64",
+    "data": [
+      {
+        "text": "Servicio a domicilio",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "eef8141a-43b5-4227-ad9a-70ca3bd85265",
+    "data": [
+      {
+        "text": "Que vayan a mi casa",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9942f6b0-0b50-4cfc-a3ab-b366bb4e4fe2",
+    "data": [
+      {
+        "text": "A domicilio",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "a5a902b8-8ad4-4530-b57f-33dc0d00e8e9",
+    "data": [
+      {
+        "text": "2",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f12cc1cb-d9ec-4453-9800-b0d7ae4427af",
+    "data": [
+      {
+        "text": "1",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ae0c6799-6284-4212-8d65-c8bee5be927e",
+    "data": [
+      {
+        "text": "Prefiero la ",
+        "userDefined": false
+      },
+      {
+        "text": "tarde",
+        "meta": "@rango_horario",
+        "alias": "rango_horario",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7e4f3c6a-5678-4422-9c02-36a8318c7c06",
+    "data": [
+      {
+        "text": "Por la ",
+        "userDefined": false
+      },
+      {
+        "text": "tarde",
+        "meta": "@rango_horario",
+        "alias": "rango_horario",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ee58d2f9-dac0-4f77-85b9-2dcdef03b6bb",
+    "data": [
+      {
+        "text": "En la ",
+        "userDefined": false
+      },
+      {
+        "text": "mañana",
+        "meta": "@rango_horario",
+        "alias": "rango_horario",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ccb15fb6-7431-4f1e-9530-097df4873b19",
+    "data": [
+      {
+        "text": "mañana",
+        "meta": "@rango_horario",
+        "alias": "rango_horario",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

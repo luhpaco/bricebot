@@ -1,0 +1,59 @@
+{
+  "id": "54fd9859-cffd-43b3-8211-6c7dc034cbba",
+  "name": "cita_local_fecha",
+  "auto": true,
+  "contexts": [
+    "cita_local_en_curso"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cita_local_en_curso",
+          "lifespan": 10
+        }
+      ],
+      "parameters": [
+        {
+          "id": "16a9a6a3-0704-43a4-b8f7-07f86f4fc276",
+          "name": "fecha",
+          "required": true,
+          "dataType": "@sys.date",
+          "value": "$fecha",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿Qué fecha prefiere? (Disponible hasta 7 días)"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,93 @@
+[
+  {
+    "id": "78800378-121d-49c1-80a0-d45d4974fe5d",
+    "data": [
+      {
+        "text": "Una ",
+        "userDefined": false
+      },
+      {
+        "text": "PC",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7efdeab2-fca2-4428-aee0-f14b09c1383d",
+    "data": [
+      {
+        "text": "Mi ",
+        "userDefined": false
+      },
+      {
+        "text": "laptop",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2542d77c-e68a-4fa3-b023-c7472458796c",
+    "data": [
+      {
+        "text": "Tengo una ",
+        "userDefined": false
+      },
+      {
+        "text": "impresora",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "769c7012-dace-4086-8426-bc0d808d0157",
+    "data": [
+      {
+        "text": "computadora",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e1cdb09e-eb50-442b-a9d0-c33e6c49216e",
+    "data": [
+      {
+        "text": "Es una ",
+        "userDefined": false
+      },
+      {
+        "text": "laptop",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

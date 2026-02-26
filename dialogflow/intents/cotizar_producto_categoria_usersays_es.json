@@ -1,0 +1,186 @@
+[
+  {
+    "id": "324c7287-7fd1-4995-b938-fe8287d35d69",
+    "data": [
+      {
+        "text": "Impresora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "70538277-1d58-438f-a27c-2b44874f5982",
+    "data": [
+      {
+        "text": "Laptop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "dd77d5dd-69d5-4d2e-97af-af8c1dcac54b",
+    "data": [
+      {
+        "text": "Computadora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8b60b26a-1efe-49de-8028-621c3f49cd8b",
+    "data": [
+      {
+        "text": "La primera",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b2f1805a-729b-46f0-b50a-de5eb10db3c1",
+    "data": [
+      {
+        "text": "Opción 1",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "dbdb0faa-5593-49bd-83d8-985fdd08039d",
+    "data": [
+      {
+        "text": "1",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c4f1656b-2823-4985-8439-bc6ddbf7242b",
+    "data": [
+      {
+        "text": "Quiero ver ",
+        "userDefined": false
+      },
+      {
+        "text": "productos",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ff1e8191-5494-4f5f-9840-bb6067342bf5",
+    "data": [
+      {
+        "text": "Me interesa un ",
+        "userDefined": false
+      },
+      {
+        "text": "producto",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8a428198-6062-4e84-b8ee-34decbc201e5",
+    "data": [
+      {
+        "text": "Un ",
+        "userDefined": false
+      },
+      {
+        "text": "equipo",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ecf2aabe-b87c-4636-95e1-0953195dc93f",
+    "data": [
+      {
+        "text": "Quiero cotizar un ",
+        "userDefined": false
+      },
+      {
+        "text": "producto",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2f79d52f-ec66-45ad-9a49-8fe0818ef6a8",
+    "data": [
+      {
+        "text": "Producto",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c59028f8-9e0f-44cd-b1d1-545c9e9d865f",
+    "data": [
+      {
+        "text": "Productos",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

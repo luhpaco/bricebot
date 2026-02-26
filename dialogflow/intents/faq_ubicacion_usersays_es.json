@@ -1,0 +1,205 @@
+[
+  {
+    "id": "c712e466-5144-48f3-92ec-4d8b31c56518",
+    "data": [
+      {
+        "text": "Quiero ir al local",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "be080072-cacf-41e2-80dd-d45eaeb00904",
+    "data": [
+      {
+        "text": "¿Dónde puedo visitarlos?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "17da8673-5bbd-48b9-ba28-b9159e30c724",
+    "data": [
+      {
+        "text": "¿Tienen local físico?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "720955e2-9d58-4827-abac-8b86e2a341d6",
+    "data": [
+      {
+        "text": "Su ubicación",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "bda0caf2-113b-4837-9b66-1ade5bb46170",
+    "data": [
+      {
+        "text": "¿Dónde están?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6601a851-c3d5-4021-a074-cdbf55ddaff4",
+    "data": [
+      {
+        "text": "¿En qué zona están?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c433f761-b40a-486b-a1dc-cb267c022437",
+    "data": [
+      {
+        "text": "¿Dónde los encuentro?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9ddc0df1-32e0-48e8-8cef-f504f8df8da5",
+    "data": [
+      {
+        "text": "Mapa",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2f6a0c83-7ac4-4f14-a353-2739740651b0",
+    "data": [
+      {
+        "text": "¿Por dónde están?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3ae74549-3a93-416e-b18b-bee98bcc3d79",
+    "data": [
+      {
+        "text": "¿Cómo llego?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f9cc5750-4a34-4ab9-92d3-551661d44311",
+    "data": [
+      {
+        "text": "¿Dónde queda CBRICENHO?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0d1577ec-db49-4782-a67f-c46c392f0095",
+    "data": [
+      {
+        "text": "Ubicación",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "efdbc4e5-31a5-48f0-af04-8032315eb067",
+    "data": [
+      {
+        "text": "Dirección",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "db6c685d-c9ac-491b-9130-8ae37e8fe470",
+    "data": [
+      {
+        "text": "¿Cuál ",
+        "userDefined": false
+      },
+      {
+        "text": "es",
+        "userDefined": false
+      },
+      {
+        "text": " su dirección?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7aa9d787-a4ed-4728-93e1-6049f57f7188",
+    "data": [
+      {
+        "text": "¿Dónde están ubicados?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

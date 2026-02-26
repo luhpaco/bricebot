@@ -1,0 +1,205 @@
+[
+  {
+    "id": "68072bc8-4106-4317-8b0f-ed380e11dd36",
+    "data": [
+      {
+        "text": "Necesito una cotización",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "38816dbc-5810-4eb0-b110-6634f272b3a6",
+    "data": [
+      {
+        "text": "Quiero saber cuánto cuesta",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ce0d2609-e9bb-459b-af05-d908c4afa24f",
+    "data": [
+      {
+        "text": "¿Cuánto me costaría?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8a4a8829-8288-4a4b-9381-6fcec94f96c5",
+    "data": [
+      {
+        "text": "Quisiera un presupuesto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "745aa83c-e9da-47e9-9adf-8dd827dbef48",
+    "data": [
+      {
+        "text": "¿Me pueden cotizar?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "054aa1da-31ac-4871-b046-f1f818d5c73e",
+    "data": [
+      {
+        "text": "Precios por favor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "41ee08f4-6bea-4195-b2cb-03744f4954d0",
+    "data": [
+      {
+        "text": "Dame una cotización",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c4a10fd0-b4e7-4b0a-81a1-b54da97eac06",
+    "data": [
+      {
+        "text": "Quiero cotizar algo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e9155c4f-425e-4226-a0ce-a51b728a561a",
+    "data": [
+      {
+        "text": "Necesito saber precios",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ef582068-ec3d-42f5-8be8-d05d4eddb17d",
+    "data": [
+      {
+        "text": "¿Cuánto sale?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "04c87543-873d-4e5a-8633-b283e0bd60a7",
+    "data": [
+      {
+        "text": "Presupuesto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b7e6828a-1267-4061-aef4-92da01495102",
+    "data": [
+      {
+        "text": "Cotizar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "afadf6e4-2565-4e5d-807c-165d166d5e03",
+    "data": [
+      {
+        "text": "Precio de",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2a99ecfc-3ef5-41cb-9612-a4e7b5d2672c",
+    "data": [
+      {
+        "text": "¿Cuánto cuesta?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "faba0af0-8e4c-4c38-81bc-fa242fe2e6ce",
+    "data": [
+      {
+        "text": "Quiero ",
+        "userDefined": false
+      },
+      {
+        "text": "una",
+        "userDefined": false
+      },
+      {
+        "text": " cotización",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

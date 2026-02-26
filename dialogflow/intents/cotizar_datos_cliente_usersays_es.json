@@ -1,0 +1,132 @@
+[
+  {
+    "id": "d8c44f92-f050-4b7f-8c28-f0839dd8cb19",
+    "data": [
+      {
+        "text": "No, continuar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "bb6e7248-5118-4ffd-bf37-2f05369f340b",
+    "data": [
+      {
+        "text": "Listo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "443a57f1-a716-445e-a859-c7c3dae7a0e8",
+    "data": [
+      {
+        "text": "Ya está bien así",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "551c66d6-0fcf-48dd-b565-38b1cae09b90",
+    "data": [
+      {
+        "text": "No agregar más",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cf033647-0728-452e-bf31-3450325c198a",
+    "data": [
+      {
+        "text": "Quiero generar la cotización",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3f290e01-00f6-4232-99ee-f999484ec469",
+    "data": [
+      {
+        "text": "Continuar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "61fc7605-6fa1-4289-9a67-426d637eb9f0",
+    "data": [
+      {
+        "text": "Ya no más",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "285096d8-f07c-4119-9b7a-98a97ede24e3",
+    "data": [
+      {
+        "text": "Eso es todo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4534c431-d99f-4a87-8b7d-f1ee90ea51a9",
+    "data": [
+      {
+        "text": "Proceder",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5771f81c-a39f-46a9-9aa3-9bd4faa1ca7b",
+    "data": [
+      {
+        "text": "No, así está bien",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "id": "5e8118c8-d4ed-4ad6-ae8c-61d758f895c9",
+    "data": [
+      {
+        "text": "¿A qué hora puedo ir?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ebb7c514-29f7-4adc-a201-518a9ceed015",
+    "data": [
+      {
+        "text": "¿Están abiertos hoy?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3af3e2e0-e9d1-44e9-85af-8c9473623c90",
+    "data": [
+      {
+        "text": "Quiero saber el horario",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "28ce33d4-711f-40bd-a692-3abf3b0e7392",
+    "data": [
+      {
+        "text": "¿Abren los sábados?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "93690f4a-1e6e-488b-abee-27ba14287d66",
+    "data": [
+      {
+        "text": "¿Trabajan feriados?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "459e0dc4-226e-4a21-9a99-932ba0d2e3b3",
+    "data": [
+      {
+        "text": "¿Cuándo están abiertos?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2b428c0f-0bc2-4595-a58c-e87381aba21b",
+    "data": [
+      {
+        "text": "Horarios",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "06ba2e30-65fc-4902-b676-8c4d3dc0caf5",
+    "data": [
+      {
+        "text": "¿Atienden domingos?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "eedf9a27-2cca-4266-9bb1-87ee16d42bd4",
+    "data": [
+      {
+        "text": "¿A qué hora cierran?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5b47154b-d0d9-41b8-99ad-fd6c4210483d",
+    "data": [
+      {
+        "text": "¿A qué hora abren?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f264ffa0-8847-4503-aa4b-d9c19c2efba9",
+    "data": [
+      {
+        "text": "¿Hasta qué ",
+        "userDefined": false
+      },
+      {
+        "text": "hora",
+        "userDefined": false
+      },
+      {
+        "text": " están?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1860b40f-f8a2-45a2-9e6a-c6204c2ed3a0",
+    "data": [
+      {
+        "text": "¿Qué días trabajan?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c5c0eaf8-63c9-461d-9294-ec972ed0d3c2",
+    "data": [
+      {
+        "text": "¿Están abiertos los ",
+        "userDefined": false
+      },
+      {
+        "text": "sábados",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fe601dff-ba6b-4035-a107-55b1329bb2ff",
+    "data": [
+      {
+        "text": "¿Cuál ",
+        "userDefined": false
+      },
+      {
+        "text": "es",
+        "userDefined": false
+      },
+      {
+        "text": " su horario?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f900b16a-04a7-4f7a-8f18-3f8feb9a7e3b",
+    "data": [
+      {
+        "text": "Horario de atención",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b990e5d2-8458-445c-8205-de8215505b92",
+    "data": [
+      {
+        "text": "¿A qué ",
+        "userDefined": false
+      },
+      {
+        "text": "hora",
+        "userDefined": false
+      },
+      {
+        "text": " atienden?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

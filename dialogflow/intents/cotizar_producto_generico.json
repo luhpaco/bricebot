@@ -1,0 +1,49 @@
+{
+  "id": "0bc73030-dd8e-4b3d-bd92-161bd35b939a",
+  "name": "cotizar_producto_generico",
+  "auto": true,
+  "contexts": [
+    "cotizacion_producto"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "3e55f3f2-0e8c-4189-89a4-8798099f4fd7",
+          "name": "categoria_producto",
+          "required": false,
+          "dataType": "@categoria_producto",
+          "value": "$categoria_producto",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

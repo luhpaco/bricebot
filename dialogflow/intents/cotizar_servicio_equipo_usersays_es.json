@@ -1,0 +1,178 @@
+[
+  {
+    "id": "323cbc42-4336-4ca9-a32f-f1ed387aa889",
+    "data": [
+      {
+        "text": "La segunda",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c3667afc-2f06-44cb-af9d-7c22894c7e10",
+    "data": [
+      {
+        "text": "La primera",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "69d65ef8-28ba-4078-aa96-5b3c541ac039",
+    "data": [
+      {
+        "text": "4",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "649e4c93-8adb-4d93-bf6f-28cec1ebabc8",
+    "data": [
+      {
+        "text": "3",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fcd59163-9052-4e43-96e8-a3c59634a151",
+    "data": [
+      {
+        "text": "2",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "12f2bbdb-fd02-4d36-9ceb-cc79a343506b",
+    "data": [
+      {
+        "text": "1",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3ab512f8-c70b-48a6-ba68-08926142a670",
+    "data": [
+      {
+        "text": "Es una ",
+        "userDefined": false
+      },
+      {
+        "text": "PC",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e140de70-f94d-4231-9ae4-e4b177f2d1ad",
+    "data": [
+      {
+        "text": "Para una ",
+        "userDefined": false
+      },
+      {
+        "text": "laptop",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b2efc98a-af50-4405-878a-23dbff09442b",
+    "data": [
+      {
+        "text": "Cámara de seguridad",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1291237a-10f1-4003-8f4e-0e99240d621a",
+    "data": [
+      {
+        "text": "Impresora",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6d04121e-e6d2-42db-ad1b-7eec0d2ccd95",
+    "data": [
+      {
+        "text": "Laptop",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b4a794ca-b286-4666-b5ff-5d010dad5a8f",
+    "data": [
+      {
+        "text": "PC",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

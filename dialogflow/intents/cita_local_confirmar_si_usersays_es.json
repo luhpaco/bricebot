@@ -1,0 +1,132 @@
+[
+  {
+    "id": "5ce50655-7254-40cc-b0f6-00f4e04aaf28",
+    "data": [
+      {
+        "text": "Adelante",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8a19641c-dcbc-43d2-a0c1-a9fb7fd3018d",
+    "data": [
+      {
+        "text": "Perfecto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d656cc06-fac0-4c5f-b14a-9fd866ddaabf",
+    "data": [
+      {
+        "text": "Vale",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a03ba53f-3062-42c1-a3d7-c674b9670d90",
+    "data": [
+      {
+        "text": "Confirmar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4abfc32a-b52e-435c-b3fd-f3b02f038751",
+    "data": [
+      {
+        "text": "Ok",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d5b44fd5-b876-45f5-b289-7bf5f0fe837c",
+    "data": [
+      {
+        "text": "De acuerdo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "471ec645-4f96-433f-9d53-c292704f7aa0",
+    "data": [
+      {
+        "text": "Está bien",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "34ad7304-7522-4441-a720-130da7e596df",
+    "data": [
+      {
+        "text": "Correcto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c606b891-b548-43f9-b0b4-97c5effaa0ac",
+    "data": [
+      {
+        "text": "Confirmo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b48f6486-bc0d-4cdc-a95e-dd0b273e524b",
+    "data": [
+      {
+        "text": "Sí",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

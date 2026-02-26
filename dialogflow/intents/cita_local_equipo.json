@@ -1,0 +1,59 @@
+{
+  "id": "92b819b3-a5ef-452a-b2f3-493ed63f5f7f",
+  "name": "cita_local_equipo",
+  "auto": true,
+  "contexts": [
+    "cita_local_en_curso"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cita_local_en_curso",
+          "lifespan": 10
+        }
+      ],
+      "parameters": [
+        {
+          "id": "3b6f7882-3517-4fa3-ab36-b16c010af6df",
+          "name": "tipo_equipo",
+          "required": true,
+          "dataType": "@tipo_equipo",
+          "value": "$tipo_equipo",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿Qué tipo de equipo es? (PC, laptop, impresora, cámara, otro)"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

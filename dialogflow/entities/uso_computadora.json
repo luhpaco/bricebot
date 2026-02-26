@@ -1,0 +1,9 @@
+{
+  "id": "939c9ec5-3114-414a-8180-9de166209526",
+  "name": "uso_computadora",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": true,
+  "allowFuzzyExtraction": false
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "id": "f466df79-dd2c-4f34-9133-4187913bb687",
+    "data": [
+      {
+        "text": "Parece que tiene un problema",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d0304d90-c7d3-4b7e-aa93-f13f0bba8d91",
+    "data": [
+      {
+        "text": "Creo que tiene virus",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ab29e990-70ac-4b3e-9d9a-248256c08afd",
+    "data": [
+      {
+        "text": "El teclado no funciona",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2cb5951c-972e-4d20-8f72-21ba970424a3",
+    "data": [
+      {
+        "text": "La pantalla está rota",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cd1144dd-9ace-4138-9725-537a173e9b6d",
+    "data": [
+      {
+        "text": "No imprime",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e04fa8ad-5af7-4344-8c81-a91074657ed9",
+    "data": [
+      {
+        "text": "Tiene virus",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "72a8011c-55bd-4f47-9f5c-e03097d620ff",
+    "data": [
+      {
+        "text": "Se apaga sola",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a7f60edc-e4e9-4838-8337-71362129238c",
+    "data": [
+      {
+        "text": "Necesita mantenimiento",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "55dd540e-2ba8-4565-972b-b7ccc2a9f3b3",
+    "data": [
+      {
+        "text": "Está lenta",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8a9ed682-5545-434c-804a-0c8b121259ea",
+    "data": [
+      {
+        "text": "No enciende",
+        "meta": "@sys.any",
+        "alias": "descripcion_problema",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "id": "094b465a-7cde-41a6-9b36-80f97d077595",
+  "name": "cita_domicilio_direccion",
+  "auto": true,
+  "contexts": [
+    "cita_domicilio_en_curso",
+    "cita_domicilio_paso_direccion"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cita_domicilio_en_curso",
+          "lifespan": 12
+        }
+      ],
+      "parameters": [
+        {
+          "id": "ad9a227c-7f24-4d88-9d8a-76f4caaf0178",
+          "name": "direccion",
+          "required": true,
+          "dataType": "@sys.any",
+          "value": "$direccion",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿Cuál es su dirección completa?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "daf2bfd4-3784-446e-8522-1b662558764e",
+          "name": "referencia",
+          "required": false,
+          "dataType": "@sys.any",
+          "value": "$referencia",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,171 @@
+[
+  {
+    "id": "373c5a2e-fabe-43d1-9eeb-316a92253403",
+    "data": [
+      {
+        "text": "Explícame qué haces",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a2d0beef-8579-4841-ba7d-9763f8629060",
+    "data": [
+      {
+        "text": "No entiendo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d4f2bdce-d6d4-43a8-b9db-15d8a97d6793",
+    "data": [
+      {
+        "text": "Auxilio",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "49f1c664-8fed-4dff-a4de-9254fd5dc937",
+    "data": [
+      {
+        "text": "Necesito ayuda",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "74a8a3e0-e972-41dc-8461-ecf82508ddb4",
+    "data": [
+      {
+        "text": "¿Qué servicios ofrecen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d8224599-11ac-4d76-968c-9aa32d954c3c",
+    "data": [
+      {
+        "text": "¿Qué opciones tengo?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b2a8d735-8469-4a33-9959-7cd1db9caccb",
+    "data": [
+      {
+        "text": "¿En qué me puedes ayudar?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5896c779-dfd9-426c-aa99-7d00e56b444f",
+    "data": [
+      {
+        "text": "No sé qué hacer",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2496aa4e-6f3e-4784-a91e-fba33fe8f35e",
+    "data": [
+      {
+        "text": "¿Cómo funciona?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "db2014b9-a408-4681-908e-f17420b8f542",
+    "data": [
+      {
+        "text": "Menú",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b95efc10-9d4a-4ad9-88d9-cda98fa64e7a",
+    "data": [
+      {
+        "text": "Opciones",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "614ae1bb-4ec8-47d8-bfed-5d006707a791",
+    "data": [
+      {
+        "text": "¿Qué puedes hacer?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cc5a7a5c-856e-4e05-acb5-7cc7391dc723",
+    "data": [
+      {
+        "text": "Ayuda",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

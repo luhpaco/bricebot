@@ -1,0 +1,52 @@
+[
+  {
+    "value": "PC",
+    "synonyms": [
+      "PC",
+      "computadora",
+      "computador",
+      "desktop",
+      "equipo de escritorio",
+      "cpu"
+    ]
+  },
+  {
+    "value": "laptop",
+    "synonyms": [
+      "laptop",
+      "notebook",
+      "portátil",
+      "portatil",
+      "lap",
+      "laptops"
+    ]
+  },
+  {
+    "value": "impresora",
+    "synonyms": [
+      "impresora",
+      "printer",
+      "impresoras",
+      "multifuncional"
+    ]
+  },
+  {
+    "value": "camara",
+    "synonyms": [
+      "camara",
+      "cámara",
+      "camaras",
+      "cámaras",
+      "camara de seguridad"
+    ]
+  },
+  {
+    "value": "otro",
+    "synonyms": [
+      "otro",
+      "otros",
+      "diferente",
+      "distinto"
+    ]
+  }
+]

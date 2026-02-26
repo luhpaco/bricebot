@@ -1,0 +1,76 @@
+{
+  "id": "12f58bb6-8cc8-45a0-96a5-eb9cd844433a",
+  "name": "cotizar_datos_cliente",
+  "auto": true,
+  "contexts": [
+    "cotizacion_items"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cotizacion_confirmar",
+          "lifespan": 3
+        }
+      ],
+      "parameters": [
+        {
+          "id": "0473a885-fcc6-45a3-96ff-1b1ef5f5dafb",
+          "name": "nombre_cliente",
+          "required": true,
+          "dataType": "@sys.person",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "Para generar su cotización necesito algunos datos. ¿Cuál es su nombre completo?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "9ff81256-3bfd-4a5f-80e4-c6162f00be7b",
+          "name": "telefono",
+          "required": true,
+          "dataType": "@sys.phone-number",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "Gracias. ¿Su número de teléfono o WhatsApp? (utilizaremos este número para contactarnos con usted)."
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

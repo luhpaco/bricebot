@@ -1,0 +1,369 @@
+---
+alwaysApply: true
+---
+# User Stories Templates & Guidelines
+# CBRICENHO Chatbot - XP Story Format
+
+## Story Card Format (3C)
+
+### Template
+```markdown
+## HU-[ID]: [Título descriptivo]
+
+### Card (Tarjeta)
+**Como** [rol/tipo de usuario],  
+**Quiero** [acción/funcionalidad deseada],  
+**Para** [beneficio/valor de negocio].
+
+### Conversation (Conversación)
+[Notas de las discusiones con el cliente, aclaraciones, decisiones tomadas]
+
+### Confirmation (Criterios de Aceptación)
+- [ ] **CA-1:** [Criterio verificable]
+- [ ] **CA-2:** [Criterio verificable]
+- [ ] **CA-3:** [Criterio verificable]
+
+### Estimación
+- **Puntos de Historia:** [1/2/3/5/8/13]
+- **Prioridad:** [Alta/Media/Baja]
+- **Riesgo:** [Alto/Medio/Bajo]
+- **Iteración Planeada:** [N]
+
+### Tareas Técnicas
+1. [Tarea específica - X horas]
+2. [Tarea específica - X horas]
+3. [Tarea específica - X horas]
+
+### Dependencias
+- [HU-XX]: [Descripción breve]
+```
+
+---
+
+## ITERATION 1: FAQ (Consultas Frecuentes)
+
+### HU-1.1: Consultar horarios de atención
+
+#### Card
+**Como** cliente de CBRICENHO,  
+**Quiero** poder consultar los horarios de atención a través del chatbot,  
+**Para** saber cuándo puedo visitar el local o contactarlos.
+
+#### Conversation
+- **Decisión 2026-01-15:** Se incluirán horarios diferenciados por día (L-V, Sábado, Domingo).
+- **Aclaración:** Los feriados se manejarán con mensaje genérico indicando que se confirme disponibilidad.
+- **Nota del cliente:** El horario puede cambiar en temporada alta (diciembre), se dejará parametrizable.
+
+#### Confirmation
+- [ ] **CA-1:** Cuando el usuario pregunta "¿A qué hora atienden?", el bot responde con horarios de L-V, Sábado y Domingo.
+- [ ] **CA-2:** Cuando el usuario pregunta por un día específico ("¿atienden sábados?"), el bot responde con el horario de ese día.
+- [ ] **CA-3:** El bot reconoce al menos 10 variaciones de la pregunta sobre horarios.
+- [ ] **CA-4:** La respuesta incluye formato legible con emojis y estructura clara.
+- [ ] **CA-5:** El bot ofrece una opción de seguimiento ("¿Hay algo más en lo que pueda ayudarle?").
+
+#### Estimación
+- **Puntos de Historia:** 2
+- **Prioridad:** Alta
+- **Riesgo:** Bajo
+- **Iteración:** 1
+
+#### Tareas Técnicas
+1. Crear intent `faq_horarios` en Dialogflow - 1h
+2. Agregar 15 frases de entrenamiento con variaciones - 1h
+3. Configurar respuesta estática con formato - 0.5h
+4. Crear pruebas de validación de intent - 1h
+5. Documentar variaciones aceptadas - 0.5h
+
+#### Dependencias
+- Ninguna (historia independiente)
+
+---
+
+### HU-1.2: Consultar ubicación
+
+#### Card
+**Como** cliente de CBRICENHO,  
+**Quiero** conocer la ubicación física de la empresa a través del chatbot,  
+**Para** poder visitarlos personalmente.
+
+#### Conversation
+- **Decisión:** Se incluirá enlace directo a Google Maps.
+- **Nota del cliente:** La referencia de ubicación es "frente al parque central del AA.HH. Marco Jara".
+
+#### Confirmation
+- [ ] **CA-1:** Cuando el usuario pregunta "¿Dónde están?", el bot responde con dirección completa.
+- [ ] **CA-2:** La respuesta incluye una referencia de ubicación clara.
+- [ ] **CA-3:** Se proporciona un enlace clickeable a Google Maps.
+- [ ] **CA-4:** El bot reconoce al menos 8 variaciones de la pregunta.
+
+#### Estimación
+- **Puntos de Historia:** 2
+- **Prioridad:** Alta
+- **Riesgo:** Bajo
+- **Iteración:** 1
+
+#### Tareas Técnicas
+1. Crear intent `faq_ubicacion` en Dialogflow - 1h
+2. Agregar frases de entrenamiento - 1h
+3. Configurar respuesta con enlace Maps - 0.5h
+4. Crear pruebas de intent - 1h
+
+---
+
+### HU-1.3: Consultar información de contacto
+
+#### Card
+**Como** cliente de CBRICENHO,  
+**Quiero** obtener los datos de contacto de la empresa,  
+**Para** poder comunicarme por teléfono, WhatsApp o correo.
+
+#### Confirmation
+- [ ] **CA-1:** El bot responde con teléfono, WhatsApp y correo electrónico.
+- [ ] **CA-2:** El enlace de WhatsApp usa formato wa.me/ y es clickeable.
+- [ ] **CA-3:** El bot diferencia entre preguntas por teléfono, WhatsApp o correo específicamente.
+
+#### Estimación
+- **Puntos de Historia:** 2
+- **Prioridad:** Alta
+- **Riesgo:** Bajo
+- **Iteración:** 1
+
+---
+
+### HU-1.4: Consultar redes sociales
+
+#### Card
+**Como** cliente de CBRICENHO,  
+**Quiero** conocer las redes sociales de la empresa,  
+**Para** seguirlos y estar al tanto de novedades.
+
+#### Confirmation
+- [ ] **CA-1:** El bot proporciona enlaces a Facebook e Instagram.
+- [ ] **CA-2:** Los enlaces son clickeables y llevan a las páginas correctas.
+
+#### Estimación
+- **Puntos de Historia:** 1
+- **Prioridad:** Media
+- **Riesgo:** Bajo
+- **Iteración:** 1
+
+---
+
+## ITERATION 2: Gestión de Citas
+
+### HU-2.1: Programar cita en local
+
+#### Card
+**Como** cliente que necesita servicio técnico,  
+**Quiero** poder agendar una cita para llevar mi equipo al local de CBRICENHO,  
+**Para** recibir atención en una fecha y hora conveniente.
+
+#### Conversation
+- **Decisión 2026-01-20:** Máximo 7 días de anticipación para citas.
+- **Decisión:** Máximo 3 citas simultáneas por hora.
+- **Aclaración:** Se enviará confirmación por WhatsApp automáticamente.
+- **Nota técnica:** Integración con Google Calendar usando API v3.
+
+#### Confirmation
+- [ ] **CA-1:** El bot solicita: tipo de equipo, descripción del problema, nombre, teléfono, fecha y hora.
+- [ ] **CA-2:** Solo se permiten fechas dentro de los próximos 7 días calendario.
+- [ ] **CA-3:** Solo se muestran horarios dentro del horario de atención del local.
+- [ ] **CA-4:** El bot muestra un resumen de la cita antes de confirmar.
+- [ ] **CA-5:** Al confirmar, se crea un evento en Google Calendar.
+- [ ] **CA-6:** Se envía mensaje de confirmación al WhatsApp del cliente.
+- [ ] **CA-7:** Si no hay disponibilidad, el bot ofrece horarios alternativos.
+- [ ] **CA-8:** El cliente puede cancelar antes de confirmar sin perder datos.
+
+#### Estimación
+- **Puntos de Historia:** 8
+- **Prioridad:** Alta
+- **Riesgo:** Alto (integración externa)
+- **Iteración:** 2
+
+#### Tareas Técnicas
+1. Crear flujo de intents para cita local (6 intents) - 4h
+2. Implementar handler de fulfillment para recolección de datos - 3h
+3. Integrar con Google Calendar API - 4h
+4. Implementar validación de disponibilidad - 2h
+5. Implementar envío de confirmación WhatsApp - 3h
+6. Crear modelo MongoDB para citas - 1h
+7. Escribir pruebas unitarias del handler - 2h
+8. Escribir pruebas de integración Calendar - 2h
+9. Pruebas de aceptación con cliente - 2h
+
+#### Dependencias
+- Configuración de Google Calendar API
+- Configuración de WhatsApp Business API
+
+---
+
+### HU-2.2: Programar cita a domicilio
+
+#### Card
+**Como** cliente que no puede trasladarse al local,  
+**Quiero** poder agendar una cita para que un técnico recoja mi equipo en mi domicilio,  
+**Para** recibir servicio sin salir de casa.
+
+#### Conversation
+- **Decisión:** Solo se cubre la Provincia de Paita inicialmente.
+- **Decisión:** Para domicilio solo se ofrecen rangos horarios (mañana/tarde), no horas exactas.
+- **Aclaración:** Se debe validar que la dirección esté dentro de la zona de cobertura.
+
+#### Confirmation
+- [ ] **CA-1:** El bot solicita además de datos básicos: dirección completa y referencia de ubicación.
+- [ ] **CA-2:** Se ofrece rango horario (mañana 8-12 / tarde 14-18) en lugar de hora exacta.
+- [ ] **CA-3:** Si la dirección está fuera de cobertura, se informa y ofrece alternativa (cita en local).
+- [ ] **CA-4:** Se registra la cita en el sistema con estado "pendiente_asignacion".
+- [ ] **CA-5:** Se notifica al equipo técnico para asignación de técnico.
+
+#### Estimación
+- **Puntos de Historia:** 8
+- **Prioridad:** Alta
+- **Riesgo:** Medio
+- **Iteración:** 2
+
+#### Dependencias
+- HU-2.1 (comparte lógica base)
+
+---
+
+## ITERATION 3: Cotizaciones Básicas
+
+### HU-3.1: Cotizar computadora de escritorio
+
+#### Card
+**Como** cliente interesado en comprar una computadora,  
+**Quiero** recibir opciones de computadoras según mi uso,  
+**Para** conocer precios y características antes de comprar.
+
+#### Conversation
+- **Decisión:** Se mostrarán 2-3 opciones por categoría de uso.
+- **Nota:** Los precios se obtienen de la base de datos de productos.
+- **Aclaración:** Se preguntará si quiere equipo completo o solo partes.
+
+#### Confirmation
+- [ ] **CA-1:** El bot pregunta si necesita equipo completo o solo partes.
+- [ ] **CA-2:** El bot pregunta el uso principal (ofimática, diseño, gaming, etc.).
+- [ ] **CA-3:** Se muestran 2-3 opciones con nombre, especificaciones clave y precio.
+- [ ] **CA-4:** El bot ofrece enviar cotización formal por WhatsApp o correo.
+- [ ] **CA-5:** Si no hay productos disponibles para ese uso, se informa al usuario.
+
+#### Estimación
+- **Puntos de Historia:** 5
+- **Prioridad:** Alta
+- **Riesgo:** Medio
+- **Iteración:** 3
+
+#### Tareas Técnicas
+1. Crear flujo de intents para cotización PC - 3h
+2. Implementar consulta a base de datos de productos - 2h
+3. Implementar lógica de filtrado por uso - 2h
+4. Formatear respuesta con opciones - 1h
+5. Implementar generación de cotización formal - 2h
+6. Pruebas unitarias y de integración - 2h
+
+---
+
+### HU-3.2: Cotizar repuestos de laptop
+
+#### Card
+**Como** cliente con una laptop que necesita reparación,  
+**Quiero** conocer el precio de repuestos específicos para mi modelo,  
+**Para** decidir si procedo con la reparación.
+
+#### Conversation
+- **Decisión:** Se debe solicitar el modelo exacto de laptop.
+- **Nota:** Si no se encuentra el modelo en BD, se genera lead para seguimiento manual.
+- **Aclaración:** Se ofrecerá precio de repuesto solo o con instalación incluida.
+
+#### Confirmation
+- [ ] **CA-1:** El bot solicita el modelo de laptop y tipo de repuesto.
+- [ ] **CA-2:** Se buscan repuestos compatibles en la base de datos.
+- [ ] **CA-3:** Se muestra precio del repuesto y opcionalmente costo de instalación.
+- [ ] **CA-4:** Si no hay repuesto disponible, se ofrece generar un requerimiento.
+- [ ] **CA-5:** Se ofrece agendar cita de servicio directamente.
+
+#### Estimación
+- **Puntos de Historia:** 5
+- **Prioridad:** Alta
+- **Riesgo:** Medio
+- **Iteración:** 3
+
+---
+
+## Story Estimation Reference (Planning Poker)
+
+| Puntos | Complejidad | Ejemplo |
+|--------|-------------|---------|
+| 1 | Trivial | Agregar respuesta estática FAQ |
+| 2 | Simple | Intent FAQ con variaciones |
+| 3 | Moderado | Intent con parámetros simples |
+| 5 | Complejo | Flujo multi-turn con validaciones |
+| 8 | Muy complejo | Integración externa (Calendar, WhatsApp) |
+| 13 | Épica | Módulo completo con múltiples integraciones |
+
+---
+
+## Definition of Done (DoD)
+
+Una Historia de Usuario se considera **DONE** cuando:
+
+### Desarrollo
+- [ ] Código implementado y funcional
+- [ ] Cumple todos los criterios de aceptación
+- [ ] Sin errores de lint
+- [ ] Documentación JSDoc completa
+
+### Testing
+- [ ] Pruebas unitarias escritas y pasando (coverage ≥ 85%)
+- [ ] Pruebas de integración pasando (si aplica)
+- [ ] Pruebas de aceptación ejecutadas con el cliente
+
+### Dialogflow
+- [ ] Intent creado con ≥ 10 frases de entrenamiento
+- [ ] Entidades configuradas correctamente
+- [ ] Contextos definidos para flujos multi-turn
+- [ ] Probado en simulador de Dialogflow
+
+### Integración
+- [ ] Código integrado a rama principal
+- [ ] Pipeline CI/CD verde
+- [ ] Desplegado en ambiente de pruebas
+
+### Validación
+- [ ] Aprobado por Cliente In-Situ (Cristian Briceño)
+- [ ] Documentado en el seguimiento de la iteración
+
+---
+
+## Velocity Tracking Template
+
+### Iteración [N] - Semanas [X-Y]
+
+| HU ID | Título | Puntos | Completada | Notas |
+|-------|--------|--------|------------|-------|
+| HU-X.X | [Título] | [P] | ✅/❌ | [Observaciones] |
+| HU-X.X | [Título] | [P] | ✅/❌ | [Observaciones] |
+
+**Puntos Planeados:** XX  
+**Puntos Completados:** XX  
+**Velocidad de Iteración:** XX puntos/semana
+
+### Burndown Chart Data
+| Día | Puntos Restantes |
+|-----|------------------|
+| 1 | XX |
+| 2 | XX |
+| ... | ... |
+
+---
+
+## Retrospective Questions
+
+Al final de cada iteración:
+
+1. **¿Qué funcionó bien?**
+2. **¿Qué podemos mejorar?**
+3. **¿Qué acciones tomaremos?**
+4. **¿La velocidad fue realista?**
+5. **¿Las estimaciones fueron precisas?**

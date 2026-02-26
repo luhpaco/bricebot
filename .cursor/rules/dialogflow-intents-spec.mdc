@@ -1,0 +1,835 @@
+---
+alwaysApply: true
+---
+# Dialogflow Intents & Entities Specification
+# CBRICENHO Chatbot - Complete Reference
+
+## Custom Entities Definition
+
+### @tipo_equipo
+```json
+{
+  "name": "tipo_equipo",
+  "entries": [
+    { "value": "PC", "synonyms": ["computadora", "computador", "desktop", "equipo de escritorio", "cpu"] },
+    { "value": "laptop", "synonyms": ["notebook", "portátil", "portatil", "lap", "laptops"] },
+    { "value": "impresora", "synonyms": ["printer", "impresoras", "multifuncional"] },
+    { "value": "camara", "synonyms": ["cámara", "camaras", "cámaras", "camara de seguridad"] },
+    { "value": "monitor", "synonyms": ["pantalla", "display", "monitores"] },
+    { "value": "otro", "synonyms": ["otros", "diferente", "distinto"] }
+  ]
+}
+```
+
+### @tipo_servicio
+```json
+{
+  "name": "tipo_servicio",
+  "entries": [
+    { "value": "mantenimiento", "synonyms": ["limpieza", "mantenimiento preventivo", "mantenimiento correctivo", "revisión", "revision"] },
+    { "value": "cambio_teclado", "synonyms": ["teclado roto", "cambiar teclado", "reparar teclado"] },
+    { "value": "cambio_pantalla", "synonyms": ["pantalla rota", "cambiar pantalla", "display roto"] },
+    { "value": "repotenciacion", "synonyms": ["upgrade", "mejora", "aumentar ram", "cambiar disco", "ssd"] },
+    { "value": "instalacion_software", "synonyms": ["instalar windows", "instalar office", "formatear", "formateo"] },
+    { "value": "instalacion_camaras", "synonyms": ["instalar camaras", "instalación de cámaras", "poner camaras"] }
+  ]
+}
+```
+
+### @rango_horario
+```json
+{
+  "name": "rango_horario",
+  "entries": [
+    { "value": "mañana", "synonyms": ["mañana", "en la mañana", "por la mañana", "8 a 12", "temprano"] },
+    { "value": "tarde", "synonyms": ["tarde", "en la tarde", "por la tarde", "2 a 6", "después de almuerzo"] }
+  ]
+}
+```
+
+### @volumen_uso
+```json
+{
+  "name": "volumen_uso",
+  "entries": [
+    { "value": "bajo", "synonyms": ["poco", "básico", "casa", "hogar", "personal"] },
+    { "value": "medio", "synonyms": ["regular", "oficina pequeña", "moderado"] },
+    { "value": "alto", "synonyms": ["mucho", "empresa", "comercial", "negocio", "intensivo"] }
+  ]
+}
+```
+
+### @uso_computadora
+```json
+{
+  "name": "uso_computadora",
+  "entries": [
+    { "value": "ofimatica", "synonyms": ["oficina", "word", "excel", "trabajo básico", "documentos"] },
+    { "value": "diseno", "synonyms": ["diseño", "photoshop", "illustrator", "edición", "gráfico"] },
+    { "value": "programacion", "synonyms": ["desarrollo", "programar", "código", "software"] },
+    { "value": "gaming", "synonyms": ["juegos", "gamer", "videojuegos", "jugar"] },
+    { "value": "estudio", "synonyms": ["estudiante", "tareas", "clases", "universidad", "colegio"] }
+  ]
+}
+```
+
+---
+
+## Intent Specifications
+
+### GROUP 1: FAQ (Consultas Frecuentes)
+
+#### Intent: faq_horarios
+```yaml
+name: faq_horarios
+training_phrases:
+  - "¿A qué hora atienden?"
+  - "Horario de atención"
+  - "¿Cuál es su horario?"
+  - "¿Están abiertos los sábados?"
+  - "¿Qué días trabajan?"
+  - "¿Hasta qué hora están?"
+  - "¿A qué hora abren?"
+  - "¿A qué hora cierran?"
+  - "¿Atienden domingos?"
+  - "Horarios"
+  - "¿Cuándo están abiertos?"
+  - "¿Trabajan feriados?"
+
+parameters: []
+contexts_in: []
+contexts_out: []
+
+response: |
+  📅 Nuestros horarios de atención son:
+  
+  🔹 Lunes a Viernes: 9:00 AM - 6:00 PM
+  🔹 Sábados: 9:00 AM - 1:00 PM
+  🔹 Domingos y feriados: Cerrado
+  
+  ¿Hay algo más en lo que pueda ayudarle?
+
+fulfillment_enabled: false
+```
+
+#### Intent: faq_ubicacion
+```yaml
+name: faq_ubicacion
+training_phrases:
+  - "¿Dónde están ubicados?"
+  - "¿Cuál es su dirección?"
+  - "Dirección"
+  - "Ubicación"
+  - "¿Dónde queda CBRICENHO?"
+  - "¿Cómo llego?"
+  - "¿Por dónde están?"
+  - "Mapa"
+  - "¿Dónde los encuentro?"
+  - "¿En qué zona están?"
+
+parameters: []
+contexts_in: []
+contexts_out: []
+
+response: |
+  📍 Nos encontramos en:
+  
+  AA. HH. Marco Jara, Manzana D, Lote 36
+  Paita, Piura, Perú
+  
+  📌 Referencia: [A definir con la empresa]
+  
+  🗺️ Ver en Google Maps: [ENLACE_MAPS]
+  
+  ¿Desea agendar una visita o tiene otra consulta?
+
+fulfillment_enabled: false
+```
+
+#### Intent: faq_contacto
+```yaml
+name: faq_contacto
+training_phrases:
+  - "¿Cuál es el teléfono?"
+  - "Número de teléfono"
+  - "¿Tienen WhatsApp?"
+  - "¿Cuál es su correo?"
+  - "Email"
+  - "¿Cómo los contacto?"
+  - "Datos de contacto"
+  - "Teléfono"
+  - "¿Me pueden llamar?"
+  - "Quiero que me llamen"
+
+parameters: []
+contexts_in: []
+contexts_out: []
+
+response: |
+  📞 Puede contactarnos por:
+  
+  🔹 Teléfono: [NUMERO_TELEFONO]
+  🔹 WhatsApp: wa.me/51[NUMERO] 
+  🔹 Correo: [EMAIL_EMPRESA]
+  
+  ¿En qué más puedo ayudarle?
+
+fulfillment_enabled: false
+```
+
+#### Intent: faq_redes_sociales
+```yaml
+name: faq_redes_sociales
+training_phrases:
+  - "¿Tienen Facebook?"
+  - "¿Cuál es su Instagram?"
+  - "Redes sociales"
+  - "Facebook"
+  - "Instagram"
+  - "¿Dónde los sigo?"
+  - "Fan page"
+
+parameters: []
+contexts_in: []
+contexts_out: []
+
+response: |
+  📱 ¡Síguenos en nuestras redes sociales!
+  
+  🔵 Facebook: facebook.com/cbricenho
+  📸 Instagram: @cbricenho
+  
+  ¿Hay algo más en lo que pueda ayudarle?
+
+fulfillment_enabled: false
+```
+
+---
+
+### GROUP 2: Appointment Management (Gestión de Citas)
+
+#### Intent: cita_iniciar
+```yaml
+name: cita_iniciar
+training_phrases:
+  - "Quiero agendar una cita"
+  - "Necesito servicio técnico"
+  - "Agendar cita"
+  - "Programar una cita"
+  - "Reservar cita"
+  - "Mi equipo está fallando"
+  - "Tengo un problema con mi computadora"
+  - "Necesito reparar mi laptop"
+  - "Quiero que revisen mi equipo"
+
+parameters: []
+contexts_in: []
+contexts_out:
+  - name: "cita_seleccion_tipo"
+    lifespan: 5
+
+response: |
+  ¡Por supuesto! Con gusto le ayudo a agendar una cita para servicio técnico. 🔧
+  
+  ¿Cómo prefiere recibir el servicio?
+  
+  1️⃣ Visitar nuestro local
+  2️⃣ Que vayamos a su domicilio (recojo de equipo)
+
+fulfillment_enabled: false
+quick_replies: ["Visitar local", "A domicilio"]
+```
+
+#### Intent: cita_local_iniciar
+```yaml
+name: cita_local_iniciar
+training_phrases:
+  - "Visitar local"
+  - "Voy a ir al local"
+  - "Prefiero ir yo"
+  - "En el local"
+  - "Presencial"
+  - "1"
+
+parameters: []
+contexts_in:
+  - "cita_seleccion_tipo"
+contexts_out:
+  - name: "cita_local_en_curso"
+    lifespan: 10
+
+response: |
+  Perfecto, agendaremos una cita en nuestro local. 🏪
+  
+  ¿Qué tipo de equipo necesita servicio?
+
+fulfillment_enabled: false
+quick_replies: ["PC", "Laptop", "Impresora", "Cámara", "Otro"]
+```
+
+#### Intent: cita_local_equipo
+```yaml
+name: cita_local_equipo
+training_phrases:
+  - "Es una $tipo_equipo"
+  - "$tipo_equipo"
+  - "Tengo una $tipo_equipo"
+  - "Mi $tipo_equipo"
+
+parameters:
+  - name: "tipo_equipo"
+    entity: "@tipo_equipo"
+    required: true
+    prompts: ["¿Qué tipo de equipo es? (PC, laptop, impresora, cámara, otro)"]
+
+contexts_in:
+  - "cita_local_en_curso"
+contexts_out:
+  - name: "cita_local_en_curso"
+    lifespan: 10
+
+response: |
+  Entendido, es una $tipo_equipo. 
+  
+  ¿Cuál es el problema o servicio que necesita?
+
+fulfillment_enabled: true
+```
+
+#### Intent: cita_local_problema
+```yaml
+name: cita_local_problema
+training_phrases:
+  - "No enciende"
+  - "Está lenta"
+  - "Necesita mantenimiento"
+  - "Se apaga sola"
+  - "Tiene virus"
+  - "No imprime"
+  - "La pantalla está rota"
+  - "El teclado no funciona"
+  - "$any"
+
+parameters:
+  - name: "descripcion_problema"
+    entity: "@sys.any"
+    required: true
+    prompts: ["¿Podría describir el problema o servicio que necesita?"]
+
+contexts_in:
+  - "cita_local_en_curso"
+contexts_out:
+  - name: "cita_local_en_curso"
+    lifespan: 10
+
+response: |
+  Entendido: "$descripcion_problema"
+  
+  Ahora necesito algunos datos suyos.
+  ¿Cuál es su nombre completo?
+
+fulfillment_enabled: true
+```
+
+#### Intent: cita_local_nombre
+```yaml
+name: cita_local_nombre
+training_phrases:
+  - "Me llamo $nombre_cliente"
+  - "Soy $nombre_cliente"
+  - "$nombre_cliente"
+  - "Mi nombre es $nombre_cliente"
+
+parameters:
+  - name: "nombre_cliente"
+    entity: "@sys.person"
+    required: true
+    prompts: ["¿Cuál es su nombre completo?"]
+
+contexts_in:
+  - "cita_local_en_curso"
+contexts_out:
+  - name: "cita_local_en_curso"
+    lifespan: 10
+
+response: |
+  Gracias, $nombre_cliente. 
+  
+  ¿Cuál es su número de teléfono o WhatsApp para contactarlo?
+
+fulfillment_enabled: true
+```
+
+#### Intent: cita_local_telefono
+```yaml
+name: cita_local_telefono
+training_phrases:
+  - "Mi número es $telefono"
+  - "$telefono"
+  - "Es el $telefono"
+  - "Pueden llamarme al $telefono"
+
+parameters:
+  - name: "telefono"
+    entity: "@sys.phone-number"
+    required: true
+    prompts: ["¿Cuál es su número de teléfono o WhatsApp?"]
+
+contexts_in:
+  - "cita_local_en_curso"
+contexts_out:
+  - name: "cita_local_en_curso"
+    lifespan: 10
+
+fulfillment_enabled: true
+# Response generated by fulfillment showing available dates
+```
+
+#### Intent: cita_local_fecha
+```yaml
+name: cita_local_fecha
+training_phrases:
+  - "El $fecha"
+  - "Para el $fecha"
+  - "$fecha"
+  - "Mañana"
+  - "Pasado mañana"
+  - "El lunes"
+  - "Esta semana"
+
+parameters:
+  - name: "fecha"
+    entity: "@sys.date"
+    required: true
+    prompts: ["¿Qué fecha prefiere? (Disponible hasta 7 días)"]
+
+contexts_in:
+  - "cita_local_en_curso"
+contexts_out:
+  - name: "cita_local_en_curso"
+    lifespan: 10
+
+fulfillment_enabled: true
+# Validates date is within 7 days and shows available times
+```
+
+#### Intent: cita_local_hora
+```yaml
+name: cita_local_hora
+training_phrases:
+  - "A las $hora"
+  - "$hora"
+  - "A las 10"
+  - "En la mañana"
+  - "Por la tarde"
+  - "3 pm"
+  - "15:00"
+
+parameters:
+  - name: "hora"
+    entity: "@sys.time"
+    required: true
+    prompts: ["¿A qué hora le conviene?"]
+
+contexts_in:
+  - "cita_local_en_curso"
+contexts_out:
+  - name: "cita_local_confirmar"
+    lifespan: 3
+
+fulfillment_enabled: true
+# Shows appointment summary and asks for confirmation
+```
+
+#### Intent: cita_local_confirmar_si
+```yaml
+name: cita_local_confirmar_si
+training_phrases:
+  - "Sí"
+  - "Confirmo"
+  - "Correcto"
+  - "Está bien"
+  - "De acuerdo"
+  - "Ok"
+  - "Confirmar"
+
+parameters: []
+contexts_in:
+  - "cita_local_confirmar"
+contexts_out: []
+
+fulfillment_enabled: true
+# Creates Google Calendar event and sends WhatsApp confirmation
+```
+
+#### Intent: cita_local_confirmar_no
+```yaml
+name: cita_local_confirmar_no
+training_phrases:
+  - "No"
+  - "Cancelar"
+  - "No quiero"
+  - "Cambiar"
+  - "Modificar"
+
+parameters: []
+contexts_in:
+  - "cita_local_confirmar"
+contexts_out:
+  - name: "cita_local_en_curso"
+    lifespan: 10
+
+response: |
+  Entendido. ¿Qué desea modificar?
+  
+  1️⃣ Fecha
+  2️⃣ Hora
+  3️⃣ Cancelar completamente
+
+fulfillment_enabled: false
+```
+
+---
+
+### GROUP 3: Domicilio Appointments (Similar structure, with address fields)
+
+#### Intent: cita_domicilio_iniciar
+```yaml
+name: cita_domicilio_iniciar
+# Similar to cita_local but includes address collection
+# Additional parameters: direccion, referencia_ubicacion
+# Must validate coverage area
+```
+
+---
+
+### GROUP 4: Quotes (Cotizaciones)
+
+#### Intent: cotizar_iniciar
+```yaml
+name: cotizar_iniciar
+training_phrases:
+  - "Quiero una cotización"
+  - "¿Cuánto cuesta?"
+  - "Precio de"
+  - "Cotizar"
+  - "Presupuesto"
+  - "¿Cuánto sale?"
+  - "Necesito saber precios"
+
+parameters: []
+contexts_in: []
+contexts_out:
+  - name: "cotizacion_tipo"
+    lifespan: 5
+
+response: |
+  Con gusto le ayudo con una cotización. 💰
+  
+  ¿Qué desea cotizar?
+  
+  1️⃣ Productos (computadoras, laptops, impresoras, etc.)
+  2️⃣ Servicios (mantenimiento, reparaciones, instalaciones)
+
+fulfillment_enabled: false
+quick_replies: ["Productos", "Servicios"]
+```
+
+#### Intent: cotizar_computadora
+```yaml
+name: cotizar_computadora
+training_phrases:
+  - "Cotizar computadora"
+  - "Precio de PC"
+  - "¿Cuánto cuesta una computadora?"
+  - "Quiero una computadora"
+  - "Necesito una PC"
+  - "Computadora de escritorio"
+  - "Desktop"
+
+parameters: []
+contexts_in:
+  - "cotizacion_tipo"
+contexts_out:
+  - name: "cotizar_computadora_en_curso"
+    lifespan: 8
+
+response: |
+  ¡Excelente elección! 🖥️
+  
+  ¿La necesita completa (CPU + monitor + periféricos) o solo partes?
+
+fulfillment_enabled: false
+quick_replies: ["Completa", "Solo partes"]
+```
+
+#### Intent: cotizar_computadora_uso
+```yaml
+name: cotizar_computadora_uso
+training_phrases:
+  - "Para $uso_computadora"
+  - "$uso_computadora"
+  - "La usaré para $uso_computadora"
+  - "Es para $uso_computadora"
+
+parameters:
+  - name: "uso_computadora"
+    entity: "@uso_computadora"
+    required: true
+    prompts: ["¿Para qué uso principal será? (ofimática, diseño, programación, gaming, estudio)"]
+
+contexts_in:
+  - "cotizar_computadora_en_curso"
+contexts_out:
+  - name: "cotizar_computadora_opciones"
+    lifespan: 5
+
+fulfillment_enabled: true
+# Queries database and returns 2-3 options based on use case
+```
+
+#### Intent: cotizar_repuesto_laptop
+```yaml
+name: cotizar_repuesto_laptop
+training_phrases:
+  - "Pantalla para laptop"
+  - "Teclado de laptop"
+  - "Batería para laptop"
+  - "Repuesto de $modelo_equipo"
+  - "¿Cuánto cuesta una pantalla de $modelo_equipo?"
+  - "Cambiar pantalla de mi $modelo_equipo"
+
+parameters:
+  - name: "modelo_equipo"
+    entity: "@modelo_equipo"
+    required: true
+    prompts: ["¿Qué modelo de laptop tiene? (Ej: HP Pavilion 15, Dell XPS 13)"]
+  - name: "tipo_repuesto"
+    entity: "@sys.any"
+    required: true
+    prompts: ["¿Qué repuesto necesita? (pantalla, teclado, batería, etc.)"]
+
+contexts_in: []
+contexts_out:
+  - name: "cotizar_repuesto_opciones"
+    lifespan: 5
+
+fulfillment_enabled: true
+# Queries database for compatible parts
+```
+
+---
+
+### GROUP 5: Utility Intents
+
+#### Intent: saludo
+```yaml
+name: saludo
+training_phrases:
+  - "Hola"
+  - "Buenos días"
+  - "Buenas tardes"
+  - "Buenas noches"
+  - "Qué tal"
+  - "Hey"
+  - "Buenas"
+  - "Holi"
+
+parameters: []
+contexts_in: []
+contexts_out: []
+
+response: |
+  ¡Hola! 👋 Bienvenido a CBRICENHO, tu aliado en soluciones tecnológicas.
+  
+  Soy tu asistente virtual y puedo ayudarte con:
+  
+  📋 Información general (horarios, ubicación, contacto)
+  📅 Agendar citas de servicio técnico
+  💰 Cotizaciones de productos y servicios
+  
+  ¿En qué puedo ayudarle hoy?
+
+fulfillment_enabled: false
+```
+
+#### Intent: despedida
+```yaml
+name: despedida
+training_phrases:
+  - "Chao"
+  - "Adiós"
+  - "Hasta luego"
+  - "Gracias, eso es todo"
+  - "Bye"
+  - "Nos vemos"
+  - "Eso sería todo"
+  - "Gracias"
+
+parameters: []
+contexts_in: []
+contexts_out: []
+
+response: |
+  ¡Gracias por contactar a CBRICENHO! 😊
+  
+  Si necesita algo más, estaré aquí para ayudarle.
+  
+  ¡Que tenga un excelente día!
+
+fulfillment_enabled: false
+```
+
+#### Intent: hablar_agente
+```yaml
+name: hablar_agente
+training_phrases:
+  - "Quiero hablar con un humano"
+  - "Agente"
+  - "Asesor"
+  - "Persona real"
+  - "No me entiendes"
+  - "Quiero hablar con alguien"
+  - "Necesito ayuda humana"
+  - "Comunícame con alguien"
+
+parameters: []
+contexts_in: []
+contexts_out: []
+
+response: |
+  Entiendo, lo comunicaré con uno de nuestros asesores. 👤
+  
+  Puede contactarnos directamente:
+  📞 Teléfono: [NUMERO]
+  💬 WhatsApp: wa.me/51[NUMERO]
+  
+  Nuestro horario de atención humana es:
+  Lunes a Viernes: 9:00 AM - 6:00 PM
+  Sábados: 9:00 AM - 1:00 PM
+  
+  ¿Hay algo más en lo que pueda ayudarle mientras tanto?
+
+fulfillment_enabled: false
+```
+
+#### Intent: ayuda
+```yaml
+name: ayuda
+training_phrases:
+  - "Ayuda"
+  - "¿Qué puedes hacer?"
+  - "Opciones"
+  - "Menú"
+  - "¿Cómo funciona?"
+  - "No sé qué hacer"
+
+parameters: []
+contexts_in: []
+contexts_out: []
+
+response: |
+  ¡Con gusto le explico! 😊
+  
+  Puedo ayudarle con:
+  
+  1️⃣ **Información** - Horarios, ubicación, contacto, redes sociales
+  2️⃣ **Citas** - Agendar servicio técnico (en local o a domicilio)
+  3️⃣ **Cotizaciones** - Precios de productos y servicios
+  4️⃣ **Hablar con asesor** - Si prefiere atención humana
+  
+  Simplemente escriba lo que necesita o elija una opción.
+
+fulfillment_enabled: false
+quick_replies: ["Información", "Agendar cita", "Cotización", "Hablar con asesor"]
+```
+
+#### Intent: fallback (Default Fallback)
+```yaml
+name: Default Fallback Intent
+training_phrases: []  # System handles this
+
+parameters: []
+contexts_in: []
+contexts_out: []
+
+response_variations:
+  - "Disculpe, no entendí su mensaje. ¿Podría reformularlo?"
+  - "Lo siento, no comprendí. ¿Puede escribirlo de otra manera?"
+  - "No estoy seguro de entender. ¿Podría ser más específico?"
+
+follow_up: |
+  Recuerde que puedo ayudarle con:
+  • Información de la empresa
+  • Agendar citas
+  • Cotizaciones
+  
+  O escriba "ayuda" para ver todas las opciones.
+
+fulfillment_enabled: false
+```
+
+---
+
+## Context Flow Diagram
+
+```
+[saludo] → [Usuario elige opción]
+                ↓
+    ┌──────────┴──────────┐
+    ↓                     ↓
+[faq_*]              [cita_iniciar]
+(sin contexto)            ↓
+                  [cita_seleccion_tipo]
+                    ↓           ↓
+              [local]       [domicilio]
+                  ↓              ↓
+          [cita_local_*]   [cita_domicilio_*]
+                  ↓              ↓
+          [confirmar]      [confirmar]
+                  ↓              ↓
+              [DONE]         [DONE]
+
+[cotizar_iniciar]
+        ↓
+[cotizacion_tipo]
+    ↓         ↓
+[producto]  [servicio]
+    ↓           ↓
+[opciones]  [opciones]
+    ↓           ↓
+[enviar]    [enviar]
+```
+
+## Fallback Escalation Strategy
+
+```
+Attempt 1: Standard fallback message
+Attempt 2: Offer quick replies with main options
+Attempt 3: Offer to connect with human agent
+```
+
+```javascript
+// Fulfillment logic for escalation
+const FALLBACK_COUNT_CONTEXT = 'fallback_count';
+
+const handleFallback = (agent) => {
+  const context = agent.getContext(FALLBACK_COUNT_CONTEXT);
+  const count = context ? context.parameters.count + 1 : 1;
+  
+  agent.setContext({
+    name: FALLBACK_COUNT_CONTEXT,
+    lifespan: 5,
+    parameters: { count }
+  });
+  
+  if (count >= 3) {
+    agent.add(MESSAGES.ESCALATE_TO_HUMAN);
+    agent.clearContext(FALLBACK_COUNT_CONTEXT);
+  } else if (count === 2) {
+    agent.add(MESSAGES.FALLBACK_WITH_OPTIONS);
+  } else {
+    agent.add(MESSAGES.FALLBACK_SIMPLE);
+  }
+};
+```

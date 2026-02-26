@@ -1,0 +1,39 @@
+{
+  "id": "d4a3a65f-68c3-47b4-aaa7-a525bd3e3838",
+  "name": "cita_domicilio_confirmar_no",
+  "auto": true,
+  "contexts": [
+    "cita_domicilio_confirmar"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cita_domicilio_en_curso",
+          "lifespan": 12
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

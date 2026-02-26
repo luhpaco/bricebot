@@ -1,0 +1,9 @@
+{
+  "id": "aa369072-c8c3-4fcd-858f-6bed4eb61371",
+  "name": "rango_horario",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

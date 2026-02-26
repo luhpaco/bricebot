@@ -1,0 +1,131 @@
+[
+  {
+    "id": "d739d699-155e-4b25-b127-8f71f0f585b8",
+    "data": [
+      {
+        "text": "Es mi ",
+        "userDefined": false
+      },
+      {
+        "text": "CPU",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c69de8e5-28dd-4181-a4f9-f93a391b7fea",
+    "data": [
+      {
+        "text": "Una ",
+        "userDefined": false
+      },
+      {
+        "text": "cámara",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b04de15a-178a-4673-928a-5a269ec9a456",
+    "data": [
+      {
+        "text": "Una ",
+        "userDefined": false
+      },
+      {
+        "text": "cámara web",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "919c2078-310c-444c-beef-bf92160149f6",
+    "data": [
+      {
+        "text": "Mi ",
+        "userDefined": false
+      },
+      {
+        "text": "PC",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a413059a-a1c8-4ef0-b040-27c5c95f0ce8",
+    "data": [
+      {
+        "text": "Tengo una ",
+        "userDefined": false
+      },
+      {
+        "text": "impresora",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "07438bf7-4a37-481a-8a5d-2631087b30bd",
+    "data": [
+      {
+        "text": "latop",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "21e6b620-e02c-4520-a270-41b0098fa48b",
+    "data": [
+      {
+        "text": "Es una ",
+        "userDefined": false
+      },
+      {
+        "text": "computadora",
+        "meta": "@tipo_equipo",
+        "alias": "tipo_equipo",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

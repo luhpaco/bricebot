@@ -1,0 +1,74 @@
+[
+  {
+    "id": "bd5d87ac-cb4b-4886-8e15-eb18c56af89d",
+    "data": [
+      {
+        "text": "Pueden llamarme al ",
+        "userDefined": false
+      },
+      {
+        "text": "918765432",
+        "meta": "@sys.phone-number",
+        "alias": "telefono",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b959475b-3c23-43d4-8220-d68893cef7f4",
+    "data": [
+      {
+        "text": "Es el ",
+        "userDefined": false
+      },
+      {
+        "text": "943216789",
+        "meta": "@sys.phone-number",
+        "alias": "telefono",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "082913d4-b8d9-4442-b188-a66a100006ca",
+    "data": [
+      {
+        "text": "976543210",
+        "meta": "@sys.phone-number",
+        "alias": "telefono",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "584afa50-6a39-4fb1-bca9-b32e65c9e297",
+    "data": [
+      {
+        "text": "Mi número es ",
+        "userDefined": false
+      },
+      {
+        "text": "951234567",
+        "meta": "@sys.phone-number",
+        "alias": "telefono",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

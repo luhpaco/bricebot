@@ -1,0 +1,101 @@
+[
+  {
+    "id": "b1c66847-e556-41ac-9474-cab69e66f1ef",
+    "data": [
+      {
+        "text": "Vivo en la Ciudad Roja del Pescador, Mz H lote 13",
+        "meta": "@sys.any",
+        "alias": "direccion",
+        "userDefined": true
+      },
+      {
+        "text": ". ",
+        "userDefined": false
+      },
+      {
+        "text": "Al costado del colegio Sagrado Corazón",
+        "meta": "@sys.any",
+        "alias": "referencia",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "68735ad4-c023-4697-8541-bd1bad798fa3",
+    "data": [
+      {
+        "text": "AA.HH 1 de Junio MZ J lote 45",
+        "meta": "@sys.any",
+        "alias": "direccion",
+        "userDefined": true
+      },
+      {
+        "text": ", ",
+        "userDefined": false
+      },
+      {
+        "text": "a una cuadra del rest. Los Girasoles",
+        "meta": "@sys.any",
+        "alias": "referencia",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "05e18867-817b-46a8-bbef-2dadae41322b",
+    "data": [
+      {
+        "text": "Mi dirección es ",
+        "userDefined": false
+      },
+      {
+        "text": "Jr. Bolognesi 456, Pueblo Nuevo, Paita",
+        "meta": "@sys.any",
+        "alias": "direccion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "60beef69-56d2-46ac-96f3-02055f9085d7",
+    "data": [
+      {
+        "text": "Vivo en Av. Marco Jara Mz D Lt 10, Paita",
+        "meta": "@sys.any",
+        "alias": "direccion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cd9287cf-d796-40c7-b26a-3b3f178f7bf3",
+    "data": [
+      {
+        "text": "Calle Los Pinos 123, Paita",
+        "meta": "@sys.any",
+        "alias": "direccion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "value": "mañana",
+    "synonyms": [
+      "mañana",
+      "manana",
+      "por la mañana",
+      "en la mañana",
+      "8 a 12",
+      "temprano",
+      "am"
+    ]
+  },
+  {
+    "value": "tarde",
+    "synonyms": [
+      "tarde",
+      "por la tarde",
+      "en la tarde",
+      "2 a 6",
+      "después de almuerzo",
+      "pm"
+    ]
+  }
+]

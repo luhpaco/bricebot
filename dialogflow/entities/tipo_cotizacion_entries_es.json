@@ -1,0 +1,24 @@
+[
+  {
+    "value": "producto",
+    "synonyms": [
+      "producto",
+      "productos",
+      "equipo",
+      "artículo",
+      "articulo"
+    ]
+  },
+  {
+    "value": "servicio",
+    "synonyms": [
+      "servicio",
+      "servicios",
+      "reparación",
+      "reparacion",
+      "mantenimiento",
+      "instalación",
+      "instalacion"
+    ]
+  }
+]

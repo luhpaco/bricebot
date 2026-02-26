@@ -1,0 +1,192 @@
+[
+  {
+    "id": "d07b518f-1f3f-4cd8-8dd6-74c0d25c26ae",
+    "data": [
+      {
+        "text": "Instalación",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "62e1ad4e-6e7f-4522-a0f3-bbc592fba160",
+    "data": [
+      {
+        "text": "La segunda",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c0b902c0-e545-419a-8b39-e47146153bd0",
+    "data": [
+      {
+        "text": "Opción 2",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ea53f332-c81a-4f73-9309-d05a1dbd2dba",
+    "data": [
+      {
+        "text": "2",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "159068b5-e645-43d0-bb6b-c33a1b537f3d",
+    "data": [
+      {
+        "text": "Necesito un ",
+        "userDefined": false
+      },
+      {
+        "text": "servicio",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "da7507ff-5537-4c3f-9f43-bce20c705a49",
+    "data": [
+      {
+        "text": "Servicio técnico",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6fbdfd61-127d-4a6c-a542-7e4b563909fc",
+    "data": [
+      {
+        "text": "¿Cuánto cuesta el ",
+        "userDefined": false
+      },
+      {
+        "text": "mantenimiento",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "74ed70fc-222f-4387-b2dc-cfbe5b8e126c",
+    "data": [
+      {
+        "text": "Reparación",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "41b254ca-afe6-4b70-bff1-762e728b5904",
+    "data": [
+      {
+        "text": "Mantenimiento",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0d226a35-b0f3-4806-a4b7-24129ec245e8",
+    "data": [
+      {
+        "text": "Quiero cotizar un ",
+        "userDefined": false
+      },
+      {
+        "text": "servicio",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6afd965e-5754-4d4a-aae9-d76dbb4333e4",
+    "data": [
+      {
+        "text": "Servicio",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "28e0ba2e-f9be-4787-88b5-d1fa0cd5789a",
+    "data": [
+      {
+        "text": "Servicios",
+        "meta": "@tipo_cotizacion",
+        "alias": "tipo_cotizacion",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

@@ -1,0 +1,213 @@
+[
+  {
+    "id": "4961d767-ebb3-4f46-8a1f-c8322f54f890",
+    "data": [
+      {
+        "text": "Correo electrónico",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4d87e548-a05e-44fd-a435-f939daa4398e",
+    "data": [
+      {
+        "text": "WhatsApp",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "389a81f7-e7be-4319-bdc4-ad6c9f8b5383",
+    "data": [
+      {
+        "text": "Teléfono de contacto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b054949c-cb38-48c8-a9f3-b57f5bfbfbbe",
+    "data": [
+      {
+        "text": "¿Cómo me comunico con ustedes?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d1108f05-868c-447e-8e5f-6cb8592253e1",
+    "data": [
+      {
+        "text": "Contacto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9c0c6beb-6909-4a98-b418-eade9bd3146f",
+    "data": [
+      {
+        "text": "Quiero que me llamen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ac917c97-0bba-4503-a567-97457ca72b4c",
+    "data": [
+      {
+        "text": "¿Me pueden llamar?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "42c4e215-cc1e-4d59-b00e-a88b70429b91",
+    "data": [
+      {
+        "text": "Teléfono",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5be5b386-1279-4e0b-83ed-35da16ce4844",
+    "data": [
+      {
+        "text": "Datos de contacto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b9a0582d-9473-4a89-aec7-e108c63939d8",
+    "data": [
+      {
+        "text": "¿Cómo los contacto?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6d8587af-25f2-4fe9-8c83-cb1f0d3e37d5",
+    "data": [
+      {
+        "text": "Email",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "11521b3c-1542-4f0a-8521-106568a752c6",
+    "data": [
+      {
+        "text": "¿Cuál ",
+        "userDefined": false
+      },
+      {
+        "text": "es",
+        "userDefined": false
+      },
+      {
+        "text": " su correo?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "36033d1e-3742-4ba8-bceb-63777f5aa1ba",
+    "data": [
+      {
+        "text": "¿Tienen WhatsApp?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "decbd6bd-501f-4f7a-b796-79b343f5440e",
+    "data": [
+      {
+        "text": "Número de teléfono",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "eee7856c-6748-44c6-9a73-8dc6226c21ce",
+    "data": [
+      {
+        "text": "¿Cuál ",
+        "userDefined": false
+      },
+      {
+        "text": "es",
+        "userDefined": false
+      },
+      {
+        "text": " el teléfono?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

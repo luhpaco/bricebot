@@ -1,0 +1,533 @@
+---
+alwaysApply: false
+---
+# Testing & Quality Assurance Rules
+# CBRICENHO Chatbot - XP Testing Practices
+
+## Test-Driven Development (TDD) Workflow
+
+### Red-Green-Refactor Cycle
+```
+1. RED: Write a failing test first
+2. GREEN: Write minimum code to pass the test
+3. REFACTOR: Clean up the code while keeping tests green
+```
+
+### TDD Example for Fulfillment Handler
+```javascript
+// Step 1: RED - Write failing test
+describe('AppointmentHandler', () => {
+  describe('validateAppointmentDate', () => {
+    it('should reject dates more than 7 days in the future', () => {
+      const futureDate = new Date();
+      futureDate.setDate(futureDate.getDate() + 10);
+      
+      expect(() => validateAppointmentDate(futureDate))
+        .toThrow('La fecha debe estar dentro de los próximos 7 días');
+    });
+  });
+});
+
+// Step 2: GREEN - Write minimum code
+const validateAppointmentDate = (date) => {
+  const maxDate = new Date();
+  maxDate.setDate(maxDate.getDate() + 7);
+  
+  if (date > maxDate) {
+    throw new Error('La fecha debe estar dentro de los próximos 7 días');
+  }
+  return true;
+};
+
+// Step 3: REFACTOR - Clean up
+const validateAppointmentDate = (date, maxDays = 7) => {
+  const maxAllowedDate = addDays(new Date(), maxDays);
+  
+  if (isAfter(date, maxAllowedDate)) {
+    throw new ValidationError(ERRORS.DATE_TOO_FAR, { maxDays });
+  }
+  return true;
+};
+```
+
+---
+
+## Unit Testing Standards
+
+### File Naming Convention
+```
+src/
+├── services/
+│   ├── appointment.service.js
+│   └── appointment.service.test.js
+├── handlers/
+│   ├── faq.handler.js
+│   └── faq.handler.test.js
+```
+
+### Test Structure (AAA Pattern)
+```javascript
+describe('ServiceName', () => {
+  describe('methodName', () => {
+    it('should [expected behavior] when [condition]', async () => {
+      // Arrange - Set up test data and mocks
+      const mockInput = { /* ... */ };
+      const mockDependency = jest.fn().mockResolvedValue(/* ... */);
+      
+      // Act - Execute the code under test
+      const result = await serviceMethod(mockInput);
+      
+      // Assert - Verify the results
+      expect(result).toEqual(expectedOutput);
+      expect(mockDependency).toHaveBeenCalledWith(/* ... */);
+    });
+  });
+});
+```
+
+### Required Test Coverage by Module
+
+| Module | Min Coverage | Critical Paths |
+|--------|-------------|----------------|
+| handlers/ | 90% | All intent handlers |
+| services/ | 95% | Business logic |
+| utils/ | 80% | Helper functions |
+| models/ | 70% | Schema validations |
+
+---
+
+## Mocking Guidelines
+
+### Mocking MongoDB
+```javascript
+const { MongoMemoryServer } = require('mongodb-memory-server');
+const mongoose = require('mongoose');
+
+let mongoServer;
+
+beforeAll(async () => {
+  mongoServer = await MongoMemoryServer.create();
+  await mongoose.connect(mongoServer.getUri());
+});
+
+afterAll(async () => {
+  await mongoose.disconnect();
+  await mongoServer.stop();
+});
+
+beforeEach(async () => {
+  await mongoose.connection.dropDatabase();
+});
+```
+
+### Mocking Dialogflow Agent
+```javascript
+const createMockAgent = (parameters = {}, contexts = []) => ({
+  parameters,
+  getContext: jest.fn((name) => contexts.find(c => c.name === name)),
+  setContext: jest.fn(),
+  clearContext: jest.fn(),
+  add: jest.fn(),
+  end: jest.fn(),
+  request_: {
+    body: {
+      queryResult: {
+        parameters,
+        outputContexts: contexts
+      }
+    }
+  }
+});
+
+// Usage
+it('should respond with business hours', async () => {
+  const agent = createMockAgent();
+  
+  await faqHorariosHandler(agent);
+  
+  expect(agent.add).toHaveBeenCalledWith(
+    expect.stringContaining('Lunes a Viernes')
+  );
+});
+```
+
+### Mocking Google Calendar API
+```javascript
+jest.mock('@google-cloud/calendar', () => ({
+  Calendar: jest.fn().mockImplementation(() => ({
+    events: {
+      insert: jest.fn().mockResolvedValue({
+        data: {
+          id: 'mock-event-id',
+          htmlLink: 'https://calendar.google.com/mock'
+        }
+      }),
+      list: jest.fn().mockResolvedValue({
+        data: {
+          items: []
+        }
+      })
+    }
+  }))
+}));
+```
+
+### Mocking External HTTP Calls (WhatsApp API)
+```javascript
+const nock = require('nock');
+
+beforeEach(() => {
+  nock('https://graph.facebook.com')
+    .post('/v17.0/PHONE_NUMBER_ID/messages')
+    .reply(200, {
+      messaging_product: 'whatsapp',
+      messages: [{ id: 'mock-message-id' }]
+    });
+});
+
+afterEach(() => {
+  nock.cleanAll();
+});
+```
+
+---
+
+## Integration Testing
+
+### Webhook Integration Test
+```javascript
+const request = require('supertest');
+const app = require('../src/index');
+
+describe('Dialogflow Webhook', () => {
+  describe('POST /webhook', () => {
+    it('should handle faq_horarios intent', async () => {
+      const dialogflowRequest = {
+        responseId: 'test-response-id',
+        queryResult: {
+          intent: {
+            displayName: 'faq_horarios'
+          },
+          parameters: {},
+          outputContexts: []
+        }
+      };
+
+      const response = await request(app)
+        .post('/webhook')
+        .send(dialogflowRequest)
+        .expect(200);
+
+      expect(response.body.fulfillmentText).toContain('horarios');
+    });
+
+    it('should handle appointment flow with context', async () => {
+      // Test multi-turn conversation
+      const requests = [
+        { intent: 'cita_iniciar', expectedContext: 'cita_seleccion_tipo' },
+        { intent: 'cita_local_iniciar', context: 'cita_seleccion_tipo', expectedContext: 'cita_local_en_curso' },
+        // ... more steps
+      ];
+
+      let currentContexts = [];
+      
+      for (const step of requests) {
+        const response = await request(app)
+          .post('/webhook')
+          .send(buildRequest(step.intent, step.parameters, currentContexts))
+          .expect(200);
+
+        if (step.expectedContext) {
+          const outputContexts = response.body.outputContexts || [];
+          expect(outputContexts.some(c => c.name.includes(step.expectedContext))).toBe(true);
+        }
+        
+        currentContexts = response.body.outputContexts || [];
+      }
+    });
+  });
+});
+```
+
+### Database Integration Test
+```javascript
+describe('AppointmentRepository', () => {
+  beforeEach(async () => {
+    await Appointment.deleteMany({});
+  });
+
+  it('should create and retrieve appointment', async () => {
+    const appointmentData = {
+      clientName: 'Test Client',
+      phone: '+51999999999',
+      equipmentType: 'laptop',
+      problemDescription: 'No enciende',
+      appointmentType: 'local',
+      scheduledDate: new Date('2026-02-15'),
+      scheduledTime: '10:00'
+    };
+
+    const created = await appointmentRepository.create(appointmentData);
+    const retrieved = await appointmentRepository.findById(created._id);
+
+    expect(retrieved.clientName).toBe(appointmentData.clientName);
+    expect(retrieved.status).toBe('pendiente');
+  });
+
+  it('should find available slots', async () => {
+    // Seed existing appointments
+    await Appointment.create([
+      { scheduledDate: new Date('2026-02-15'), scheduledTime: '10:00', status: 'confirmada' },
+      { scheduledDate: new Date('2026-02-15'), scheduledTime: '11:00', status: 'confirmada' },
+      { scheduledDate: new Date('2026-02-15'), scheduledTime: '12:00', status: 'confirmada' }
+    ]);
+
+    const slots = await appointmentRepository.getAvailableSlots('2026-02-15');
+    
+    expect(slots).not.toContain('10:00');
+    expect(slots).not.toContain('11:00');
+    expect(slots).toContain('14:00'); // Afternoon still available
+  });
+});
+```
+
+---
+
+## Acceptance Testing (Customer Tests)
+
+### Acceptance Test Format
+```gherkin
+Feature: Programar cita en local
+  Como cliente de CBRICENHO
+  Quiero poder agendar una cita de servicio técnico en el local
+  Para que revisen mi equipo
+
+  Scenario: Agendar cita exitosamente
+    Given el cliente inicia conversación con el bot
+    When el cliente dice "Quiero agendar una cita"
+    Then el bot pregunta por el tipo de servicio (local o domicilio)
+    
+    When el cliente elige "Visitar local"
+    Then el bot pregunta por el tipo de equipo
+    
+    When el cliente responde "Laptop"
+    Then el bot pregunta por el problema
+    
+    When el cliente describe "No enciende"
+    Then el bot solicita el nombre
+    
+    When el cliente proporciona "Juan Pérez"
+    Then el bot solicita el teléfono
+    
+    When el cliente proporciona "975123456"
+    Then el bot muestra fechas disponibles (próximos 7 días)
+    
+    When el cliente selecciona "mañana"
+    Then el bot muestra horarios disponibles
+    
+    When el cliente selecciona "10:00"
+    Then el bot muestra resumen de la cita
+    And solicita confirmación
+    
+    When el cliente confirma
+    Then el bot registra la cita en Google Calendar
+    And envía confirmación por WhatsApp
+    And muestra mensaje de éxito con los detalles
+
+  Scenario: Fecha fuera de rango
+    Given el cliente está en el flujo de agendar cita
+    When el cliente solicita una fecha a más de 7 días
+    Then el bot informa que solo puede agendar hasta 7 días adelante
+    And ofrece fechas válidas
+
+  Scenario: Horario no disponible
+    Given el cliente está en el flujo de agendar cita
+    And ya hay 3 citas para el horario solicitado
+    When el cliente solicita ese horario
+    Then el bot informa que no hay disponibilidad
+    And sugiere horarios alternativos
+```
+
+### Automated Acceptance Test
+```javascript
+const { test, expect } = require('@playwright/test');
+
+test.describe('Appointment Flow E2E', () => {
+  test('should complete appointment booking flow', async ({ page }) => {
+    // Simulate conversation through test interface
+    await page.goto('/test-chat');
+    
+    // User initiates
+    await page.fill('#message-input', 'Quiero agendar una cita');
+    await page.click('#send-button');
+    
+    // Wait for bot response
+    await expect(page.locator('.bot-message').last())
+      .toContainText('¿Cómo prefiere recibir el servicio?');
+    
+    // Continue flow...
+    await page.click('button:has-text("Visitar local")');
+    
+    await expect(page.locator('.bot-message').last())
+      .toContainText('¿Qué tipo de equipo');
+    
+    // ... complete flow
+    
+    // Verify final state
+    await expect(page.locator('.bot-message').last())
+      .toContainText('Su cita ha sido agendada');
+  });
+});
+```
+
+---
+
+## Conversational Test Cases Matrix
+
+### FAQ Intents Test Cases
+
+| Test ID | Intent | Input | Expected Output | Edge Case |
+|---------|--------|-------|-----------------|-----------|
+| FAQ-01 | faq_horarios | "¿A qué hora atienden?" | Contains schedule | Normal |
+| FAQ-02 | faq_horarios | "horario" | Contains schedule | Single word |
+| FAQ-03 | faq_horarios | "stan aviertos los savados?" | Contains Saturday info | Typos |
+| FAQ-04 | faq_ubicacion | "donde estan" | Contains address | No punctuation |
+| FAQ-05 | faq_contacto | "wasap" | Contains WhatsApp link | Informal spelling |
+
+### Appointment Flow Test Cases
+
+| Test ID | Step | Input | Expected | Validation |
+|---------|------|-------|----------|------------|
+| APT-01 | Type selection | "local" | Context: cita_local_en_curso | Context set |
+| APT-02 | Equipment | "laptop" | Ask for problem | Parameter saved |
+| APT-03 | Problem | "pantalla rota" | Ask for name | Text captured |
+| APT-04 | Name | "María García" | Ask for phone | Name parsed |
+| APT-05 | Phone | "975-123-456" | Show dates | Phone validated |
+| APT-06 | Date | "mañana" | Show times | Date resolved |
+| APT-07 | Date | "en 15 días" | Error: max 7 days | Validation |
+| APT-08 | Time | "3pm" | Show summary | Time parsed |
+| APT-09 | Confirm | "sí" | Success + Calendar | Integration |
+| APT-10 | Confirm | "no" | Offer modifications | Flow branch |
+
+### Quote Flow Test Cases
+
+| Test ID | Type | Input | Expected | DB Query |
+|---------|------|-------|----------|----------|
+| QUO-01 | PC | "ofimática" | 2-3 options | Filter by use |
+| QUO-02 | Laptop repair | "HP Pavilion 15 pantalla" | Part + service price | Model lookup |
+| QUO-03 | Printer | "láser alto volumen" | Commercial options | Filter criteria |
+| QUO-04 | Software dev | "sistema de inventarios" | Lead generated | No price, escalate |
+
+---
+
+## Quality Metrics & Thresholds
+
+### Code Quality
+```yaml
+metrics:
+  test_coverage:
+    statements: 85%
+    branches: 80%
+    functions: 90%
+    lines: 85%
+  
+  complexity:
+    max_cyclomatic: 10
+    max_cognitive: 15
+  
+  maintainability:
+    min_index: 65
+```
+
+### NLU Quality (Dialogflow)
+```yaml
+nlu_metrics:
+  intent_recognition:
+    min_confidence: 0.7
+    fallback_rate_max: 15%
+  
+  entity_extraction:
+    accuracy: 90%
+  
+  conversation_completion:
+    rate: 85%
+```
+
+### Performance
+```yaml
+performance:
+  webhook_response_time:
+    p50: 500ms
+    p95: 1500ms
+    p99: 3000ms
+  
+  database_queries:
+    avg: 100ms
+    max: 500ms
+  
+  external_api_calls:
+    google_calendar: 2000ms
+    whatsapp: 3000ms
+```
+
+---
+
+## CI/CD Testing Pipeline
+
+```yaml
+# .github/workflows/test.yml
+name: Test Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm ci
+      - run: npm run test:unit
+      - run: npm run test:coverage
+      - uses: codecov/codecov-action@v3
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:6
+        ports:
+          - 27017:27017
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm ci
+      - run: npm run test:integration
+        env:
+          MONGODB_URI: mongodb://localhost:27017/test
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm ci
+      - run: npm run lint
+```
+
+---
+
+## Pre-Commit Checklist
+
+Before every commit, ensure:
+
+- [ ] All unit tests pass: `npm run test:unit`
+- [ ] Coverage thresholds met: `npm run test:coverage`
+- [ ] No linting errors: `npm run lint`
+- [ ] Integration tests pass (if applicable)
+- [ ] New code has corresponding tests
+- [ ] JSDoc comments for new functions
+- [ ] No `console.log` in production code
+- [ ] Environment variables documented

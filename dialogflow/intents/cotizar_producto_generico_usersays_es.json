@@ -1,0 +1,178 @@
+[
+  {
+    "id": "88fdc38d-8a9c-4265-bd53-da60ec18d5b8",
+    "data": [
+      {
+        "text": "Componentes",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b504d9ed-b558-4998-a254-fe47694ee2eb",
+    "data": [
+      {
+        "text": "La cuarta",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f12f403b-fdc3-4bfa-b54d-df5a42501939",
+    "data": [
+      {
+        "text": "La tercera",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a035b944-46af-4c40-b91a-a6d97e85007d",
+    "data": [
+      {
+        "text": "Opción 4",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "88c3e777-d4f4-4c28-9211-0447f33b42e5",
+    "data": [
+      {
+        "text": "Opción 3",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "beb0b770-b1af-40bc-b915-54dafe2c520b",
+    "data": [
+      {
+        "text": "4",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7e02fea3-b685-4f9e-8ccd-fbc69e69df39",
+    "data": [
+      {
+        "text": "3",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "bfe694a2-1244-4425-be6a-509cb86346e9",
+    "data": [
+      {
+        "text": "Quiero cotizar ",
+        "userDefined": false
+      },
+      {
+        "text": "accesorios",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "29a8cff9-03b5-42fc-8cdc-d8762d03c898",
+    "data": [
+      {
+        "text": "Necesito una ",
+        "userDefined": false
+      },
+      {
+        "text": "impresora",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3ed543d4-12d4-4326-a4b9-671d8b43c91a",
+    "data": [
+      {
+        "text": "Accesorios",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1209aaed-af72-440a-ada1-3c85a4dabf9d",
+    "data": [
+      {
+        "text": "Accesorios y componentes",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b61021bc-19bc-46d2-abbc-9a590d0c4312",
+    "data": [
+      {
+        "text": "Impresora",
+        "meta": "@categoria_producto",
+        "alias": "categoria_producto",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

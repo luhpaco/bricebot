@@ -1,0 +1,68 @@
+{
+  "id": "98690f24-f8f8-4794-b2ba-6ba9ce6a761d",
+  "name": "cotizar_repuesto_laptop",
+  "auto": true,
+  "contexts": [
+    "cotizacion_producto"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cotizar_repuesto_en_curso",
+          "lifespan": 8
+        }
+      ],
+      "parameters": [
+        {
+          "id": "08aaa052-9aef-44bc-8dc6-e4cbe2a45b68",
+          "name": "categoria_producto",
+          "required": false,
+          "dataType": "@categoria_producto",
+          "value": "$categoria_producto",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "e6fafbe1-7116-45fb-8c96-e7a9a169d312",
+          "name": "modelo_equipo",
+          "required": false,
+          "dataType": "@sys.any",
+          "value": "$modelo_equipo",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "d2f9d6b1-ac23-436d-a5d8-d0159b023398",
+    "data": [
+      {
+        "text": "Esta ",
+        "userDefined": false
+      },
+      {
+        "text": "semana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d289443e-36e3-455d-b1a1-065bcc8a6ede",
+    "data": [
+      {
+        "text": "El ",
+        "userDefined": false
+      },
+      {
+        "text": "lunes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "48f6c60a-6aeb-4c53-87eb-b9cf87c3b7fd",
+    "data": [
+      {
+        "text": "Pasado mañana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9196ece5-acec-4f31-9583-7dc404c0cd1f",
+    "data": [
+      {
+        "text": "Mañana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "510f151a-e112-429b-ace4-545ad8fed857",
+    "data": [
+      {
+        "text": "@sys.date:fecha",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cbc95fef-293a-4f8e-9eee-a1d31cbd9d6e",
+    "data": [
+      {
+        "text": "Para el ",
+        "userDefined": false
+      },
+      {
+        "text": "@sys.date:fecha",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "10b41a8e-2590-4ae2-a760-8af684950b0b",
+    "data": [
+      {
+        "text": "El ",
+        "userDefined": false
+      },
+      {
+        "text": "@sys.date:fecha",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

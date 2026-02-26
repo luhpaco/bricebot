@@ -1,0 +1,54 @@
+{
+  "id": "6350f0be-0034-4b38-bbbb-a9996b1e6657",
+  "name": "cotizar_computadora_uso",
+  "auto": true,
+  "contexts": [
+    "cotizar_computadora_en_curso"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cotizar_computadora_opciones",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "12399671-77dd-4fc9-bb5f-83a4fb346304",
+          "name": "uso_computadora",
+          "required": false,
+          "dataType": "@uso_computadora",
+          "value": "$uso_computadora",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,9 @@
+{
+  "id": "25d2d737-e2e5-46a0-94d3-3d50a7d5ddb5",
+  "name": "tipo_cotizacion",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

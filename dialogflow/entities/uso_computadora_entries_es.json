@@ -1,0 +1,72 @@
+[
+  {
+    "value": "ofimatica",
+    "synonyms": [
+      "ofimatica",
+      "ofimática",
+      "oficina",
+      "word",
+      "excel",
+      "trabajo básico",
+      "documentos",
+      "basico",
+      "básico",
+      "administrativo"
+    ]
+  },
+  {
+    "value": "diseno",
+    "synonyms": [
+      "diseno",
+      "diseño",
+      "photoshop",
+      "illustrator",
+      "edición",
+      "gráfico",
+      "grafico",
+      "edicion",
+      "diseñador",
+      "render"
+    ]
+  },
+  {
+    "value": "programacion",
+    "synonyms": [
+      "programacion",
+      "programación",
+      "desarrollo",
+      "programar",
+      "código",
+      "codigo",
+      "software",
+      "desarrollador",
+      "developer"
+    ]
+  },
+  {
+    "value": "gaming",
+    "synonyms": [
+      "gaming",
+      "juegos",
+      "gamer",
+      "videojuegos",
+      "jugar",
+      "games",
+      "gaminng",
+      "shooters"
+    ]
+  },
+  {
+    "value": "estudio",
+    "synonyms": [
+      "estudio",
+      "estudiante",
+      "tareas",
+      "clases",
+      "universidad",
+      "colegio",
+      "escuela",
+      "estudiar"
+    ]
+  }
+]

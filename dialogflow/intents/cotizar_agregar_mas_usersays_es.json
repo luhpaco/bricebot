@@ -1,0 +1,132 @@
+[
+  {
+    "id": "fb9925a4-11e2-4e2d-9571-c2ccd0d0c935",
+    "data": [
+      {
+        "text": "Sí más",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d5f376f4-7401-468a-a5db-3c1961751a29",
+    "data": [
+      {
+        "text": "Agregar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0b9b64b1-f501-4d3c-adc0-56592e427cdd",
+    "data": [
+      {
+        "text": "Necesito otro artículo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c5473bd7-f27e-4a28-8c81-a9d807a56db4",
+    "data": [
+      {
+        "text": "Sí, agregar más",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6d1cba0d-7932-4554-8fa9-c47182d58588",
+    "data": [
+      {
+        "text": "Quiero añadir algo más",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ed56df54-a889-4c4c-a5a5-f1d652a5eabb",
+    "data": [
+      {
+        "text": "Otro producto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1eef2df2-2352-425d-845c-a57c5ba27d5b",
+    "data": [
+      {
+        "text": "Sí, agregar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "16366c68-bc0c-460e-9da2-0ee2c60080ca",
+    "data": [
+      {
+        "text": "Quiero ver más opciones",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c223635f-cf08-4aa0-8386-1edc04f03aad",
+    "data": [
+      {
+        "text": "Agregar otro producto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "703e27e1-bf43-4790-b426-d0f4777817da",
+    "data": [
+      {
+        "text": "Sí, quiero agregar más",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

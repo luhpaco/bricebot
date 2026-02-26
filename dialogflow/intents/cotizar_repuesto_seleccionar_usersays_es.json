@@ -1,0 +1,184 @@
+[
+  {
+    "id": "44a1ecd0-bb13-4c5b-9a4c-6a99d7fac48e",
+    "data": [
+      {
+        "text": "Quiero la segunda",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9ce5178b-5052-4cdd-85e3-3f201bcd5a46",
+    "data": [
+      {
+        "text": "La primera opción",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "14cab7e2-f172-4fbd-b237-f667d7a0ba44",
+    "data": [
+      {
+        "text": "La primera con instalación",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "63add83e-1dbd-4d60-8db2-761719cc5ae8",
+    "data": [
+      {
+        "text": "Sin instalación",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "60b8e0c8-8c1d-4519-8197-1c754a903beb",
+    "data": [
+      {
+        "text": "Con instalación",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7267d892-2c08-47de-977f-1d961c2999f9",
+    "data": [
+      {
+        "text": "Solo el repuesto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e3eae32a-5e90-4d98-bfaa-ac784d102c15",
+    "data": [
+      {
+        "text": "Si, con instalación",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "825b05d0-041c-4060-9035-d7cd0e9fc286",
+    "data": [
+      {
+        "text": "Me interesa",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ffa6e081-aa6d-4453-a259-40e0e4acddb7",
+    "data": [
+      {
+        "text": "Esa opción",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "20402def-f45f-48b1-9edf-a11b26dc5c29",
+    "data": [
+      {
+        "text": "La segunda",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "bffbe933-dac2-4781-8208-8987a9e831a6",
+    "data": [
+      {
+        "text": "La primera",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e0fe4438-44d1-49a7-a46f-32cb8b89e743",
+    "data": [
+      {
+        "text": "3",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9c9adfdd-7727-4565-b667-a1b02d644235",
+    "data": [
+      {
+        "text": "2",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cb0371b9-4a62-430a-ad76-7c0309ebb320",
+    "data": [
+      {
+        "text": "1",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]
