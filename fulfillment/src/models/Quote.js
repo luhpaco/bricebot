@@ -62,7 +62,7 @@ const QuoteSchema = new mongoose.Schema(
 		},
 		quoteType: {
 			type: String,
-			enum: ['producto', 'servicio'],
+			enum: ['producto', 'servicio', 'mixto'],
 			required: true,
 		},
 		items: [QuoteItemSchema],
@@ -92,7 +92,7 @@ const QuoteSchema = new mongoose.Schema(
 		},
 		sentVia: {
 			type: String,
-			enum: ['whatsapp', 'email'],
+			enum: ['messenger', 'email'],
 			default: null,
 		},
 		creationStartTime: {
@@ -121,14 +121,17 @@ QuoteSchema.index({ status: 1 });
 QuoteSchema.index({ createdAt: -1 });
 QuoteSchema.index({ validUntil: 1 });
 
+const QuoteCounterSchema = new mongoose.Schema({
+	_id: String,
+	seq: { type: Number, default: 0 },
+});
+
 QuoteSchema.statics.generateQuoteNumber = async function () {
 	const date = new Date();
 	const dateStr = date.toISOString().split('T')[0].replace(/-/g, '');
 
-	const Counter = this.db.model('QuoteCounter', new (require('mongoose').Schema)({
-		_id: String,
-		seq: { type: Number, default: 0 },
-	}));
+	const Counter = mongoose.models.QuoteCounter ||
+		mongoose.model('QuoteCounter', QuoteCounterSchema);
 
 	const result = await Counter.findOneAndUpdate(
 		{ _id: `cot-${dateStr}` },
