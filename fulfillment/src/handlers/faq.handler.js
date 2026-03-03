@@ -1,4 +1,5 @@
 const Conversation = require('../models/Conversation');
+const MetricsService = require('../services/metrics.service');
 const { MESSAGES, CONTEXT_NAMES } = require('../config/constants');
 
 /**
@@ -8,24 +9,28 @@ const { MESSAGES, CONTEXT_NAMES } = require('../config/constants');
  * @returns {string|null} 'cita_local' | 'cita_domicilio' | 'cotizacion' | null
  */
 function getActiveFlow(agent) {
-	if (
-		agent.context.get('cita_local_en_curso') ||
-		agent.context.get('cita_local_confirmar')
-	) {
+	const isActive = (name) => {
+		const ctx = agent.context.get(name);
+		return ctx && ctx.lifespan > 0;
+	};
+
+	if (isActive('cita_seleccion_tipo')) {
+		return 'cita';
+	}
+	if (isActive('cita_local_en_curso') || isActive('cita_local_confirmar')) {
 		return 'cita_local';
 	}
-	if (
-		agent.context.get('cita_domicilio_en_curso') ||
-		agent.context.get('cita_domicilio_confirmar')
-	) {
+	if (isActive('cita_domicilio_en_curso') || isActive('cita_domicilio_confirmar')) {
 		return 'cita_domicilio';
 	}
 	if (
-		agent.context.get('cotizacion_items') ||
-		agent.context.get('cotizacion_confirmar') ||
-		agent.context.get('cotizar_computadora_en_curso') ||
-		agent.context.get('cotizar_repuesto_en_curso') ||
-		agent.context.get('cotizacion_servicio')
+		isActive('cotizacion_tipo') ||
+		isActive('cotizacion_producto') ||
+		isActive('cotizacion_items') ||
+		isActive('cotizacion_confirmar') ||
+		isActive('cotizar_computadora_en_curso') ||
+		isActive('cotizar_repuesto_en_curso') ||
+		isActive('cotizacion_servicio')
 	) {
 		return 'cotizacion';
 	}
@@ -40,12 +45,12 @@ function getActiveFlow(agent) {
 const handleGreeting = (agent) => {
 	const activeFlow = getActiveFlow(agent);
 
-	if (activeFlow === 'cita_local' || activeFlow === 'cita_domicilio') {
-		agent.add('¡Hola nuevamente! 👋 Veo que tiene una cita en proceso. ¿Desea continuar con el registro?');
+	if (activeFlow === 'cita' || activeFlow === 'cita_local' || activeFlow === 'cita_domicilio') {
+		agent.add('¡Hola nuevamente! 👋 Veo que tiene una cita en proceso. ¿Desea continuar con el registro?\nResponda *Sí* para continuar o *No* para cancelar.');
 		return;
 	}
 	if (activeFlow === 'cotizacion') {
-		agent.add('¡Hola nuevamente! 👋 Veo que tiene una cotización en proceso. ¿Desea continuar con la cotización?');
+		agent.add('¡Hola nuevamente! 👋 Veo que tiene una cotización en proceso. ¿Desea continuar con la cotización?\nResponda *Sí* para continuar o *No* para cancelar.');
 		return;
 	}
 
@@ -57,12 +62,22 @@ const handleGreeting = (agent) => {
  * their progress will be lost.
  * @param {Object} agent - Dialogflow WebhookClient agent
  */
-const handleGoodbye = (agent) => {
+const handleGoodbye = async (agent) => {
 	const activeFlow = getActiveFlow(agent);
 
+	// Clear any active flow contexts so the next session starts fresh
 	if (activeFlow) {
-		agent.add('¡Hasta luego! Si desea retomar su proceso en otro momento, con gusto le atendemos. 😊');
-		return;
+		[...CONTEXT_NAMES.APPOINTMENT, ...CONTEXT_NAMES.QUOTE].forEach((name) => {
+			agent.context.set({ name, lifespan: 0, parameters: {} });
+		});
+	}
+	agent.context.set({ name: 'fallback_count', lifespan: 0, parameters: {} });
+
+	// Mark conversation as ended for metrics
+	try {
+		await MetricsService.endConversation(agent.session);
+	} catch (err) {
+		console.error('[FAQ] Error ending conversation (non-fatal):', err.message);
 	}
 
 	agent.add(MESSAGES.GOODBYE);
@@ -159,6 +174,13 @@ const handleDerivarAgente = async (agent) => {
 
 	await markEscalatedToHuman(agent.session, 'DerivarAgente');
 
+	// End conversation in metrics -- escalation is a conversation closure
+	try {
+		await MetricsService.endConversation(agent.session);
+	} catch (err) {
+		console.error('[FAQ] Error ending conversation (non-fatal):', err.message);
+	}
+
 	agent.add(activeFlow ? MESSAGES.DERIVAR_AGENTE_CON_FLUJO : MESSAGES.DERIVAR_AGENTE);
 };
 
@@ -194,12 +216,42 @@ const handleRedesSociales = (agent) => {
 	agent.add(MESSAGES.REDES_SOCIALES);
 };
 
+/**
+ * Handles mid-flow cancellation. Clears all active flow contexts
+ * and returns the user to the main menu.
+ * @param {Object} agent - Dialogflow WebhookClient agent
+ */
+const handleCancelarProceso = (agent) => {
+	const activeFlow = getActiveFlow(agent);
+
+	if (!activeFlow) {
+		agent.add('No tiene ningún proceso activo en este momento. ¿En qué le puedo ayudar?');
+		return;
+	}
+
+	[...CONTEXT_NAMES.APPOINTMENT, ...CONTEXT_NAMES.QUOTE].forEach((name) => {
+		agent.context.set({ name, lifespan: 0, parameters: {} });
+	});
+
+	const flowNames = {
+		cita: 'proceso de cita',
+		cita_local: 'cita en nuestro local',
+		cita_domicilio: 'cita a domicilio',
+		cotizacion: 'cotización',
+	};
+
+	const flowName = flowNames[activeFlow] || 'proceso';
+	agent.add(`He cancelado su ${flowName} sin problema. ¿Puedo ayudarle con algo más?\n\n📅 Agendar una cita\n💰 Solicitar una cotización\n📋 Información del negocio`);
+};
+
 module.exports = {
+	getActiveFlow,
 	handleGreeting,
 	handleGoodbye,
 	handleHelp,
 	handleFallback,
 	handleDerivarAgente,
+	handleCancelarProceso,
 	handleHorarios,
 	handleUbicacion,
 	handleContacto,
