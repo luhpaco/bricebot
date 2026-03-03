@@ -1,5 +1,4 @@
 const quotesService = require('../services/quotes.service');
-const whatsappService = require('../services/whatsapp.service');
 const {
 	validatePhone,
 	normalizePhone,
@@ -62,6 +61,7 @@ const handleQuoteInitiate = (agent) => {
 const handleQuoteProductCategory = (agent) => {
 	const context = agent.context.get('cotizacion_tipo');
 	const startTime = context?.parameters?.startTime || Date.now();
+	const items = context?.parameters?.items || [];
 
 	// C1: Immediately clear cotizacion_tipo so the service branch cannot activate
 	agent.context.set({ name: 'cotizacion_tipo', lifespan: 0, parameters: {} });
@@ -71,8 +71,8 @@ const handleQuoteProductCategory = (agent) => {
 		lifespan: 8,
 		parameters: {
 			startTime,
-			quoteType: 'producto',
-			items: [],
+			quoteType: items.length > 0 ? 'mixto' : 'producto',
+			items,
 		},
 	});
 
@@ -86,6 +86,7 @@ const handleQuoteProductCategory = (agent) => {
 const handleQuoteServiceType = async (agent) => {
 	const context = agent.context.get('cotizacion_tipo');
 	const startTime = context?.parameters?.startTime || Date.now();
+	const items = context?.parameters?.items || [];
 
 	// C1: Immediately clear cotizacion_tipo so the product branch cannot activate
 	agent.context.set({ name: 'cotizacion_tipo', lifespan: 0, parameters: {} });
@@ -98,8 +99,8 @@ const handleQuoteServiceType = async (agent) => {
 			lifespan: 8,
 			parameters: {
 				startTime,
-				quoteType: 'servicio',
-				items: [],
+				quoteType: items.length > 0 ? 'mixto' : 'servicio',
+				items,
 			},
 		});
 		agent.add(MESSAGES.QUOTE_ASK_EQUIPMENT_TYPE);
@@ -115,9 +116,9 @@ const handleQuoteServiceType = async (agent) => {
 		lifespan: 8,
 		parameters: {
 			startTime,
-			quoteType: 'servicio',
+			quoteType: items.length > 0 ? 'mixto' : 'servicio',
 			equipmentType: normalizedType,
-			items: [],
+			items,
 			serviceOptions: services.map((s) => ({
 				id: s._id.toString(),
 				name: s.name,
@@ -212,6 +213,9 @@ function handleQuoteServiceSelectInternal(agent, context) {
 		},
 	];
 
+	// Clear the service sub-flow context so it doesn't carry stale data
+	agent.context.set({ name: 'cotizacion_servicio', lifespan: 0, parameters: {} });
+
 	agent.context.set({
 		name: 'cotizacion_items',
 		lifespan: 8,
@@ -260,6 +264,9 @@ const handleQuoteComputer = async (agent) => {
 	const startTime = context.parameters.startTime;
 	const items = context.parameters.items || [];
 	const category = agent.parameters['categoria_producto'];
+
+	// Clear cotizacion_producto so category-level intents don't re-fire during the sub-flow
+	agent.context.set({ name: 'cotizacion_producto', lifespan: 0, parameters: {} });
 
 	if (category === 'repuesto_laptop') {
 		agent.context.set({
@@ -378,6 +385,7 @@ const handleQuoteComputerSelect = (agent) => {
 	// Clear sub-flow contexts so they don't carry stale data on "agregar más"
 	agent.context.set({ name: 'cotizar_computadora_opciones', lifespan: 0, parameters: {} });
 	agent.context.set({ name: 'cotizar_computadora_en_curso', lifespan: 0, parameters: {} });
+	agent.context.set({ name: 'cotizacion_producto', lifespan: 0, parameters: {} });
 
 	agent.context.set({
 		name: 'cotizacion_items',
@@ -451,9 +459,9 @@ const handleQuoteGenericProduct = async (agent) => {
 			parameters: context.parameters,
 		});
 		const phone = process.env.COMPANY_PHONE || 'ver en "Contacto"';
-		const whatsapp = process.env.COMPANY_WHATSAPP || 'ver en "Contacto"';
+		const facebook = process.env.COMPANY_FACEBOOK || 'ver en "Contacto"';
 		agent.add(
-			`Actualmente no tenemos ${displayName} disponibles en nuestro catálogo digital. Para consultar precios y disponibilidad, contáctenos:\n\n📞 Teléfono: ${phone}\n💬 WhatsApp: ${whatsapp}\n\n¿Le gustaría cotizar algo más de nuestro catálogo?\n\n${formatProductCategories()}`
+			`Actualmente no tenemos ${displayName} disponibles en nuestro catálogo digital. Para consultar precios y disponibilidad, contáctenos:\n\n📞 Teléfono: ${phone}\n💬 Messenger: ${facebook}\n\n¿Le gustaría cotizar algo más de nuestro catálogo?\n\n${formatProductCategories()}`
 		);
 		return;
 	}
@@ -593,16 +601,24 @@ const handleQuoteLaptopPart = async (agent) => {
  * Handles laptop part selection
  * @param {Object} agent - Dialogflow WebhookClient agent
  */
-const handleQuotePartSelect = (agent) => {
+const handleQuotePartSelect = async (agent) => {
 	const context = agent.context.get('cotizar_repuesto_en_curso');
 	if (!context) {
 		agent.add('Lo siento, hubo un problema. ¿Podría indicarme el modelo de laptop nuevamente?');
 		return;
 	}
 
+	const options = context.parameters.partOptions || [];
+
+	// If part options haven't been loaded yet, the user is still in the
+	// multi-step flow (model → part type → parts list). Delegate to the
+	// state-machine handler which knows how to advance each step.
+	if (options.length === 0) {
+		return handleQuoteLaptopPart(agent);
+	}
+
 	const startTime = context.parameters.startTime;
 	const items = context.parameters.items || [];
-	const options = context.parameters.partOptions || [];
 	const installationPrice = context.parameters.installationPrice || 0;
 
 	const userQuery = agent.query.toLowerCase();
@@ -638,8 +654,9 @@ const handleQuotePartSelect = (agent) => {
 		});
 	}
 
-	// Clear the sub-flow context so it doesn't carry stale data on "agregar más"
+	// Clear sub-flow contexts so they don't carry stale data on "agregar más"
 	agent.context.set({ name: 'cotizar_repuesto_en_curso', lifespan: 0, parameters: {} });
+	agent.context.set({ name: 'cotizacion_producto', lifespan: 0, parameters: {} });
 
 	agent.context.set({
 		name: 'cotizacion_items',
@@ -666,26 +683,48 @@ const handleQuotePartSelect = (agent) => {
  */
 const handleQuoteAddMore = (agent) => {
 	const context = agent.context.get('cotizacion_items');
+
+	// If we're collecting client data (name/phone), Dialogflow misclassified
+	// the user's input as "add more". Re-ask for the pending data instead.
+	if (context?.parameters?.awaitingClientData) {
+		agent.context.set({
+			name: 'cotizacion_items',
+			lifespan: 8,
+			parameters: context.parameters,
+		});
+		if (!context.parameters.clientName) {
+			agent.add('Para continuar necesito su nombre completo. ¿Me lo podría indicar?');
+		} else {
+			agent.add('Para continuar necesito su número de teléfono. ¿Me lo podría indicar?');
+		}
+		return;
+	}
+
 	const startTime = context?.parameters?.startTime || Date.now();
 	const items = context?.parameters?.items || [];
+	const quoteType = context?.parameters?.quoteType || 'producto';
 
-	// Clear all sub-flow contexts so they start fresh for the next product
+	// Clear all sub-flow contexts so they start fresh for the next item
 	agent.context.set({ name: 'cotizar_computadora_en_curso', lifespan: 0, parameters: {} });
 	agent.context.set({ name: 'cotizar_computadora_opciones', lifespan: 0, parameters: {} });
 	agent.context.set({ name: 'cotizar_repuesto_en_curso', lifespan: 0, parameters: {} });
 	agent.context.set({ name: 'cotizacion_servicio', lifespan: 0, parameters: {} });
 
+	// Set cotizacion_tipo so the user can pick products or services
 	agent.context.set({
-		name: 'cotizacion_producto',
-		lifespan: 8,
-		parameters: {
-			startTime,
-			quoteType: context?.parameters?.quoteType || 'producto',
-			items,
-		},
+		name: 'cotizacion_tipo',
+		lifespan: 5,
+		parameters: { startTime, quoteType, items },
 	});
 
-	agent.add(formatProductCategories());
+	// Keep cotizacion_items alive so cotizar_datos_cliente can fire for option 3
+	agent.context.set({
+		name: 'cotizacion_items',
+		lifespan: 5,
+		parameters: { startTime, quoteType, items },
+	});
+
+	agent.add(`¿Qué desea agregar a su cotización?\n\n1️⃣ Productos (computadoras, repuestos, impresoras, etc.)\n2️⃣ Servicios (mantenimiento, reparaciones, instalaciones)\n3️⃣ Ya no, proceder con mis datos`);
 };
 
 /**
@@ -713,7 +752,7 @@ const handleQuoteClientData = async (agent) => {
 		agent.context.set({
 			name: 'cotizacion_items',
 			lifespan: 8,
-			parameters: { startTime, quoteType, items },
+			parameters: { startTime, quoteType, items, awaitingClientData: true },
 		});
 		agent.add(MESSAGES.QUOTE_ASK_CLIENT_NAME);
 		return;
@@ -727,7 +766,7 @@ const handleQuoteClientData = async (agent) => {
 		agent.context.set({
 			name: 'cotizacion_items',
 			lifespan: 8,
-			parameters: { startTime, quoteType, items, clientName: parsedName },
+			parameters: { startTime, quoteType, items, clientName: parsedName, awaitingClientData: true },
 		});
 		agent.add(MESSAGES.QUOTE_ASK_CLIENT_PHONE);
 		return;
@@ -738,7 +777,7 @@ const handleQuoteClientData = async (agent) => {
 		agent.context.set({
 			name: 'cotizacion_items',
 			lifespan: 8,
-			parameters: { startTime, quoteType, items, clientName: parsedName },
+			parameters: { startTime, quoteType, items, clientName: parsedName, awaitingClientData: true },
 		});
 		agent.add(MESSAGES.INVALID_PHONE);
 		return;
@@ -783,12 +822,6 @@ const handleQuoteConfirmYes = async (agent) => {
 			creationStartTime: new Date(context.parameters.startTime),
 		});
 
-		try {
-			await whatsappService.sendQuote(context.parameters.phone, quote);
-		} catch (whatsappError) {
-			console.error('[QuotesHandler] Error sending WhatsApp quote:', whatsappError);
-		}
-
 		agent.add(formatQuoteConfirmation(quote));
 
 		// C6: Clear ALL quote contexts so future flows start clean
@@ -810,6 +843,9 @@ const handleQuoteConfirmNo = (agent) => {
 		return;
 	}
 
+	// Clear stale confirmation context to prevent accidental re-confirmation
+	agent.context.set({ name: 'cotizacion_confirmar', lifespan: 0, parameters: {} });
+
 	agent.context.set({
 		name: 'cotizacion_items',
 		lifespan: 8,
@@ -820,7 +856,7 @@ const handleQuoteConfirmNo = (agent) => {
 		},
 	});
 
-	agent.add('Sin problema. ¿Qué le gustaría hacer?\n\n1️⃣ Agregar más productos\n2️⃣ Cambiar mis datos\n3️⃣ Cancelar la cotización');
+	agent.add('Sin problema. ¿Qué le gustaría hacer?\n\n1️⃣ Agregar más productos o servicios\n2️⃣ Empezar una cotización nueva desde cero');
 };
 
 module.exports = {

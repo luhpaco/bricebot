@@ -26,7 +26,7 @@ Lo esperamos cuando guste. ¿Puedo ayudarle con algo más?`,
 
 	UBICACION: `📍 ¡Claro! Estamos ubicados en:
 
-${process.env.COMPANY_ADDRESS}
+${process.env.COMPANY_ADDRESS || 'Consulte nuestra dirección en redes sociales'}
 Paita, Piura, Perú
 
 📌 Referencia: Frente al parque central del AA.HH. Marco Jara
@@ -43,8 +43,8 @@ Estaremos encantados de atenderle. ¿Hay algo más en lo que pueda ayudarle?`,
 
 	REDES_SOCIALES: `📱 ¡Claro que sí! Síganos en nuestras redes sociales para enterarse de las últimas novedades y promociones:
 
-🔵 Facebook: ${process.env.COMPANY_FACEBOOK}
-📸 Instagram: ${process.env.COMPANY_INSTAGRAM}
+🔵 Facebook: ${process.env.COMPANY_FACEBOOK || 'Próximamente'}
+📸 Instagram: ${process.env.COMPANY_INSTAGRAM || 'Próximamente'}
 
 ¡Nos encantaría tenerlo como parte de nuestra comunidad! ¿Le puedo ayudar con algo más?`,
 
@@ -70,7 +70,7 @@ Estaremos encantados de atenderle. ¿Hay algo más en lo que pueda ayudarle?`,
 	QUOTE_PRODUCT_CATEGORY:
 		'¿Qué tipo de producto le interesa? Le cuento las opciones:\n\n• Computadora de escritorio\n• Laptop\n• Impresora\n• Accesorios\n• Componentes',
 	QUOTE_READY:
-		'📋 ¡Su cotización está lista! ¿Por dónde le gustaría recibirla: WhatsApp o correo electrónico?',
+		'📋 ¡Su cotización está lista! ¿Por dónde le gustaría recibirla: este medio o correo electrónico?',
 	QUOTE_SENT:
 		'✅ ¡Cotización enviada con éxito! Tiene una validez de 7 días. No dude en contactarnos si tiene alguna pregunta.',
 	QUOTE_NO_PRODUCTS:
@@ -82,11 +82,11 @@ Estaremos encantados de atenderle. ¿Hay algo más en lo que pueda ayudarle?`,
 	QUOTE_ASK_LAPTOP_MODEL:
 		'¿Cuál es el modelo de su laptop? (Ejemplo: HP Pavilion 15, Dell Inspiron 14, Lenovo IdeaPad 3)',
 	QUOTE_ASK_ADD_MORE:
-		'¿Desea agregar algo más a su cotización o procedemos con sus datos?',
+		'¿Desea agregar algo más a su cotización o procedemos con sus datos?\nResponda *Sí* para agregar más o *No* para continuar.',
 	QUOTE_ASK_CLIENT_NAME:
-		'Para generar su cotización necesito algunos datos. ¿Cuál es su nombre completo?',
+		'Para generar su cotización necesito algunos datos. ¿Cuál es su nombre completo?\n(Ejemplo: Juan Pérez López)',
 	QUOTE_ASK_CLIENT_PHONE:
-		'Gracias. ¿Su número de teléfono o WhatsApp?',
+		'Gracias. ¿Su número de teléfono?\n(9 dígitos, ejemplo: 987654321)',
 	QUOTE_ERROR:
 		'Disculpe, hubo un problema al generar su cotización. ¿Podría intentarlo nuevamente?',
 	QUOTE_CANCELLED:

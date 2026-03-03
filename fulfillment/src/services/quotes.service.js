@@ -326,7 +326,7 @@ class QuotesService {
 			}
 		}
 
-		return normalized;
+		return '';
 	}
 
 	/**
@@ -389,7 +389,7 @@ class QuotesService {
 			}
 		}
 
-		return normalized;
+		return '';
 	}
 }
 
