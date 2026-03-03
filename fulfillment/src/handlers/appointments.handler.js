@@ -1,7 +1,6 @@
 const Appointment = require('../models/Appointment');
 const calendarService = require('../services/calendar.service');
 const availabilityService = require('../services/availability.service');
-const whatsappService = require('../services/whatsapp.service');
 const {
 	validatePhone,
 	normalizePhone,
@@ -97,6 +96,10 @@ const handleLocalAppointmentStart = (agent) => {
  */
 const handleLocalEquipmentType = (agent) => {
 	const context = agent.context.get('cita_local_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	const equipmentType = agent.parameters['tipo_equipo'];
 
 	agent.context.set({
@@ -110,7 +113,7 @@ const handleLocalEquipmentType = (agent) => {
 
 	const article = ['laptop', 'impresora', 'camara'].includes(equipmentType) ? 'una' : 'un';
 	agent.add(
-		`Perfecto, ${article} ${equipmentType}. Cuénteme, ¿qué problema presenta o qué servicio necesita?`,
+		`Perfecto, ${article} ${equipmentType}. Cuénteme, ¿qué problema presenta o qué servicio necesita?\n\n(Ejemplo: "No enciende", "Pantalla rota", "Necesita mantenimiento")`,
 	);
 };
 
@@ -120,6 +123,10 @@ const handleLocalEquipmentType = (agent) => {
  */
 const handleLocalProblemDescription = (agent) => {
 	const context = agent.context.get('cita_local_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	const problemDescription =
 		agent.parameters['descripcion_problema'] || agent.query;
 
@@ -133,7 +140,7 @@ const handleLocalProblemDescription = (agent) => {
 	});
 
 	agent.add(
-		`Ya veo, "${problemDescription}". No se preocupe, vamos a ayudarle con eso. 💪\n\nPara agendar su cita, necesito algunos datos. ¿Me comparte su nombre completo?`,
+		`Ya veo, "${problemDescription}". No se preocupe, vamos a ayudarle con eso. 💪\n\nPara agendar su cita, necesito algunos datos. ¿Me comparte su nombre completo?\n(Ejemplo: Juan Pérez López)`,
 	);
 };
 
@@ -143,6 +150,10 @@ const handleLocalProblemDescription = (agent) => {
  */
 const handleLocalClientName = (agent) => {
 	const context = agent.context.get('cita_local_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	const rawName = agent.parameters['nombre_cliente'];
 	const clientName =
 		(rawName && typeof rawName === 'object' ? rawName.name : rawName) ||
@@ -158,7 +169,7 @@ const handleLocalClientName = (agent) => {
 	});
 
 	agent.add(
-		`Mucho gusto, ${clientName}. 😊 ¿A qué número de teléfono o WhatsApp podemos contactarlo?`,
+		`Mucho gusto, ${clientName}. 😊 ¿A qué número de teléfono podemos contactarlo?\n(9 dígitos, ejemplo: 987654321)`,
 	);
 };
 
@@ -168,6 +179,10 @@ const handleLocalClientName = (agent) => {
  */
 const handleLocalClientPhone = async (agent) => {
 	const context = agent.context.get('cita_local_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	let phone = agent.parameters['telefono'] || agent.query;
 
 	const phoneValidation = validatePhone(phone);
@@ -199,6 +214,10 @@ const handleLocalClientPhone = async (agent) => {
  */
 const handleLocalDateSelection = async (agent) => {
 	const context = agent.context.get('cita_local_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	const dateString = agent.parameters['fecha'];
 	const date = parseDialogflowDate(dateString);
 
@@ -251,6 +270,10 @@ const handleLocalDateSelection = async (agent) => {
  */
 const handleLocalTimeSelection = async (agent) => {
 	const context = agent.context.get('cita_local_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	const timeString = agent.parameters['hora'];
 	const time = parseDialogflowTime(timeString);
 	const dateString = context.parameters.scheduledDate;
@@ -347,18 +370,6 @@ const handleLocalConfirmYes = async (agent) => {
 		const appointment = new Appointment(appointmentData);
 		await appointment.save();
 
-		try {
-			await whatsappService.sendAppointmentConfirmation(
-				context.parameters.phone,
-				appointment,
-			);
-		} catch (whatsappError) {
-			console.error(
-				'[AppointmentsHandler] Error sending WhatsApp:',
-				whatsappError,
-			);
-		}
-
 		const confirmationMessage = formatAppointmentConfirmation(appointment);
 		agent.add(confirmationMessage);
 
@@ -385,8 +396,9 @@ const handleLocalConfirmNo = (agent) => {
 		return;
 	}
 
-	// C5: Delete cita_seleccion_tipo — it is no longer needed at this stage
+	// C5: Delete stale contexts
 	agent.context.delete('cita_seleccion_tipo');
+	agent.context.set({ name: 'cita_local_confirmar', lifespan: 0, parameters: {} });
 
 	agent.context.set({
 		name: 'cita_local_en_curso',
@@ -395,7 +407,7 @@ const handleLocalConfirmNo = (agent) => {
 	});
 
 	agent.add(
-		'Sin problema, podemos hacer cambios. ¿Qué le gustaría modificar?\n\n1️⃣ Cambiar la fecha\n2️⃣ Cambiar la hora\n3️⃣ Cancelar la cita',
+		'Sin problema. ¿Qué le gustaría hacer?\n\n1️⃣ Cambiar la fecha u hora\n2️⃣ Empezar una cita nueva desde cero',
 	);
 };
 
@@ -426,6 +438,10 @@ const handleHomeAppointmentStart = (agent) => {
  */
 const handleHomeEquipmentType = (agent) => {
 	const context = agent.context.get('cita_domicilio_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	const equipmentType = agent.parameters['tipo_equipo'];
 
 	agent.context.set({
@@ -440,7 +456,7 @@ const handleHomeEquipmentType = (agent) => {
 
 	const article = ['laptop', 'impresora', 'camara'].includes(equipmentType) ? 'una' : 'un';
 	agent.add(
-		`Bien, ${article} ${equipmentType}. ¿Me puede describir qué problema tiene o qué servicio necesita?`,
+		`Bien, ${article} ${equipmentType}. ¿Me puede describir qué problema tiene o qué servicio necesita?\n\n(Ejemplo: "No enciende", "Pantalla rota", "Necesita mantenimiento")`,
 	);
 };
 
@@ -450,6 +466,10 @@ const handleHomeEquipmentType = (agent) => {
  */
 const handleHomeProblemDescription = (agent) => {
 	const context = agent.context.get('cita_domicilio_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	const problemDescription =
 		agent.parameters['descripcion_problema'] || agent.query;
 
@@ -464,7 +484,7 @@ const handleHomeProblemDescription = (agent) => {
 	agent.context.set({ name: 'cita_domicilio_paso_nombre', lifespan: 2, parameters: {} });
 
 	agent.add(
-		`Entiendo, "${problemDescription}". Nos encargaremos de eso. 🔧\n\nPara coordinar la visita, necesito algunos datos. ¿Cuál es su nombre completo?`,
+		`Entiendo, "${problemDescription}". Nos encargaremos de eso. 🔧\n\nPara coordinar la visita, necesito algunos datos. ¿Cuál es su nombre completo?\n(Ejemplo: Juan Pérez López)`,
 	);
 };
 
@@ -474,6 +494,10 @@ const handleHomeProblemDescription = (agent) => {
  */
 const handleHomeClientName = (agent) => {
 	const context = agent.context.get('cita_domicilio_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	const rawName = agent.parameters['nombre_cliente'];
 	const clientName =
 		(rawName && typeof rawName === 'object' ? rawName.name : rawName) ||
@@ -490,7 +514,7 @@ const handleHomeClientName = (agent) => {
 	agent.context.set({ name: 'cita_domicilio_paso_telefono', lifespan: 2, parameters: {} });
 
 	agent.add(
-		`Gracias, ${clientName}. 😊 ¿Me indica su número de teléfono o WhatsApp para coordinar la visita?`,
+		`Gracias, ${clientName}. 😊 ¿Me indica su número de teléfono para coordinar la visita?\n(9 dígitos, ejemplo: 987654321)`,
 	);
 };
 
@@ -500,6 +524,10 @@ const handleHomeClientName = (agent) => {
  */
 const handleHomeClientPhone = (agent) => {
 	const context = agent.context.get('cita_domicilio_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	let phone = agent.parameters['telefono'] || agent.query;
 
 	const phoneValidation = validatePhone(phone);
@@ -522,7 +550,7 @@ const handleHomeClientPhone = (agent) => {
 	agent.context.set({ name: 'cita_domicilio_paso_direccion', lifespan: 2, parameters: {} });
 
 	agent.add(
-		'¡Listo! Ahora, para poder llegar hasta usted, necesito su dirección completa. ¿Dónde podemos recoger su equipo? 🏠',
+		'¡Listo! Ahora, para poder llegar hasta usted, necesito su dirección completa. ¿Dónde podemos recoger su equipo? 🏠\n(Ejemplo: Av. Grau 123, Paita)',
 	);
 };
 
@@ -532,6 +560,10 @@ const handleHomeClientPhone = (agent) => {
  */
 const handleHomeAddress = (agent) => {
 	const context = agent.context.get('cita_domicilio_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	const address = agent.parameters['direccion'] || agent.query;
 	const reference = agent.parameters['referencia'] || '';
 
@@ -582,6 +614,10 @@ const handleHomeAddress = (agent) => {
  */
 const handleHomeDateSelection = (agent) => {
 	const context = agent.context.get('cita_domicilio_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
 	const dateString = agent.parameters['fecha'];
 	const date = parseDialogflowDate(dateString);
 
@@ -616,8 +652,13 @@ const handleHomeDateSelection = (agent) => {
  * Handles time range selection for home service
  * @param {Object} agent - Dialogflow WebhookClient agent
  */
-const handleHomeTimeRange = (agent) => {
+const handleHomeTimeRange = async (agent) => {
 	const context = agent.context.get('cita_domicilio_en_curso');
+	if (!context) {
+		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
+		return;
+	}
+
 	const rangoHorario =
 		agent.parameters['rango_horario'] || agent.query.toLowerCase();
 
@@ -636,12 +677,23 @@ const handleHomeTimeRange = (agent) => {
 		return;
 	}
 
+	const scheduledTime = timeRange === 'mañana' ? '10:00' : '15:00';
+	const date = new Date(context.parameters.scheduledDate);
+
+	// Validate slot availability against Google Calendar
+	const slotValidation = await availabilityService.validateAppointmentSlot(date, scheduledTime);
+	if (!slotValidation.valid) {
+		agent.context.set({ name: 'cita_domicilio_paso_horario', lifespan: 2, parameters: {} });
+		agent.add(slotValidation.message + '\n\n¿Prefiere en la mañana (10:00) o en la tarde (15:00)?');
+		return;
+	}
+
 	agent.context.set({
 		name: 'cita_domicilio_confirmar',
 		lifespan: 3,
 		parameters: {
 			...context.parameters,
-			scheduledTime: timeRange === 'mañana' ? '10:00' : '15:00',
+			scheduledTime,
 			timeRange: timeRange,
 		},
 	});
@@ -651,8 +703,8 @@ const handleHomeTimeRange = (agent) => {
 		phone: context.parameters.phone,
 		equipmentType: context.parameters.equipmentType,
 		problemDescription: context.parameters.problemDescription,
-		scheduledDate: new Date(context.parameters.scheduledDate),
-		scheduledTime: timeRange === 'mañana' ? '10:00' : '15:00',
+		scheduledDate: date,
+		scheduledTime,
 		appointmentType: 'domicilio',
 		address: context.parameters.address,
 		addressReference: context.parameters.addressReference,
@@ -712,18 +764,6 @@ const handleHomeConfirmYes = async (agent) => {
 		const appointment = new Appointment(appointmentData);
 		await appointment.save();
 
-		try {
-			await whatsappService.sendAppointmentConfirmation(
-				context.parameters.phone,
-				appointment,
-			);
-		} catch (whatsappError) {
-			console.error(
-				'[AppointmentsHandler] Error sending WhatsApp:',
-				whatsappError,
-			);
-		}
-
 		const confirmationMessage = formatAppointmentConfirmation(appointment);
 		agent.add(confirmationMessage);
 
@@ -753,6 +793,7 @@ const handleHomeConfirmNo = (agent) => {
 
 	// C5 + A4: Delete selection and all step contexts before re-entering the flow
 	agent.context.delete('cita_seleccion_tipo');
+	agent.context.set({ name: 'cita_domicilio_confirmar', lifespan: 0, parameters: {} });
 	clearHomePasoContexts(agent);
 
 	agent.context.set({
@@ -762,7 +803,7 @@ const handleHomeConfirmNo = (agent) => {
 	});
 
 	agent.add(
-		'Sin problema, hagamos los ajustes necesarios. ¿Qué le gustaría cambiar?\n\n1️⃣ La fecha\n2️⃣ El horario\n3️⃣ La dirección\n4️⃣ Cancelar la cita',
+		'Sin problema. ¿Qué le gustaría hacer?\n\n1️⃣ Cambiar la fecha u horario\n2️⃣ Cambiar la dirección\n3️⃣ Empezar una cita nueva desde cero',
 	);
 };
 
