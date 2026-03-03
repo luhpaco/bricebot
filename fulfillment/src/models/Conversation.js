@@ -40,8 +40,8 @@ const ConversationSchema = new mongoose.Schema(
 		},
 		channel: {
 			type: String,
-			enum: ['whatsapp', 'web', 'test'],
-			default: 'whatsapp',
+			enum: ['messenger', 'web', 'test'],
+			default: 'messenger',
 		},
 		messages: [MessageSchema],
 		resolved: {

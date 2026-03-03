@@ -102,49 +102,9 @@ function formatAppointmentConfirmation(appointment) {
 📅 Fecha: ${dateLabel} (${formattedDate})
 🕐 Hora: ${formattedTime}
 
-Le enviaremos una confirmación por WhatsApp con todos los detalles. ¡Lo esperamos!
+Le enviaremos una confirmación con todos los detalles. ¡Lo esperamos!
 
 ¿Puedo ayudarle con algo más?`;
-}
-
-/**
- * Formats WhatsApp confirmation message
- * @param {Object} appointment - Appointment object
- * @returns {string} WhatsApp message
- */
-function formatWhatsAppConfirmation(appointment) {
-	const {
-		referenceNumber,
-		clientName,
-		equipmentType,
-		problemDescription,
-		scheduledDate,
-		scheduledTime,
-		appointmentType,
-		address,
-	} = appointment;
-
-	const formattedDate = formatDate(scheduledDate);
-	const formattedTime = formatTime(scheduledTime);
-
-	let message = `✅ *CONFIRMACIÓN DE CITA - CBRICENHO*
-
-Código: *${referenceNumber}*
-Cliente: ${clientName}
-Equipo: ${equipmentType}
-Problema: ${problemDescription}
-Fecha: ${formattedDate}
-Hora: ${formattedTime}`;
-
-	if (appointmentType === 'local') {
-		message += '\nUbicación: *Nuestro local* en AA.HH. Marco Jara Schennone Mz D Lote 36';
-	} else {
-		message += `\nTipo: *Servicio a domicilio*\nDirección: ${address}`;
-	}
-
-	message += '\n\n¡Gracias por confiar en CBRICENHO! Lo esperamos con gusto. 🔧';
-
-	return message;
 }
 
 /**
@@ -296,48 +256,9 @@ function formatQuoteConfirmation(quote) {
 💰 Total: S/ ${quote.totalAmount.toFixed(2)}
 📅 Válida hasta: ${formatDate(quote.validUntil)}
 
-Le enviaremos los detalles completos por WhatsApp.
+Le enviaremos los detalles completos por este medio.
 
 ¿Puedo ayudarle con algo más?`;
-}
-
-/**
- * Formats a full quote for WhatsApp delivery
- * @param {Object} quote - Quote document from database
- * @returns {string} WhatsApp-formatted quote
- */
-function formatWhatsAppQuote(quote) {
-	const itemLines = quote.items.map((item, index) => {
-		const lineTotal = item.unitPrice * item.quantity;
-		return `${index + 1}. ${item.name} x${item.quantity} - S/ ${lineTotal.toFixed(2)}`;
-	});
-
-	let message = `📋 *COTIZACIÓN - CBRICENHO E.I.R.L*
-RUC: 20606300825
-
-Código: *${quote.quoteNumber}*
-Fecha: ${formatDate(new Date())}
-
-Cliente: ${quote.clientName}
-Teléfono: ${quote.phone}
-
-*DETALLE:*
-${itemLines.join('\n')}
-
-─────────────────────
-Subtotal: S/ ${quote.subtotal.toFixed(2)}
-IGV (18%): S/ ${quote.igv.toFixed(2)}
-*TOTAL: S/ ${quote.totalAmount.toFixed(2)}*
-─────────────────────
-
-📅 Válida hasta: ${formatDate(quote.validUntil)}
-
-_Cotización generada automáticamente._
-_Precios sujetos a disponibilidad de stock._
-
-¡Gracias por su preferencia! 🔧`;
-
-	return message;
 }
 
 /**
@@ -397,7 +318,6 @@ module.exports = {
 	formatAvailableSlots,
 	formatAvailableDates,
 	formatAppointmentConfirmation,
-	formatWhatsAppConfirmation,
 	formatUnavailableSlot,
 	formatEquipmentTypes,
 	formatTimeRanges,
@@ -406,7 +326,6 @@ module.exports = {
 	formatServiceOptions,
 	formatQuoteSummary,
 	formatQuoteConfirmation,
-	formatWhatsAppQuote,
 	formatProductCategories,
 	formatComputerUseCases,
 	formatPartTypes,

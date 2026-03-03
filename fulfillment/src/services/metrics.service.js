@@ -19,7 +19,7 @@ class MetricsService {
 		content,
 		intent = null,
 		confidence = null,
-		channel = 'whatsapp',
+		channel = 'messenger',
 	) {
 		try {
 			let conversation = await Conversation.findOne({ sessionId });
@@ -32,6 +32,8 @@ class MetricsService {
 					messages: [],
 					startedAt: new Date(),
 				});
+			} else if (conversation.channel === 'whatsapp') {
+				conversation.channel = 'messenger';
 			}
 
 			conversation.addMessage(role, content, intent, confidence);
@@ -58,8 +60,9 @@ class MetricsService {
 			const conversation = await Conversation.findOne({ sessionId });
 
 			if (conversation) {
-				const duration = endTime - startTime;
-				conversation.totalDurationMs += duration;
+				if (conversation.channel === 'whatsapp') {
+					conversation.channel = 'messenger';
+				}
 
 				if (!success && error) {
 					conversation.escalatedToHuman = true;
@@ -91,6 +94,9 @@ class MetricsService {
 			const conversation = await Conversation.findOne({ sessionId });
 
 			if (conversation && !conversation.endedAt) {
+				if (conversation.channel === 'whatsapp') {
+					conversation.channel = 'messenger';
+				}
 				conversation.endConversation();
 				await conversation.save();
 				console.log(`[Metrics] Conversation ended: ${sessionId}`);

@@ -17,7 +17,7 @@ Este chatbot automatiza el proceso de atención al cliente, permitiendo:
 - **Backend**: Node.js + Express
 - **Database**: MongoDB
 - **External APIs**: Google Calendar API
-- **Channel**: WhatsApp Business API
+- **Channel**: Facebook Messenger
 
 ## Requisitos Previos
 
@@ -133,7 +133,6 @@ bricebot/
 │       │   ├── metrics.service.js
 │       │   ├── calendar.service.js # Google Calendar API
 │       │   ├── availability.service.js
-│       │   ├── whatsapp.service.js # Placeholder
 │       │   └── quotes.service.js # Cotizaciones (Iteración 3)
 │       ├── models/               # Modelos de MongoDB
 │       │   ├── Conversation.js

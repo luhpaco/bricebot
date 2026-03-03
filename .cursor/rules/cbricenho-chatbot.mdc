@@ -52,7 +52,7 @@ alwaysApply: true
 
 ### Current Problem
 
-- Single digital channel: WhatsApp
+- Single digital channel: Facebook Messenger
 - Long wait times when >3 simultaneous clients
 - Frequent queries take too long to answer
 - Customer dissatisfaction due to lack of communication fluidity
@@ -63,7 +63,7 @@ alwaysApply: true
 ## 🛠️ TECHNOLOGY STACK
 
 ```
-Frontend Channel:    WhatsApp Business API
+Frontend Channel:    Facebook Messenger
 NLP Platform:        Google Dialogflow Essentials Edition
 Backend:             Node.js (Fulfillment/Webhook)
 Database:            MongoDB
@@ -97,7 +97,6 @@ cbricenho-chatbot/
 │   │   ├── services/           # Business logic
 │   │   │   ├── calendar.service.js
 │   │   │   ├── database.service.js
-│   │   │   ├── whatsapp.service.js
 │   │   │   └── metrics.service.js
 │   │   ├── models/             # MongoDB schemas
 │   │   │   ├── Appointment.js
@@ -386,7 +385,7 @@ const buildResponse = (message, suggestions = []) => {
   totalAmount: Number,
   validUntil: Date,               // Quote validity (7 days default)
   status: String,                 // 'generada' | 'enviada' | 'aceptada' | 'rechazada'
-  sentVia: String,                // 'whatsapp' | 'email'
+  sentVia: String,                // 'messenger' | 'email'
   // Metrics fields
   creationStartTime: Date,
   creationEndTime: Date,
@@ -441,8 +440,8 @@ const buildResponse = (message, suggestions = []) => {
 {
   _id: ObjectId,
   sessionId: String,
-  userId: String,                 // WhatsApp phone number
-  channel: String,                // 'whatsapp' | 'web'
+  userId: String,                 // Messenger user ID
+  channel: String,                // 'messenger' | 'web'
   messages: [{
     role: String,                 // 'user' | 'bot'
     content: String,
@@ -538,7 +537,7 @@ const MESSAGES = {
 	QUOTE_PRODUCT_CATEGORY:
 		'¿Qué tipo de producto le interesa? (computadora, laptop, impresora, etc.)',
 	QUOTE_READY:
-		'📋 Su cotización está lista. ¿Desea recibirla por WhatsApp o correo?',
+		'📋 Su cotización está lista. ¿Desea recibirla por este medio o correo?',
 	QUOTE_SENT: '✅ Cotización enviada. Tiene validez de 7 días.',
 
 	// Errors
@@ -616,7 +615,7 @@ describe('AppointmentService', () => {
 - [ ] Dialogflow webhook responses
 - [ ] Google Calendar integration
 - [ ] MongoDB CRUD operations
-- [ ] WhatsApp message formatting
+- [ ] Messenger message formatting
 - [ ] Metrics recording accuracy
 
 ---
@@ -660,11 +659,6 @@ MONGODB_DB_NAME=cbricenho
 
 # Google Calendar
 GOOGLE_CALENDAR_ID=primary
-
-# WhatsApp Business API
-WHATSAPP_API_URL=
-WHATSAPP_API_TOKEN=
-WHATSAPP_PHONE_NUMBER_ID=
 
 # App Configuration
 NODE_ENV=development
