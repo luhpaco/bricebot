@@ -223,6 +223,36 @@ class CalendarService {
 	}
 
 	/**
+	 * Lists all events for a given date within business hours in a single API call.
+	 * Returns raw event items so the caller can compute per-slot availability.
+	 * @param {Date} date - Date to query
+	 * @param {number} startHour - Business day start hour (e.g. 9)
+	 * @param {number} endHour - Business day end hour (e.g. 18)
+	 * @returns {Promise<Array>} Array of event objects with start/end datetimes
+	 */
+	async listEventsForDay(date, startHour, endHour) {
+		await this.initialize();
+
+		const dayStart = formatForCalendar(date, `${String(startHour).padStart(2, '0')}:00`);
+		const dayEnd = formatForCalendar(date, `${String(endHour).padStart(2, '0')}:00`);
+
+		try {
+			const response = await this.calendar.events.list({
+				calendarId: CALENDAR_ID,
+				timeMin: dayStart,
+				timeMax: dayEnd,
+				singleEvents: true,
+				orderBy: 'startTime',
+			});
+
+			return response.data.items || [];
+		} catch (error) {
+			console.error('[CalendarService] Error listing events for day:', error);
+			throw error;
+		}
+	}
+
+	/**
 	 * Gets the number of appointments in a time slot
 	 * @param {Date} date - Date to check
 	 * @param {string} time - Time in HH:MM format

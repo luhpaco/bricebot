@@ -179,10 +179,27 @@ function getRelativeDateLabel(date) {
 }
 
 /**
- * Formats a date for Google Calendar ISO format
+ * Builds an ISO 8601 datetime string with explicit Peru timezone offset (-05:00).
+ * This avoids relying on the server's local timezone for setHours/toISOString.
+ * @param {Date} date - Date (only year/month/day are used)
+ * @param {number} hours - Hours (0-23)
+ * @param {number} minutes - Minutes (0-59)
+ * @returns {string} ISO formatted datetime with -05:00 offset
+ */
+function buildLimaISO(date, hours, minutes) {
+	const year = date.getFullYear();
+	const month = String(date.getMonth() + 1).padStart(2, '0');
+	const day = String(date.getDate()).padStart(2, '0');
+	const h = String(hours).padStart(2, '0');
+	const m = String(minutes).padStart(2, '0');
+	return `${year}-${month}-${day}T${h}:${m}:00-05:00`;
+}
+
+/**
+ * Formats a date for Google Calendar ISO format with Peru timezone offset
  * @param {Date} date - Date to format
  * @param {string} time - Time in HH:MM format
- * @returns {string} ISO formatted datetime
+ * @returns {string} ISO formatted datetime with -05:00 offset
  */
 function formatForCalendar(date, time) {
 	if (!date || !(date instanceof Date)) return '';
@@ -191,10 +208,7 @@ function formatForCalendar(date, time) {
 	const hours = parseInt(timeParts[0]) || 9;
 	const minutes = parseInt(timeParts[1]) || 0;
 
-	const dateTime = new Date(date);
-	dateTime.setHours(hours, minutes, 0, 0);
-
-	return dateTime.toISOString();
+	return buildLimaISO(date, hours, minutes);
 }
 
 /**
@@ -202,20 +216,20 @@ function formatForCalendar(date, time) {
  * @param {Date} date - Date
  * @param {string} time - Time in HH:MM format
  * @param {number} durationMinutes - Duration in minutes
- * @returns {string} ISO formatted datetime
+ * @returns {string} ISO formatted datetime with -05:00 offset
  */
 function addDuration(date, time, durationMinutes) {
 	if (!date || !(date instanceof Date)) return '';
 
 	const timeParts = time ? time.split(':') : ['09', '00'];
-	const hours = parseInt(timeParts[0]) || 9;
-	const minutes = parseInt(timeParts[1]) || 0;
+	let hours = parseInt(timeParts[0]) || 9;
+	let minutes = parseInt(timeParts[1]) || 0;
 
-	const dateTime = new Date(date);
-	dateTime.setHours(hours, minutes, 0, 0);
-	dateTime.setMinutes(dateTime.getMinutes() + durationMinutes);
+	minutes += durationMinutes;
+	hours += Math.floor(minutes / 60);
+	minutes = minutes % 60;
 
-	return dateTime.toISOString();
+	return buildLimaISO(date, hours, minutes);
 }
 
 /**

@@ -17,7 +17,9 @@ class AvailabilityService {
 	}
 
 	/**
-	 * Gets available time slots for a specific date
+	 * Gets available time slots for a specific date.
+	 * Uses a single Calendar API call to fetch all events for the day,
+	 * then counts overlaps per slot locally.
 	 * @param {Date} date - Date to check
 	 * @returns {Promise<Array<string>>} Array of available time slots in HH:MM format
 	 */
@@ -44,16 +46,27 @@ class AvailabilityService {
 			endHour = 13;
 		}
 
-		const availableSlots = [];
-
 		try {
+			// Single API call for the entire business day
+			const events = await calendarService.listEventsForDay(date, startHour, endHour);
+
+			const availableSlots = [];
+
 			for (let hour = startHour; hour < endHour; hour++) {
-				const timeSlot = `${String(hour).padStart(2, '0')}:00`;
+				const slotStart = new Date(date);
+				slotStart.setHours(hour, 0, 0, 0);
+				const slotEnd = new Date(slotStart);
+				slotEnd.setMinutes(slotEnd.getMinutes() + 60);
 
-				const slotCount = await calendarService.getSlotCount(date, timeSlot);
+				// Count events that overlap with this slot
+				const overlapping = events.filter((event) => {
+					const eventStart = new Date(event.start.dateTime || event.start.date);
+					const eventEnd = new Date(event.end.dateTime || event.end.date);
+					return eventStart < slotEnd && eventEnd > slotStart;
+				});
 
-				if (slotCount < MAX_SIMULTANEOUS) {
-					availableSlots.push(timeSlot);
+				if (overlapping.length < MAX_SIMULTANEOUS) {
+					availableSlots.push(`${String(hour).padStart(2, '0')}:00`);
 				}
 			}
 
