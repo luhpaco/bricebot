@@ -128,5 +128,70 @@
     "count": 0,
     "lang": "es",
     "updated": 0
+  },
+  {
+    "id": "a1f2b3c4-d5e6-7890-abcd-100000000001",
+    "data": [
+      {
+        "text": "No",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1f2b3c4-d5e6-7890-abcd-100000000002",
+    "data": [
+      {
+        "text": "No gracias",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1f2b3c4-d5e6-7890-abcd-100000000003",
+    "data": [
+      {
+        "text": "Solo eso",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1f2b3c4-d5e6-7890-abcd-100000000004",
+    "data": [
+      {
+        "text": "Nada más",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1f2b3c4-d5e6-7890-abcd-100000000005",
+    "data": [
+      {
+        "text": "Así está bien",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
   }
 ]
