@@ -418,7 +418,7 @@ Deberías ver documentos como:
   "_id": ObjectId("..."),
   "sessionId": "projects/.../sessions/...",
   "userId": "unknown",
-  "channel": "whatsapp",
+  "channel": "messenger",
   "messages": [
     {
       "role": "user",
@@ -456,7 +456,7 @@ Bot: [Horarios]
 Usuario: ¿Dónde están ubicados?
 Bot: [Ubicación]
 
-Usuario: ¿Tienen WhatsApp?
+Usuario: ¿Cómo los contacto?
 Bot: [Contacto]
 
 Usuario: Gracias

@@ -32,7 +32,7 @@ Edita `.env` y actualiza:
 ```env
 DIALOGFLOW_PROJECT_ID=tu-project-id-real  # ⚠️ Reemplaza esto
 COMPANY_PHONE=+51999999999               # Agrega tu teléfono
-COMPANY_WHATSAPP=+51999999999            # Agrega tu WhatsApp
+COMPANY_WHATSAPP=+51999999999            # WhatsApp de contacto de la empresa
 COMPANY_EMAIL=contacto@cbricenho.com     # Agrega tu email
 ```
 

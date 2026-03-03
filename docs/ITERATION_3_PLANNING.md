@@ -22,7 +22,7 @@ Implementar el módulo de cotizaciones del chatbot, permitiendo a los clientes:
 - [x] El bot pregunta si necesita equipo completo o solo partes
 - [x] El bot pregunta el uso principal (ofimática, diseño, gaming, etc.)
 - [x] Se muestran 2-3 opciones con nombre, especificaciones clave y precio
-- [x] El bot ofrece enviar cotización formal por WhatsApp o correo
+- [x] El bot ofrece enviar cotización formal por Messenger o correo
 - [x] Si no hay productos disponibles para ese uso, se informa al usuario
 
 **Estimación:** 5 puntos
@@ -162,7 +162,7 @@ Bot: Para generar su cotización necesito algunos datos.
      ¿Cuál es su nombre completo?
 
 Usuario: Juan Pérez
-Bot: Gracias. ¿Su número de teléfono o WhatsApp?
+Bot: Gracias. ¿Su número de teléfono?
 
 Usuario: 975123456
 Bot: Aquí tiene el resumen de su cotización:
@@ -185,7 +185,7 @@ Bot: Aquí tiene el resumen de su cotización:
 Usuario: Sí
 Bot: ✅ ¡Cotización generada exitosamente!
      📋 Código: COT-20260216-001
-     Le enviaremos los detalles por WhatsApp.
+     Le enviaremos los detalles completos por este medio.
      ¿Puedo ayudarle con algo más?
 ```
 
@@ -245,7 +245,7 @@ Bot: He agregado la pantalla con instalación.
 
 1. Implementar `quotes.handler.js` con 12 handlers - 4h
 2. Registrar intents en `dialogflow.js` e `index.js` - 0.5h
-3. Agregar método `sendQuote()` en `whatsapp.service.js` - 0.5h
+3. Verificar confirmación de cotización en el chat - 0.5h
 
 ### Fase 5: Intents en Dialogflow (4 horas)
 
@@ -272,7 +272,7 @@ Bot: He agregado la pantalla con instalación.
 - [x] Precios se obtienen de la base de datos
 - [x] Cálculo de IGV correcto (18%)
 - [x] Cotización se guarda en MongoDB
-- [x] Se envía confirmación simulada por WhatsApp
+- [x] Se muestra confirmación de cotización en el chat
 
 ### No Funcionales
 
@@ -306,7 +306,7 @@ Bot: He agregado la pantalla con instalación.
 - Modelo `Quote.js` ya implementado ✅
 - Modelo `Conversation.js` para métricas ✅
 - Servicio de métricas funcionando ✅
-- Servicio de WhatsApp (simulado) funcionando ✅
+- Canal Messenger (integración nativa de Dialogflow) ✅
 
 ---
 

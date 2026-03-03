@@ -67,7 +67,7 @@ Las 3 iteraciones han sido completadas exitosamente. El chatbot cuenta con **44 
 - ✅ Validadores de fechas, teléfonos y direcciones
 - ✅ Validación de cobertura geográfica (Paita)
 - ✅ 20 intents en Dialogflow
-- ✅ Servicio de WhatsApp (simulado)
+- ✅ Integración con Facebook Messenger (canal nativo de Dialogflow)
 - ✅ Formateo de mensajes y fechas en español
 
 ---
@@ -95,7 +95,7 @@ Las 3 iteraciones han sido completadas exitosamente. El chatbot cuenta con **44 
 - ✅ Servicio de cotizaciones (quotes.service.js)
 - ✅ Handlers de cotizaciones (quotes.handler.js - 15 intents)
 - ✅ Cálculo de IGV y totales (configurable via IGV_PERCENTAGE)
-- ✅ Envío simulado de cotización por WhatsApp
+- ✅ Confirmación de cotización por Messenger
 - ✅ 15 intents de cotización en Dialogflow
 
 ---
@@ -120,7 +120,7 @@ Las 3 iteraciones han sido completadas exitosamente. El chatbot cuenta con **44 
 ### APIs Externas
 
 - ✅ Google Calendar API
-- ⏸️ WhatsApp Business API (simulado)
+- ✅ Facebook Messenger (integración nativa de Dialogflow)
 
 ### Herramientas de Desarrollo
 
@@ -134,7 +134,7 @@ Las 3 iteraciones han sido completadas exitosamente. El chatbot cuenta con **44 
 ## Arquitectura Actual
 
 ```
-Usuario (WhatsApp)
+Usuario (Messenger)
     ↓
 Dialogflow ES (NLU)
     ↓
@@ -213,7 +213,6 @@ bricebot/
 │       │   ├── metrics.service.js      ✅
 │       │   ├── calendar.service.js     ✅ Iteración 2
 │       │   ├── availability.service.js ✅ Iteración 2
-│       │   ├── whatsapp.service.js     ✅ Iteración 2
 │       │   └── quotes.service.js       ✅ Iteración 3
 │       ├── models/
 │       │   ├── Conversation.js         ✅
@@ -407,7 +406,7 @@ bricebot/
 
 1. **MongoDB Local vs Atlas:** Elegido local para desarrollo, migrar a Atlas para producción
 2. **Dialogflow ES vs CX:** Elegido ES por simplicidad y cumple requisitos
-3. **WhatsApp API:** Simulado para desarrollo, integración real posterior
+3. **Canal de comunicación:** Facebook Messenger via integración nativa de Dialogflow
 4. **Google Calendar:** Integración directa con API v3 via service account
 5. **Cotizaciones:** Consulta a BD de productos en lugar de precios hardcodeados
 
