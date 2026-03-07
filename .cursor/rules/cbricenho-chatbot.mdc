@@ -447,6 +447,7 @@ const buildResponse = (message, suggestions = []) => {
     content: String,
     intent: String,
     confidence: Number,
+    responseDurationMs: Number,   // Response time in ms (bot messages only)
     timestamp: Date
   }],
   resolved: Boolean,
