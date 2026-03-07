@@ -3,7 +3,14 @@
     "allow": [
       "Bash(npm test:*)",
       "Bash(git:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "WebFetch(domain:github.com)",
+      "Read(//f/folder-luispazcode/lupaco-grado-unp/tesis/bricebot/$HOME/**)",
+      "Read(//f/folder-luispazcode/lupaco-grado-unp/tesis/bricebot/$APPDATA/Claude/**)",
+      "Bash(claude mcp:*)",
+      "mcp__engram__mem_stats",
+      "mcp__engram__mem_context",
+      "mcp__engram__mem_save"
     ]
   }
 }
