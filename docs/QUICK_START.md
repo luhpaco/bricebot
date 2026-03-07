@@ -150,10 +150,11 @@ curl http://localhost:3000/health
 
 Las 3 iteraciones están completadas:
 
-1. ✅ Iteración 1 (FAQ) - 8 intents funcionando
+1. ✅ Iteración 1 (FAQ) - 8 intents FAQ + 2 transversales (`derivar_agente_humano`, `cancelar_proceso`)
 2. ✅ Iteración 2 (Gestión de Citas) - 20 intents con Google Calendar
 3. ✅ Iteración 3 (Cotizaciones) - 15 intents con consulta a MongoDB
-4. ✅ Intent `derivar_agente_humano` con registro de métricas
+
+**Total: 45 intents con webhook + Default Welcome Intent (nativo) = 46 en Dialogflow**
 
 ---
 

@@ -318,6 +318,7 @@ Este intent ya existe en tu agente. Solo necesitas verificar:
 - [ ] `faq_contacto` creado con webhook habilitado
 - [ ] `faq_redes_sociales` creado con webhook habilitado
 - [ ] `Default Fallback Intent` con webhook habilitado
+- [ ] `derivar_agente_humano` creado con webhook habilitado (ver Parte 4 abajo)
 
 ### Verificar Webhook Global
 

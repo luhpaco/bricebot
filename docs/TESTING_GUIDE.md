@@ -344,8 +344,9 @@ Usuario: ¿Qué puedes hacer?
 Puedo ayudarle con:
 
 1️⃣ Información - Horarios, ubicación, contacto, redes sociales
-2️⃣ Citas - Agendar servicio técnico (próximamente)
-3️⃣ Cotizaciones - Precios de productos y servicios (próximamente)
+2️⃣ Citas - Agendar servicio técnico (en local o a domicilio)
+3️⃣ Cotizaciones - Precios de productos y servicios
+4️⃣ Hablar con asesor - Si prefiere atención humana
 
 Simplemente escriba lo que necesita o elija una opción.
 ```

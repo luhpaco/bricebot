@@ -1,6 +1,6 @@
 # Estado del Proyecto CBRICENHO Chatbot
 
-**Última actualización:** Febrero 24, 2026  
+**Última actualización:** Marzo 7, 2026  
 **Versión:** 1.0.0  
 **Estado:** 3 iteraciones completadas
 
@@ -8,7 +8,7 @@
 
 ## Resumen Ejecutivo
 
-Las 3 iteraciones han sido completadas exitosamente. El chatbot cuenta con **44 intents** funcionando: responde consultas frecuentes (FAQ), agenda citas en local y a domicilio con integración a Google Calendar, genera cotizaciones de productos y servicios consultando la base de datos, y deriva al usuario a un asesor humano con registro de métricas de escalamiento.
+Las 3 iteraciones han sido completadas exitosamente. El chatbot cuenta con **45 intents con webhook habilitado** en Dialogflow (+ `Default Welcome Intent` nativo sin webhook = 46 totales). Responde consultas frecuentes (FAQ), agenda citas en local y a domicilio con integración a Google Calendar, genera cotizaciones de productos y servicios consultando la base de datos, cancela flujos activos y deriva al usuario a un asesor humano con registro de métricas de escalamiento.
 
 ---
 
@@ -126,7 +126,7 @@ Las 3 iteraciones han sido completadas exitosamente. El chatbot cuenta con **44 
 
 - ✅ ngrok (exposición local)
 - ✅ nodemon (desarrollo)
-- ⚠️ Jest (configurado, tests unitarios pendientes)
+- ✅ Jest (5 archivos de test: faq.handler, metrics.service, quotes.service, validators, dateHelpers)
 - ⚠️ ESLint (instalado, sin archivo `.eslintrc`)
 
 ---
@@ -249,7 +249,9 @@ bricebot/
 
 ## Intents Implementados en Dialogflow
 
-### ✅ Implementados (Iteración 1) - 8 intents
+### ✅ Implementados (Iteración 1) - 8 intents FAQ + 2 transversales
+
+**FAQ (8 intents en Dialogflow):**
 
 1. `saludo` - Mensaje de bienvenida
 2. `despedida` - Mensaje de despedida
@@ -258,7 +260,7 @@ bricebot/
 5. `faq_ubicacion` - Ubicación del local
 6. `faq_contacto` - Información de contacto
 7. `faq_redes_sociales` - Redes sociales
-8. `Default Fallback Intent` - Manejo de no entendimiento
+8. `Default Fallback Intent` - Manejo de no entendimiento (escalación progresiva en 3 niveles)
 
 ### ✅ Implementados (Iteración 2) - 20 intents
 
@@ -306,20 +308,21 @@ bricebot/
 14. `cotizar_confirmar_si` - Confirmar cotización
 15. `cotizar_confirmar_no` - Modificar cotización
 
-### ✅ Intent de Escalamiento
+### ✅ Intents Transversales (manejados por faq.handler.js)
 
 - `derivar_agente_humano` - Derivar a asesor humano con registro de métricas
+- `cancelar_proceso` - Cancelar flujo activo y volver al menú principal (10 training phrases; además tiene activación dual via override del webhook cuando Dialogflow no lo detecta dentro de un flujo multi-turn)
 
-**Total: 44 intents**
+**Total: 45 intents con webhook habilitado + `Default Welcome Intent` (nativo, sin webhook) = 46 intents en Dialogflow**
 
 ---
 
-## Entidades Implementadas
+## Entidades Implementadas (6 custom entities)
 
 ### ✅ Creadas (Iteración 1)
 
 - `@tipo_equipo` (PC, laptop, impresora, cámara, monitor, otro)
-- `@tipo_servicio` (mantenimiento, reparación, instalación, etc.)
+- `@tipo_servicio` (mantenimiento, cambio_teclado, cambio_pantalla, repotenciacion, instalacion_software, instalacion_camaras)
 
 ### ✅ Creadas (Iteración 2)
 
@@ -328,6 +331,8 @@ bricebot/
 ### ✅ Creadas (Iteración 3)
 
 - `@uso_computadora` (ofimática, diseño, programación, gaming, estudio)
+- `@categoria_producto` (computadora, laptop, impresora, accesorio)
+- `@tipo_cotizacion` (producto, servicio)
 
 ---
 
@@ -337,7 +342,7 @@ bricebot/
 
 1. [x] Obtener `service-account.json` de Google Cloud
 2. [x] Actualizar valores reales en `.env`
-3. [x] Crear los 8 intents en Dialogflow Console
+3. [x] Crear los 8 intents FAQ + `derivar_agente_humano` en Dialogflow Console
 4. [x] Probar el flujo completo con el simulador
 5. [x] Realizar pruebas de validación
 6. [x] Recopilar métricas iniciales
@@ -412,10 +417,11 @@ bricebot/
 
 ### Deuda Técnica
 
-1. ⚠️ Implementar tests unitarios e integración
+1. ✅ Tests unitarios implementados (5 archivos: faq.handler, metrics.service, quotes.service, validators, dateHelpers)
 2. ⚠️ Configurar ESLint con reglas del proyecto
 3. ⚠️ Agregar logs estructurados (Winston)
 4. ⚠️ Implementar rate limiting
+5. ⚠️ Tests de handlers de citas y cotizaciones (solo hay tests a nivel servicio)
 
 ---
 
