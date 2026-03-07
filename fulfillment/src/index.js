@@ -176,6 +176,9 @@ app.post('/webhook', async (req, res) => {
 
 		await agent.handleRequest(intentMap);
 
+		const endTime = Date.now();
+		const responseDurationMs = endTime - startTime;
+
 		// M4: Record bot response without blocking on failure
 		const responseText =
 			agent.consoleMessages?.[0]?.text?.text?.[0] || 'Respuesta procesada';
@@ -188,12 +191,11 @@ app.post('/webhook', async (req, res) => {
 				intent,
 				null,
 				'messenger',
+				responseDurationMs,
 			);
 		} catch (metricsError) {
 			console.error('[Webhook] Metrics error (non-fatal):', metricsError.message);
 		}
-
-		const endTime = Date.now();
 		await MetricsService.recordInteraction({
 			sessionId,
 			userId,

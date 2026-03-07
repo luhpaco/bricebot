@@ -20,6 +20,11 @@ const MessageSchema = new mongoose.Schema({
 		max: 1,
 		default: null,
 	},
+	responseDurationMs: {
+		type: Number,
+		min: 0,
+		default: null,
+	},
 	timestamp: {
 		type: Date,
 		default: Date.now,
@@ -88,12 +93,14 @@ ConversationSchema.methods.addMessage = function (
 	content,
 	intent = null,
 	confidence = null,
+	responseDurationMs = null,
 ) {
 	this.messages.push({
 		role,
 		content,
 		intent,
 		confidence,
+		responseDurationMs,
 		timestamp: new Date(),
 	});
 	this.totalMessages = this.messages.length;

@@ -10,6 +10,7 @@ class MetricsService {
 	 * @param {string} intent - Detected intent
 	 * @param {number} confidence - Intent confidence score
 	 * @param {string} channel - Communication channel
+	 * @param {number} responseDurationMs - Response time in ms (bot messages only)
 	 * @returns {Promise<Conversation>}
 	 */
 	static async recordMessage(
@@ -20,6 +21,7 @@ class MetricsService {
 		intent = null,
 		confidence = null,
 		channel = 'messenger',
+		responseDurationMs = null,
 	) {
 		try {
 			let conversation = await Conversation.findOne({ sessionId });
@@ -36,7 +38,7 @@ class MetricsService {
 				conversation.channel = 'messenger';
 			}
 
-			conversation.addMessage(role, content, intent, confidence);
+			conversation.addMessage(role, content, intent, confidence, responseDurationMs);
 			await conversation.save();
 
 			console.log(`[Metrics] Message recorded for session: ${sessionId}`);
@@ -151,6 +153,16 @@ class MetricsService {
 					? ratings.reduce((sum, r) => sum + r, 0) / ratings.length
 					: null;
 
+			const responseTimes = conversations.flatMap((c) =>
+				c.messages
+					.filter((m) => m.role === 'bot' && m.responseDurationMs != null)
+					.map((m) => m.responseDurationMs),
+			);
+			const avgResponseDurationMs =
+				responseTimes.length > 0
+					? responseTimes.reduce((sum, t) => sum + t, 0) / responseTimes.length
+					: null;
+
 			return {
 				totalConversations,
 				resolvedConversations,
@@ -166,6 +178,9 @@ class MetricsService {
 				avgMessagesPerConversation,
 				avgDurationMs,
 				avgDurationSeconds: avgDurationMs / 1000,
+				avgResponseDurationMs,
+				avgResponseDurationSeconds: avgResponseDurationMs ? avgResponseDurationMs / 1000 : null,
+				totalResponseSamples: responseTimes.length,
 				avgSatisfaction,
 				ratingsCount: ratings.length,
 			};
