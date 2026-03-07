@@ -30,6 +30,7 @@ ${process.env.COMPANY_ADDRESS || 'Consulte nuestra dirección en redes sociales'
 Paita, Piura, Perú
 
 📌 Referencia: Frente al parque central del AA.HH. Marco Jara
+🗺️ Google Maps: https://maps.app.goo.gl/CeruFJv9Pm2ihVNG8
 
 Lo esperamos con gusto. ¿Desea agendar una visita o tiene alguna otra consulta?`,
 
