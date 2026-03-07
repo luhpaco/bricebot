@@ -76,145 +76,171 @@ Language:            JavaScript (ES6+)
 ## 📁 PROJECT STRUCTURE
 
 ```
-cbricenho-chatbot/
-├── .env                        # Environment variables
-├── .cursorrules                # This file
+bricebot/
+├── .env                             # Environment variables
 ├── package.json
 ├── README.md
+├── CHECKLIST.md
 │
 ├── dialogflow/
-│   ├── intents/                # Intent JSON definitions
-│   ├── entities/               # Custom entity definitions
-│   └── agent.json              # Agent configuration
+│   ├── agent.json                   # Agent configuration
+│   ├── intents/                     # 45 intent JSON definitions (+ usersays)
+│   └── entities/                    # 6 custom entity definitions
 │
 ├── fulfillment/
 │   ├── src/
-│   │   ├── index.js            # Main webhook entry point
-│   │   ├── handlers/           # Intent handlers
-│   │   │   ├── faq.handler.js
-│   │   │   ├── appointments.handler.js
-│   │   │   └── quotes.handler.js
-│   │   ├── services/           # Business logic
-│   │   │   ├── calendar.service.js
-│   │   │   ├── database.service.js
-│   │   │   └── metrics.service.js
-│   │   ├── models/             # MongoDB schemas
-│   │   │   ├── Appointment.js
-│   │   │   ├── Quote.js
-│   │   │   ├── Product.js
-│   │   │   ├── Client.js
-│   │   │   └── Conversation.js
-│   │   ├── utils/              # Helper functions
-│   │   │   ├── validators.js
-│   │   │   ├── formatters.js
-│   │   │   └── dateHelpers.js
-│   │   └── config/             # Configuration files
-│   │       ├── dialogflow.js
-│   │       ├── database.js
-│   │       └── constants.js
-│   ├── tests/                  # Unit and integration tests
-│   └── package.json
+│   │   ├── index.js                 # Main webhook entry point (intentMap)
+│   │   ├── handlers/
+│   │   │   ├── faq.handler.js       # FAQ + utility intents (10 handlers)
+│   │   │   ├── appointments.handler.js  # Appointment intents (20 handlers)
+│   │   │   └── quotes.handler.js    # Quote intents (15 handlers)
+│   │   ├── services/
+│   │   │   ├── metrics.service.js   # Thesis metrics recording
+│   │   │   ├── calendar.service.js  # Google Calendar API integration
+│   │   │   ├── availability.service.js  # Appointment slot availability
+│   │   │   └── quotes.service.js    # Quote generation logic
+│   │   ├── models/
+│   │   │   ├── Conversation.js      # Chat sessions & metrics
+│   │   │   ├── Appointment.js       # Scheduled appointments
+│   │   │   ├── Quote.js             # Generated quotes
+│   │   │   ├── Product.js           # Product catalog
+│   │   │   └── Service.js           # Service catalog
+│   │   ├── utils/
+│   │   │   ├── validators.js        # Phone, date, address validation
+│   │   │   ├── formatters.js        # Message & date formatting
+│   │   │   └── dateHelpers.js       # Date/time utilities
+│   │   ├── config/
+│   │   │   ├── constants.js         # MESSAGES, BUSINESS_HOURS, CONFIG, CONTEXT_NAMES
+│   │   │   ├── database.js          # MongoDB connection
+│   │   │   └── dialogflow.js        # Dialogflow config
+│   │   └── scripts/
+│   │       └── seed-products.js     # Seed product/service catalog
+│   └── tests/
+│       ├── setup.js
+│       ├── helpers/mockAgent.js
+│       ├── handlers/faq.handler.test.js
+│       ├── services/metrics.service.test.js
+│       ├── services/quotes.service.test.js
+│       ├── utils/validators.test.js
+│       └── utils/dateHelpers.test.js
 │
-└── docs/
-    ├── user-stories/           # XP User Stories
-    ├── crc-cards/              # CRC Cards from design phase
-    └── conversation-flows/     # Conversation flow diagrams
+├── docs/
+│   ├── QUICK_START.md
+│   ├── PROJECT_STATUS.md
+│   ├── SETUP_CREDENTIALS.md
+│   ├── SETUP_NGROK_DIALOGFLOW.md
+│   ├── DIALOGFLOW_INTENTS_SETUP.md
+│   ├── DIALOGFLOW_ITERATION_2_SETUP.md
+│   ├── DIALOGFLOW_ITERATION_3_SETUP.md
+│   ├── TESTING_GUIDE.md
+│   ├── ITERATION_2_PLANNING.md
+│   ├── ITERATION_3_PLANNING.md
+│   └── conversation-flows/
+│       ├── README.md
+│       ├── faq-flow.md
+│       ├── appointment-local-flow.md
+│       ├── appointment-home-flow.md
+│       └── quote-flow.md
+│
+└── .cursor/rules/                   # Cursor AI rules
 ```
 
 ---
 
 ## 🎯 CHATBOT MODULES & INTENTS
 
-### Module 1: FAQ (Frequent Queries)
+**Total: 45 intents with webhook enabled + `Default Welcome Intent` (native, no webhook) = 46 intents in Dialogflow, 45 intentMap entries**
 
-**Purpose**: Automatically answer common customer questions
+### Module 1: FAQ + Utility Intents (Iteration 1) — faq.handler.js (10 handlers)
 
-**Intents**:
-
-```
-faq_bienvenida              # Welcome message
-faq_informacion_empresa     # Company information
-faq_horarios                # Business hours
-faq_ubicacion               # Location
-faq_servicios               # Available services
-faq_productos               # Available products
-faq_precios                 # Pricing information
-faq_garantias               # Warranty policies
-faq_problemas_frecuentes    # Common technical issues
-faq_despedida               # Goodbye
-Default Fallback Intent     # When not understood
-```
-
-### Module 2: Appointment Scheduling (Citas)
-
-**Purpose**: Automate technical service appointment booking
-
-**Intents**:
+**Dialogflow intents (8 FAQ):**
 
 ```
-cita_solicitar              # Request appointment
-cita_tipo_servicio          # Select service type
-cita_local_fecha            # In-store: select date
-cita_local_hora             # In-store: select time
-cita_local_datos            # In-store: client data
-cita_local_confirmar        # In-store: confirm
-cita_domicilio_fecha        # Home service: select date
-cita_domicilio_hora         # Home service: select time
-cita_domicilio_direccion    # Home service: address
-cita_domicilio_datos        # Home service: client data
-cita_domicilio_confirmar    # Home service: confirm
-cita_cancelar               # Cancel appointment
-cita_reprogramar            # Reschedule
-cita_consultar              # Check existing appointment
+saludo                     # Welcome message
+despedida                  # Goodbye message
+ayuda                      # Show available options
+faq_horarios               # Business hours
+faq_ubicacion              # Location
+faq_contacto               # Contact information (phone, WhatsApp, email)
+faq_redes_sociales         # Social media links
+Default Fallback Intent    # Fallback with 3-level escalation
 ```
 
-**Entities**:
+**Cross-cutting intents (handled by faq.handler.js but not counted as FAQ):**
 
 ```
-@tipo_equipo        # pc, laptop, impresora, celular, tablet
-@tipo_servicio      # reparacion, mantenimiento, instalacion, diagnostico
-@tipo_cita          # local, domicilio
-@fecha              # sys.date
-@hora               # sys.time
-@nombre_cliente     # sys.person
-@telefono           # sys.phone-number
-@direccion          # Free text
-@referencia         # Free text (address reference)
-@descripcion_problema # Free text
+derivar_agente_humano      # Escalate to human agent (async handler with metrics)
+cancelar_proceso           # Cancel active flow (Dialogflow intent with 10 training phrases; also has dual activation via webhook override when Dialogflow misroutes within a multi-turn flow)
 ```
 
-### Module 3: Quote Generation (Cotizaciones)
+### Module 2: Appointment Scheduling (Iteration 2) — appointments.handler.js (20 handlers)
 
-**Purpose**: Generate automatic quotes for products/services
-
-**Intents**:
+**In-store appointments (10 intents):**
 
 ```
-cotizar_solicitar           # Request quote
-cotizar_tipo                # Product or service quote
-cotizar_producto_categoria  # Select product category
-cotizar_producto_seleccionar # Select specific product
-cotizar_producto_cantidad   # Specify quantity
-cotizar_agregar_mas         # Add more items
-cotizar_servicio_tipo       # Select service type
-cotizar_datos_cliente       # Client information
-cotizar_confirmar           # Confirm quote
-cotizar_enviar              # Send via WhatsApp/email
-cotizar_modificar           # Modify quote
+cita_iniciar               # Start appointment flow (local vs domicilio)
+cita_local_iniciar         # Select in-store service
+cita_local_equipo          # Equipment type (@tipo_equipo)
+cita_local_problema        # Problem description (free text)
+cita_local_nombre          # Client name (@sys.person)
+cita_local_telefono        # Client phone (@sys.phone-number)
+cita_local_fecha           # Date selection (@sys.date, max 7 days)
+cita_local_hora            # Time selection (@sys.time)
+cita_local_confirmar_si    # Confirm appointment → Google Calendar
+cita_local_confirmar_no    # Modify or cancel
 ```
 
-**Entities**:
+**Home service appointments (10 intents):**
 
 ```
-@tipo_cotizacion    # producto, servicio
-@categoria_producto # computadora, laptop, impresora, accesorio, componente
-@producto           # Mapped to products collection
-@cantidad           # sys.number
-@tipo_cliente       # natural, juridico
-@email              # sys.email
-@razon_social       # Free text (for juridico)
-@ruc_cliente        # Free text (for juridico)
+cita_domicilio_iniciar     # Select home service
+cita_domicilio_equipo      # Equipment type
+cita_domicilio_problema    # Problem description
+cita_domicilio_nombre      # Client name
+cita_domicilio_telefono    # Client phone
+cita_domicilio_direccion   # Address + reference (Paita coverage validation)
+cita_domicilio_fecha       # Date selection
+cita_domicilio_rango_horario # Time range: mañana (8-12) or tarde (14-18)
+cita_domicilio_confirmar_si  # Confirm → Google Calendar
+cita_domicilio_confirmar_no  # Modify or cancel
 ```
+
+### Module 3: Quote Generation (Iteration 3) — quotes.handler.js (15 handlers)
+
+```
+cotizar_iniciar            # Start quote flow (product vs service)
+cotizar_producto_categoria # Product category selection
+cotizar_servicio_tipo      # Service type selection
+cotizar_servicio_equipo    # Equipment for service
+cotizar_servicio_seleccionar # Select specific service
+cotizar_producto_generico  # Generic product quote
+cotizar_computadora        # Desktop computer quote flow
+cotizar_computadora_uso    # Computer use case (@uso_computadora)
+cotizar_computadora_seleccionar # Select computer option
+cotizar_repuesto_laptop    # Laptop part quote flow
+cotizar_repuesto_seleccionar # Select laptop part
+cotizar_agregar_mas        # Add more items to quote
+cotizar_datos_cliente      # Client name + phone for quote
+cotizar_confirmar_si       # Confirm quote → save to MongoDB
+cotizar_confirmar_no       # Modify or cancel quote
+```
+
+### Custom Entities (6 total)
+
+| Entity | Values | Iteration |
+| --- | --- | --- |
+| `@tipo_equipo` | PC, laptop, impresora, camara, monitor, otro | 1 |
+| `@tipo_servicio` | mantenimiento, cambio_teclado, cambio_pantalla, repotenciacion, instalacion_software, instalacion_camaras | 1 |
+| `@rango_horario` | mañana, tarde | 2 |
+| `@uso_computadora` | ofimatica, diseno, programacion, gaming, estudio | 3 |
+| `@categoria_producto` | computadora, repuesto_laptop, impresora, accesorio | 3 |
+| `@tipo_cotizacion` | producto, servicio | 3 |
+
+System entities used: `@sys.date`, `@sys.time`, `@sys.phone-number`, `@sys.person`, `@sys.any`
+
+### Intent Override Mechanism
+
+The webhook (`index.js`) implements a runtime override system as a safety net: when a user is inside an active multi-turn flow (appointment or quote) and types cancel/goodbye/escalation keywords that Dialogflow misroutes to the current flow-step intent, the handler is replaced with `handleCancelarProceso`, `handleGoodbye`, or `handleDerivarAgente`. The 10 FAQ/utility intents are marked as `NON_OVERRIDABLE`. Note: `cancelar_proceso`, `derivar_agente_humano`, and `despedida` also exist as real Dialogflow intents, so the override only fires when Dialogflow fails to match them directly.
 
 ---
 
@@ -401,13 +427,13 @@ const buildResponse = (message, suggestions = []) => {
 ```javascript
 {
   _id: ObjectId,
-  sku: String,
-  category: String,               // 'computadora', 'laptop', 'impresora', etc.
+  sku: String,                    // unique, indexed
+  category: String,               // enum: 'computadora', 'laptop', 'impresora', 'accesorio', 'componente', 'camara', 'monitor'
   name: String,
   brand: String,
   model: String,
   description: String,
-  specifications: Object,
+  specifications: Mixed,          // flexible object
   price: Number,
   stock: Number,
   isActive: Boolean,
@@ -421,11 +447,11 @@ const buildResponse = (message, suggestions = []) => {
 ```javascript
 {
   _id: ObjectId,
-  code: String,
+  code: String,                   // unique, indexed
   name: String,
   description: String,
-  category: String,               // 'reparacion', 'mantenimiento', 'instalacion'
-  equipmentTypes: [String],       // Compatible equipment types
+  category: String,               // enum: 'reparacion', 'mantenimiento', 'instalacion', 'software'
+  equipmentTypes: [String],       // compatible equipment types
   basePrice: Number,
   estimatedDuration: String,      // e.g., "1-2 horas"
   isActive: Boolean,
@@ -474,8 +500,8 @@ const buildResponse = (message, suggestions = []) => {
 ### Entity Naming Convention
 
 - Use snake_case with @ prefix in documentation
-- Custom entities: `@tipo_equipo`, `@tipo_servicio`, `@modelo_equipo`
-- System entities: `@sys.date`, `@sys.time`, `@sys.phone-number`
+- Custom entities: `@tipo_equipo`, `@tipo_servicio`, `@rango_horario`, `@uso_computadora`, `@categoria_producto`, `@tipo_cotizacion`
+- System entities: `@sys.date`, `@sys.time`, `@sys.phone-number`, `@sys.person`, `@sys.any`
 
 ### Context Naming Convention
 
@@ -718,6 +744,6 @@ test(faq): add unit tests for horarios intent
 
 ---
 
-_Project: Thesis 2023-2025_
+_Project: Thesis 2023-2026_
 _Company: CBRICENHO E.I.R.L - Paita, Piura, Perú_
 _Author: Bach. Luis Humberto Paz Córdova_

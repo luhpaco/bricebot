@@ -47,18 +47,6 @@ alwaysApply: true
 }
 ```
 
-### @volumen_uso
-```json
-{
-  "name": "volumen_uso",
-  "entries": [
-    { "value": "bajo", "synonyms": ["poco", "básico", "casa", "hogar", "personal"] },
-    { "value": "medio", "synonyms": ["regular", "oficina pequeña", "moderado"] },
-    { "value": "alto", "synonyms": ["mucho", "empresa", "comercial", "negocio", "intensivo"] }
-  ]
-}
-```
-
 ### @uso_computadora
 ```json
 {
@@ -69,6 +57,30 @@ alwaysApply: true
     { "value": "programacion", "synonyms": ["desarrollo", "programar", "código", "software"] },
     { "value": "gaming", "synonyms": ["juegos", "gamer", "videojuegos", "jugar"] },
     { "value": "estudio", "synonyms": ["estudiante", "tareas", "clases", "universidad", "colegio"] }
+  ]
+}
+```
+
+### @categoria_producto
+```json
+{
+  "name": "categoria_producto",
+  "entries": [
+    { "value": "computadora", "synonyms": ["computadora de escritorio", "PC", "desktop", "equipo de escritorio", "cpu", "compu"] },
+    { "value": "repuesto_laptop", "synonyms": ["repuesto", "repuesto de laptop", "parte de laptop", "pieza", "pantalla laptop", "teclado laptop"] },
+    { "value": "impresora", "synonyms": ["printer", "multifuncional", "impresoras"] },
+    { "value": "accesorio", "synonyms": ["accesorios", "periférico", "periferico", "componente", "componentes"] }
+  ]
+}
+```
+
+### @tipo_cotizacion
+```json
+{
+  "name": "tipo_cotizacion",
+  "entries": [
+    { "value": "producto", "synonyms": ["productos", "equipo", "equipos", "comprar"] },
+    { "value": "servicio", "synonyms": ["servicios", "reparación", "mantenimiento", "instalación"] }
   ]
 }
 ```
@@ -601,17 +613,14 @@ training_phrases:
 
 parameters:
   - name: "modelo_equipo"
-    entity: "@modelo_equipo"
-    required: true
-    prompts: ["¿Qué modelo de laptop tiene? (Ej: HP Pavilion 15, Dell XPS 13)"]
-  - name: "tipo_repuesto"
     entity: "@sys.any"
     required: true
-    prompts: ["¿Qué repuesto necesita? (pantalla, teclado, batería, etc.)"]
+    prompts: ["¿Qué modelo de laptop tiene? (Ej: HP Pavilion 15, Dell XPS 13)"]
 
-contexts_in: []
+contexts_in:
+  - "cotizacion_producto"
 contexts_out:
-  - name: "cotizar_repuesto_opciones"
+  - name: "cotizar_repuesto_en_curso"
     lifespan: 5
 
 fulfillment_enabled: true
@@ -680,9 +689,9 @@ response: |
 fulfillment_enabled: false
 ```
 
-#### Intent: hablar_agente
+#### Intent: derivar_agente_humano
 ```yaml
-name: hablar_agente
+name: derivar_agente_humano
 training_phrases:
   - "Quiero hablar con un humano"
   - "Agente"
@@ -833,3 +842,15 @@ const handleFallback = (agent) => {
   }
 };
 ```
+
+## Intent: cancelar_proceso (Dual Activation)
+
+`cancelar_proceso` is a real Dialogflow intent with 10 training phrases (e.g., "Cancelar", "Quiero cancelar", "No quiero continuar", "Cancelar la cita", "Dejar de cotizar") and webhook enabled.
+
+It has **dual activation**:
+1. **Dialogflow NLU:** When the user types a cancellation phrase and Dialogflow correctly matches it to this intent.
+2. **Webhook override:** When the user is inside a multi-turn flow and Dialogflow misroutes the cancellation phrase to the current flow-step intent, the webhook's override mechanism in `index.js` detects the keyword and replaces the handler with `handleCancelarProceso`.
+
+The handler clears all active flow contexts and returns the user to the main menu.
+
+The 10 FAQ/utility intents are marked as `NON_OVERRIDABLE` and will never be replaced by the override mechanism.
