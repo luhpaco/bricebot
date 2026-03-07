@@ -1,5 +1,5 @@
 {
-  "description": "",
+  "description": "Tu asistente virtual de CBRICENHO",
   "language": "es",
   "shortDescription": "",
   "examples": "",
@@ -9,7 +9,7 @@
   "disableStackdriverLogs": true,
   "defaultTimezone": "America/New_York",
   "webhook": {
-    "url": "https://471b-190-108-82-107.ngrok-free.app/webhook",
+    "url": "https://a849-190-108-82-107.ngrok-free.app/webhook",
     "username": "",
     "headers": {},
     "available": true,

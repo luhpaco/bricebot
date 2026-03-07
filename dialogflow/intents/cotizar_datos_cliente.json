@@ -17,7 +17,7 @@
       ],
       "parameters": [
         {
-          "id": "0473a885-fcc6-45a3-96ff-1b1ef5f5dafb",
+          "id": "8ce0cb1a-3d84-40f7-b56f-759c38a03421",
           "name": "nombre_cliente",
           "required": true,
           "dataType": "@sys.person",
@@ -35,7 +35,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "9ff81256-3bfd-4a5f-80e4-c6162f00be7b",
+          "id": "c8f36a30-9999-470f-891c-e4b6bd8ba288",
           "name": "telefono",
           "required": true,
           "dataType": "@sys.phone-number",

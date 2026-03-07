@@ -1,0 +1,132 @@
+[
+  {
+    "id": "4f3fba2b-3f5a-426c-91d7-9f1e027c230a",
+    "data": [
+      {
+        "text": "Mejor no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f58d3e56-1d27-41dd-9030-f51001eef926",
+    "data": [
+      {
+        "text": "No, cancelar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "51ebfde4-4a3d-4059-84eb-de401a377d37",
+    "data": [
+      {
+        "text": "Cancelar la cita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4aa6f0e6-1f89-4f03-ba3c-26aee6dac4cb",
+    "data": [
+      {
+        "text": "Cancelar la cotización",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e6380c7b-6f21-49c4-b43f-e0fd2adac0d8",
+    "data": [
+      {
+        "text": "Ya no quiero la cita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "63ecf0e1-f88a-4e47-9160-f773a1a55b5a",
+    "data": [
+      {
+        "text": "Dejar de cotizar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fea1742a-09b0-4b71-8b0c-b0e549ffdbd3",
+    "data": [
+      {
+        "text": "No quiero continuar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1c936084-2f19-4407-ba6e-713122b97879",
+    "data": [
+      {
+        "text": "Cancelar proceso",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a2824228-4d04-48e2-9930-c954c7196007",
+    "data": [
+      {
+        "text": "Quiero cancelar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ba251038-c680-4ea5-b420-d1d2d2a26bda",
+    "data": [
+      {
+        "text": "Cancelar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]
