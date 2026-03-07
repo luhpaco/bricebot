@@ -181,7 +181,9 @@ Este endpoint recibe las peticiones de Dialogflow y procesa los intents.
 
 ## Intents Implementados
 
-### Iteración 1 - FAQ (8 intents) ✅
+### Iteración 1 - FAQ (8 intents) + Transversales (2) ✅
+
+**FAQ (8 intents en Dialogflow):**
 
 - `saludo` - Mensaje de bienvenida
 - `despedida` - Mensaje de despedida
@@ -190,7 +192,7 @@ Este endpoint recibe las peticiones de Dialogflow y procesa los intents.
 - `faq_ubicacion` - Ubicación del local
 - `faq_contacto` - Información de contacto
 - `faq_redes_sociales` - Redes sociales de la empresa
-- `Default Fallback Intent` - Cuando no se entiende el mensaje
+- `Default Fallback Intent` - Cuando no se entiende el mensaje (escalación progresiva en 3 niveles)
 
 ### Iteración 2 - Gestión de Citas (20 intents) ✅
 
@@ -236,11 +238,12 @@ Este endpoint recibe las peticiones de Dialogflow y procesa los intents.
 - `cotizar_confirmar_si` - Confirmar cotización
 - `cotizar_confirmar_no` - Modificar cotización
 
-### Intent de Escalamiento
+### Intents Transversales (manejados por faq.handler.js)
 
 - `derivar_agente_humano` - Derivar al usuario a un asesor humano (con registro en métricas)
+- `cancelar_proceso` - Cancelar flujo activo y volver al menú (activación dual: Dialogflow NLU + override del webhook)
 
-**Total: 44 intents**
+**Total: 45 intents con webhook + `Default Welcome Intent` (nativo) = 46 en Dialogflow**
 
 ## Configurar Intents en Dialogflow
 
@@ -248,10 +251,12 @@ Este endpoint recibe las peticiones de Dialogflow y procesa los intents.
 
 En Dialogflow Console > **Entities**:
 
-- `@tipo_equipo`: PC, laptop, impresora, cámara, monitor, otro
-- `@tipo_servicio`: mantenimiento, reparación, instalación, etc.
+- `@tipo_equipo`: PC, laptop, impresora, cámara, monitor, otro (Iteración 1)
+- `@tipo_servicio`: mantenimiento, cambio_teclado, cambio_pantalla, etc. (Iteración 1)
 - `@rango_horario`: mañana, tarde (Iteración 2)
 - `@uso_computadora`: ofimática, diseño, programación, gaming, estudio (Iteración 3)
+- `@categoria_producto`: computadora, repuesto_laptop, impresora, accesorio (Iteración 3)
+- `@tipo_cotizacion`: producto, servicio (Iteración 3)
 
 ### 2. Crear Intents
 

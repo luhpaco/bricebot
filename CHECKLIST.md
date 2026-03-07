@@ -116,6 +116,8 @@ COMPANY_INSTAGRAM=@cbricenho  ← ✅ OK
 - [x] `faq_ubicacion` con 10+ training phrases
 - [x] `faq_contacto` con 10+ training phrases
 - [x] `faq_redes_sociales` con 10+ training phrases
+- [x] `Default Fallback Intent` con webhook habilitado
+- [x] `derivar_agente_humano` con 15+ training phrases
 
 ### 3. Webhook Habilitado en Intents
 
@@ -129,6 +131,7 @@ Cada intent tiene **"Enable webhook call for this intent"** activado:
 - [x] `faq_contacto` ✅
 - [x] `faq_redes_sociales` ✅
 - [x] `Default Fallback Intent` ✅
+- [x] `derivar_agente_humano` ✅
 
 ### 4. Fulfillment Global
 
