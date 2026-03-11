@@ -10,7 +10,8 @@
       "Bash(claude mcp:*)",
       "mcp__engram__mem_stats",
       "mcp__engram__mem_context",
-      "mcp__engram__mem_save"
+      "mcp__engram__mem_save",
+      "mcp__engram__mem_search"
     ]
   }
 }
