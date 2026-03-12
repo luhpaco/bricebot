@@ -37,7 +37,7 @@ Lo esperamos con gusto. ¿Desea agendar una visita o tiene alguna otra consulta?
 	CONTACTO: `📞 ¡Por supuesto! Puede comunicarse con nosotros por cualquiera de estos medios:
 
 🔹 Teléfono: ${process.env.COMPANY_PHONE || 'Próximamente'}
-🔹 WhatsApp: ${process.env.COMPANY_WHATSAPP || 'Próximamente'}
+🔹 WhatsApp: https://wa.me/${(process.env.COMPANY_WHATSAPP || '').replace(/\+/g, '')}
 🔹 Correo: ${process.env.COMPANY_EMAIL || 'Próximamente'}
 
 Estaremos encantados de atenderle. ¿Hay algo más en lo que pueda ayudarle?`,
