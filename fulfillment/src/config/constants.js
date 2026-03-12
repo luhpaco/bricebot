@@ -29,7 +29,7 @@ Lo esperamos cuando guste. ¿Puedo ayudarle con algo más?`,
 ${process.env.COMPANY_ADDRESS || 'Consulte nuestra dirección en redes sociales'}
 Paita, Piura, Perú
 
-📌 Referencia: Frente al parque central del AA.HH. Marco Jara
+📌 Referencia: A la altura de la plataforma deportiva del barrio 'La Molina'
 🗺️ Google Maps: https://maps.app.goo.gl/CeruFJv9Pm2ihVNG8
 
 Lo esperamos con gusto. ¿Desea agendar una visita o tiene alguna otra consulta?`,
