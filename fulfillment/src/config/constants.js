@@ -102,7 +102,7 @@ Estaremos encantados de atenderle. ¿Hay algo más en lo que pueda ayudarle?`,
 
 Puede contactarnos directamente por:
 📞 Teléfono: ${process.env.COMPANY_PHONE || 'Próximamente'}
-💬 WhatsApp: ${process.env.COMPANY_WHATSAPP || 'Próximamente'}
+💬 WhatsApp: https://wa.me/${(process.env.COMPANY_WHATSAPP || '').replace(/\+/g, '')}
 
 🕐 Horario de atención:
 Lunes a Viernes: 9:00 AM - 6:00 PM
@@ -114,7 +114,7 @@ Lamentamos no haber podido resolver su consulta automáticamente. ¡Nuestro equi
 
 Puede contactarnos directamente por:
 📞 Teléfono: ${process.env.COMPANY_PHONE || 'Próximamente'}
-💬 WhatsApp: ${process.env.COMPANY_WHATSAPP || 'Próximamente'}
+💬 WhatsApp: https://wa.me/${(process.env.COMPANY_WHATSAPP || '').replace(/\+/g, '')}
 
 🕐 Horario de atención:
 Lunes a Viernes: 9:00 AM - 6:00 PM
