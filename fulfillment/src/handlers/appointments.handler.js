@@ -299,6 +299,10 @@ const handleLocalTimeSelection = async (agent) => {
 		return;
 	}
 
+	// Clear cita_local_en_curso so only cita_local_confirmar is active,
+	// preventing ambiguous intent matching during confirmation
+	agent.context.set({ name: 'cita_local_en_curso', lifespan: 0, parameters: {} });
+
 	agent.context.set({
 		name: 'cita_local_confirmar',
 		lifespan: 3,
@@ -687,6 +691,11 @@ const handleHomeTimeRange = async (agent) => {
 		agent.add(slotValidation.message + '\n\n¿Prefiere en la mañana (10:00) o en la tarde (15:00)?');
 		return;
 	}
+
+	// Clear cita_domicilio_en_curso so only cita_domicilio_confirmar is active,
+	// preventing ambiguous intent matching during confirmation
+	agent.context.set({ name: 'cita_domicilio_en_curso', lifespan: 0, parameters: {} });
+	clearHomePasoContexts(agent);
 
 	agent.context.set({
 		name: 'cita_domicilio_confirmar',
