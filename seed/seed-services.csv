@@ -19,7 +19,7 @@ SRV-MAN-006,Limpieza de Cabezal de Impresora,Limpieza profunda de cabezal de imp
 SRV-MAN-007,Mantenimiento de Red y Cableado,"Revisión de cableado de red, configuración de router, optimización de señal WiFi",mantenimiento,"[""PC"", ""laptop""]",100,2-4 horas,True
 SRV-INS-001,Instalación de Windows,Instalación limpia de Windows 10 u 11 con drivers y programas básicos,instalacion,"[""PC"", ""laptop""]",60,1-2 horas,True
 SRV-INS-002,Instalación de Linux,"Instalación de distribución Linux (Ubuntu, Fedora, etc.) con configuración básica",instalacion,"[""PC"", ""laptop""]",60,1-2 horas,True
-SRV-INS-003,Instalación de Cámaras de Vigilancia,Instalación y configuración de sistema de cámaras de seguridad con acceso remoto,instalacion,"[""cámara""]",200,4-8 horas,True
+SRV-INS-003,Instalación de Cámaras de Vigilancia,Instalación y configuración de sistema de cámaras de seguridad con acceso remoto,instalacion,"[""camara""]",200,4-8 horas,True
 SRV-INS-004,Instalación de Red Cableada,"Tendido de cable UTP, instalación de puntos de red y configuración de switch",instalacion,"[""PC""]",150,4-8 horas,True
 SRV-INS-005,Instalación y Configuración de Impresora,"Instalación de drivers, conexión WiFi/USB y configuración de impresora en red",instalacion,"[""impresora""]",40,30-60 minutos,True
 SRV-INS-006,Ensamblaje de Computadora,Armado completo de computadora de escritorio con componentes seleccionados y pruebas,instalacion,"[""PC""]",80,2-3 horas,True

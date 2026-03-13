@@ -180,9 +180,9 @@ class QuotesService {
 		const serviceMap = {
 			pantalla: 'SRV-REP-001',
 			teclado: 'SRV-REP-002',
-			disco: 'SRV-REP-003',
-			memoria: 'SRV-REP-003',
-			bateria: 'SRV-REP-003',
+			disco: 'SRV-REP-010',
+			memoria: 'SRV-REP-011',
+			bateria: 'SRV-REP-006',
 		};
 
 		const serviceCode = serviceMap[partType];
