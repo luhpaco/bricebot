@@ -43,8 +43,8 @@ tmp/
 temp/
 *.tmp
 
-# Raw company data (sensitive inventory info)
-seed-products.csv
+# Raw company data (sensitive inventory info, root level only)
+/seed-products.csv
 
 # Docs-tesis
 docs-tesis/
