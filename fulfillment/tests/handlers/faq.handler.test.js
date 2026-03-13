@@ -38,20 +38,22 @@ describe('faq.handler', () => {
 	});
 
 	describe('handleGoodbye', () => {
-		it('should respond with GOODBYE when no active flow', () => {
+		it('should respond with GOODBYE when no active flow', async () => {
 			const agent = createMockAgent();
-			faqHandler.handleGoodbye(agent);
+			await faqHandler.handleGoodbye(agent);
 			expect(agent.add).toHaveBeenCalledTimes(1);
 			const msg = agent.add.mock.calls[0][0];
 			expect(msg).toMatch(/gusto|excelente|día/i);
 		});
 
-		it('should warn about in-progress flow', () => {
+		it('should clear active flow contexts and respond with GOODBYE', async () => {
 			const agent = createMockAgent({
 				contexts: [{ name: 'cita_local_en_curso', lifespan: 5, parameters: {} }],
 			});
-			faqHandler.handleGoodbye(agent);
-			expect(agent.add.mock.calls[0][0]).toMatch(/proceso|momento/i);
+			await faqHandler.handleGoodbye(agent);
+			// Handler clears contexts silently and always responds with GOODBYE
+			expect(agent.add.mock.calls[0][0]).toMatch(/gusto|excelente|día/i);
+			expect(agent.context.set).toHaveBeenCalled();
 		});
 	});
 
@@ -147,20 +149,30 @@ describe('faq.handler', () => {
 
 	describe('handleDerivarAgente', () => {
 		it('should respond with DERIVAR_AGENTE when no active flow', async () => {
-			const mockConversation = { escalatedToHuman: false, save: jest.fn() };
+			const mockConversation = {
+				escalatedToHuman: false,
+				endedAt: null,
+				save: jest.fn(),
+				endConversation: jest.fn(),
+			};
 			Conversation.findOne.mockResolvedValue(mockConversation);
 
 			const agent = createMockAgent();
 			await faqHandler.handleDerivarAgente(agent);
 
 			expect(mockConversation.escalatedToHuman).toBe(true);
-			expect(mockConversation.save).toHaveBeenCalledTimes(1);
+			expect(mockConversation.save).toHaveBeenCalledTimes(2);
 			const msg = agent.add.mock.calls[0][0];
 			expect(msg).toMatch(/asesor|atenderle/i);
 		});
 
 		it('should respond with DERIVAR_AGENTE_CON_FLUJO and clear contexts when flow is active', async () => {
-			const mockConversation = { escalatedToHuman: false, save: jest.fn() };
+			const mockConversation = {
+				escalatedToHuman: false,
+				endedAt: null,
+				save: jest.fn(),
+				endConversation: jest.fn(),
+			};
 			Conversation.findOne.mockResolvedValue(mockConversation);
 
 			const agent = createMockAgent({

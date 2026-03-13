@@ -33,7 +33,7 @@ describe('MetricsService', () => {
 	});
 
 	describe('recordInteraction', () => {
-		it('should update totalDurationMs on existing conversation', async () => {
+		it('should set escalatedToHuman when interaction failed with error', async () => {
 			await MetricsService.recordMessage('session-003', 'user-003', 'user', 'Test', null, null);
 
 			const startTime = Date.now() - 200;
@@ -45,11 +45,12 @@ describe('MetricsService', () => {
 				intent: 'faq_horarios',
 				startTime,
 				endTime,
-				success: true,
+				success: false,
+				error: 'Intent handler failed',
 			});
 
 			const conversation = await Conversation.findOne({ sessionId: 'session-003' });
-			expect(conversation.totalDurationMs).toBeGreaterThan(0);
+			expect(conversation.escalatedToHuman).toBe(true);
 		});
 
 		it('should not throw when conversation does not exist', async () => {
