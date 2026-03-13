@@ -1,0 +1,32 @@
+code,name,description,category,equipmentTypes,basePrice,estimatedDuration,isActive
+SRV-REP-001,Reparación de Pantalla de Laptop,"Reemplazo de pantalla dañada o rota de laptop, incluye instalación",reparacion,"[""laptop""]",80,1-2 horas,True
+SRV-REP-002,Reparación de Teclado de Laptop,Reemplazo de teclado dañado o con teclas faltantes,reparacion,"[""laptop""]",60,1-2 horas,True
+SRV-REP-003,Reparación de Puerto de Carga Laptop,Diagnóstico y reparación del conector de carga de laptop,reparacion,"[""laptop""]",100,2-4 horas,True
+SRV-REP-004,Reparación de Bisagras de Laptop,Reemplazo o reparación de bisagras rotas o sueltas,reparacion,"[""laptop""]",80,1-3 horas,True
+SRV-REP-005,Reparación de Placa Madre,Diagnóstico y reparación de placa madre con soldadura de componentes,reparacion,"[""PC"", ""laptop""]",150,3-5 días,True
+SRV-REP-006,Cambio de Batería de Laptop,"Reemplazo de batería agotada o hinchada, incluye batería e instalación",reparacion,"[""laptop""]",50,30 minutos,True
+SRV-REP-007,Reparación de Impresora Epson,"Diagnóstico y reparación de impresoras Epson serie L: atascos, cabezal, alimentación",reparacion,"[""impresora""]",80,1-3 días,True
+SRV-REP-008,Reparación de Impresora Canon/HP,"Diagnóstico y reparación de impresoras Canon y HP: alimentación, limpieza, calibración",reparacion,"[""impresora""]",80,1-3 días,True
+SRV-REP-009,Reparación de Monitor,"Diagnóstico y reparación de monitor: sin imagen, líneas, parpadeo",reparacion,"[""monitor""]",100,2-5 días,True
+SRV-REP-010,Cambio de Disco Duro/SSD en Laptop,"Reemplazo de disco duro por SSD, incluye migración de datos",reparacion,"[""laptop""]",60,1-2 horas,True
+SRV-REP-011,Upgrade de RAM en Laptop o PC,Instalación de memoria RAM adicional o reemplazo,reparacion,"[""PC"", ""laptop""]",30,30 minutos,True
+SRV-MAN-001,Mantenimiento Preventivo PC,"Limpieza interna, aplicación de pasta térmica, actualización de drivers y optimización del sistema",mantenimiento,"[""PC""]",80,1-2 horas,True
+SRV-MAN-002,Mantenimiento Preventivo Laptop,"Limpieza interna de ventilador y disipador, cambio de pasta térmica, limpieza de teclado",mantenimiento,"[""laptop""]",100,2-3 horas,True
+SRV-MAN-003,Mantenimiento Correctivo PC,"Diagnóstico completo, limpieza profunda, reemplazo de pasta térmica y optimización de rendimiento",mantenimiento,"[""PC""]",120,2-3 horas,True
+SRV-MAN-004,Mantenimiento Correctivo Laptop,"Diagnóstico, desarme completo, limpieza profunda, cambio de pasta térmica y pruebas de rendimiento",mantenimiento,"[""laptop""]",150,3-4 horas,True
+SRV-MAN-005,Mantenimiento de Impresora,"Limpieza de cabezales, rodillos, calibración y prueba de impresión",mantenimiento,"[""impresora""]",60,1-2 horas,True
+SRV-MAN-006,Limpieza de Cabezal de Impresora,Limpieza profunda de cabezal de impresión con solución especial,mantenimiento,"[""impresora""]",40,1 hora,True
+SRV-MAN-007,Mantenimiento de Red y Cableado,"Revisión de cableado de red, configuración de router, optimización de señal WiFi",mantenimiento,"[""PC"", ""laptop""]",100,2-4 horas,True
+SRV-INS-001,Instalación de Windows,Instalación limpia de Windows 10 u 11 con drivers y programas básicos,instalacion,"[""PC"", ""laptop""]",60,1-2 horas,True
+SRV-INS-002,Instalación de Linux,"Instalación de distribución Linux (Ubuntu, Fedora, etc.) con configuración básica",instalacion,"[""PC"", ""laptop""]",60,1-2 horas,True
+SRV-INS-003,Instalación de Cámaras de Vigilancia,Instalación y configuración de sistema de cámaras de seguridad con acceso remoto,instalacion,"[""cámara""]",200,4-8 horas,True
+SRV-INS-004,Instalación de Red Cableada,"Tendido de cable UTP, instalación de puntos de red y configuración de switch",instalacion,"[""PC""]",150,4-8 horas,True
+SRV-INS-005,Instalación y Configuración de Impresora,"Instalación de drivers, conexión WiFi/USB y configuración de impresora en red",instalacion,"[""impresora""]",40,30-60 minutos,True
+SRV-INS-006,Ensamblaje de Computadora,Armado completo de computadora de escritorio con componentes seleccionados y pruebas,instalacion,"[""PC""]",80,2-3 horas,True
+SRV-SOF-001,Eliminación de Virus y Malware,"Escaneo completo, eliminación de amenazas y configuración de antivirus",software,"[""PC"", ""laptop""]",60,1-3 horas,True
+SRV-SOF-002,Recuperación de Datos,"Recuperación de archivos de discos dañados, formateados o inaccesibles",software,"[""PC"", ""laptop""]",150,1-5 días,True
+SRV-SOF-003,Optimización de Sistema Operativo,"Limpieza de archivos temporales, desfragmentación, desactivación de programas innecesarios",software,"[""PC"", ""laptop""]",40,1-2 horas,True
+SRV-SOF-004,Instalación de Suite Office,Instalación y activación de Microsoft Office o LibreOffice con configuración,software,"[""PC"", ""laptop""]",30,30 minutos,True
+SRV-SOF-005,Instalación de Software Especializado,"Instalación de programas como AutoCAD, Photoshop, Premiere, Visual Studio, etc.",software,"[""PC"", ""laptop""]",50,1-2 horas,True
+SRV-SOF-006,Backup y Migración de Datos,Respaldo completo de información y transferencia a nuevo equipo o disco,software,"[""PC"", ""laptop""]",80,2-4 horas,True
+SRV-SOF-007,Configuración de Correo y Nube,"Configuración de cuentas de correo empresarial, Google Drive, OneDrive",software,"[""PC"", ""laptop""]",30,30-60 minutos,True
