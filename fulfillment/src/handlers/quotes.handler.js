@@ -692,6 +692,8 @@ const handleQuoteAddMore = (agent) => {
 			lifespan: 8,
 			parameters: context.parameters,
 		});
+		// Clear Dialogflow-set affectedContext to prevent product intents from firing
+		agent.context.set({ name: 'cotizacion_producto', lifespan: 0, parameters: {} });
 		if (!context.parameters.clientName) {
 			agent.add('Para continuar necesito su nombre completo. ¿Me lo podría indicar?');
 		} else {
@@ -709,6 +711,8 @@ const handleQuoteAddMore = (agent) => {
 	agent.context.set({ name: 'cotizar_computadora_opciones', lifespan: 0, parameters: {} });
 	agent.context.set({ name: 'cotizar_repuesto_en_curso', lifespan: 0, parameters: {} });
 	agent.context.set({ name: 'cotizacion_servicio', lifespan: 0, parameters: {} });
+	// Clear Dialogflow-set affectedContext to prevent product intents competing with datos_cliente
+	agent.context.set({ name: 'cotizacion_producto', lifespan: 0, parameters: {} });
 
 	// Set cotizacion_tipo so the user can pick products or services
 	agent.context.set({
@@ -785,6 +789,11 @@ const handleQuoteClientData = async (agent) => {
 
 	const phone = normalizePhone(rawPhone);
 	const totals = quotesService.calculateTotals(items);
+
+	// Clear cotizacion_items so only cotizacion_confirmar is active,
+	// preventing Dialogflow from ambiguously matching cotizar_agregar_mas
+	// when the user says "Sí" to confirm
+	agent.context.set({ name: 'cotizacion_items', lifespan: 0, parameters: {} });
 
 	agent.context.set({
 		name: 'cotizacion_confirmar',
