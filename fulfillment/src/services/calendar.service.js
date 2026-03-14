@@ -20,10 +20,20 @@ class CalendarService {
 		if (this.initialized) return;
 
 		try {
-			const auth = new google.auth.GoogleAuth({
-				keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
-				scopes: ['https://www.googleapis.com/auth/calendar'],
-			});
+			let auth;
+
+			if (process.env.GOOGLE_CREDENTIALS_JSON) {
+				const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS_JSON);
+				auth = new google.auth.GoogleAuth({
+					credentials,
+					scopes: ['https://www.googleapis.com/auth/calendar'],
+				});
+			} else {
+				auth = new google.auth.GoogleAuth({
+					keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+					scopes: ['https://www.googleapis.com/auth/calendar'],
+				});
+			}
 
 			const authClient = await auth.getClient();
 			this.calendar = google.calendar({ version: 'v3', auth: authClient });
