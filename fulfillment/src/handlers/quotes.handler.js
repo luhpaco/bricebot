@@ -452,6 +452,11 @@ const handleQuoteGenericProduct = async (agent) => {
 
 	const products = await quotesService.getProductsByCategory(dbCategory);
 
+	// Clear cotizacion_producto so cotizar_repuesto_laptop (which shares this
+	// input context) cannot compete with cotizar_computadora_seleccionar on
+	// the next numeric selection turn.
+	agent.context.set({ name: 'cotizacion_producto', lifespan: 0, parameters: {} });
+
 	if (products.length === 0) {
 		agent.context.set({
 			name: 'cotizacion_producto',
