@@ -36,6 +36,51 @@ function detectOverrideIntent(query) {
 	return null;
 }
 
+/**
+ * Maps the expected category for each product-selection intent.
+ * Used by the category guard to detect and correct misroutes.
+ */
+const CATEGORY_INTENT_MAP = {
+	'cotizar_computadora': ['computadora'],
+	'cotizar_producto_generico': ['impresora', 'accesorio'],
+	'cotizar_repuesto_laptop': ['repuesto_laptop'],
+};
+
+/**
+ * Maps each detected category to its correct handler name (resolved at runtime).
+ */
+const CATEGORY_HANDLER_KEY = {
+	'computadora': 'cotizar_computadora',
+	'repuesto_laptop': 'cotizar_repuesto_laptop',
+	'impresora': 'cotizar_producto_generico',
+	'accesorio': 'cotizar_producto_generico',
+};
+
+/**
+ * Detects which product category the user meant from their raw query text.
+ * Returns the canonical category value or null if unrecognizable.
+ * @param {string} query - User's raw query text
+ * @returns {'computadora'|'repuesto_laptop'|'impresora'|'accesorio'|null}
+ */
+function detectProductCategory(query) {
+	const norm = query.trim().toLowerCase()
+		.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+	// Numbered menu options (from formatProductCategories)
+	if (/^1$|opcion\s*1|la primera/.test(norm)) return 'computadora';
+	if (/^2$|opcion\s*2|la segunda/.test(norm)) return 'repuesto_laptop';
+	if (/^3$|opcion\s*3|la tercera/.test(norm)) return 'impresora';
+	if (/^4$|opcion\s*4|la cuarta/.test(norm)) return 'accesorio';
+
+	// Text keywords (aligned with @categoria_producto entity synonyms)
+	if (/\b(computadora|pc|desktop|escritorio|compu)\b/.test(norm)) return 'computadora';
+	if (/\b(repuesto|pieza|parte.{0,3}laptop)\b/.test(norm)) return 'repuesto_laptop';
+	if (/\b(impresora|printer|multifuncional)\b/.test(norm)) return 'impresora';
+	if (/\b(accesorio|periferico|componente)\b/.test(norm)) return 'accesorio';
+
+	return null;
+}
+
 const app = express();
 const PORT = CONFIG.PORT;
 
@@ -171,6 +216,50 @@ app.post('/webhook', async (req, res) => {
 			} else if (intentOverride === 'derivar') {
 				console.log(`[Webhook] Override: ${intent} → derivar_agente_humano`);
 				intentMap.set(intent, faqHandler.handleDerivarAgente);
+			}
+		}
+
+		// Category guard: when cotizacion_producto is active, Dialogflow may misroute
+		// between the 3 competing category intents (cotizar_computadora, cotizar_producto_generico,
+		// cotizar_repuesto_laptop). Detect the actual category from the query and redirect.
+		if (agent.context.get('cotizacion_producto') && CATEGORY_INTENT_MAP[intent]) {
+			const detectedCategory = detectProductCategory(queryText);
+			if (detectedCategory) {
+				const expectedCategories = CATEGORY_INTENT_MAP[intent];
+				if (!expectedCategories.includes(detectedCategory)) {
+					const correctIntentKey = CATEGORY_HANDLER_KEY[detectedCategory];
+					const correctHandler = intentMap.get(correctIntentKey);
+					if (correctHandler) {
+						console.log(`[Webhook] Category guard: ${intent} → ${correctIntentKey} (detected: ${detectedCategory})`);
+						intentMap.set(intent, correctHandler);
+					}
+				}
+			}
+		}
+
+		// Fallback rescue: when Default Fallback fires during an active selection
+		// flow and the user typed a numeric input, redirect to the selection handler.
+		// This compensates for Dialogflow not having training phrases for all numbers.
+		if (intent === 'Default Fallback Intent') {
+			const isNumericSelection = /^\d{1,2}$/.test(queryText.trim()) ||
+				/opci[oó]n\s*\d/i.test(queryText) ||
+				/^(la\s+)?(primera|segunda|tercera|cuarta|quinta|sexta|s[eé]ptima|octava)/i.test(queryText);
+
+			if (isNumericSelection) {
+				const compOpts = agent.context.get('cotizar_computadora_opciones');
+				const repOpts = agent.context.get('cotizar_repuesto_en_curso');
+				const svcOpts = agent.context.get('cotizacion_servicio');
+
+				if (compOpts?.parameters?.computerOptions?.length > 0) {
+					console.log('[Webhook] Fallback rescue: → cotizar_computadora_seleccionar');
+					intentMap.set('Default Fallback Intent', quotesHandler.handleQuoteComputerSelect);
+				} else if (repOpts?.parameters?.partOptions?.length > 0) {
+					console.log('[Webhook] Fallback rescue: → cotizar_repuesto_seleccionar');
+					intentMap.set('Default Fallback Intent', quotesHandler.handleQuotePartSelect);
+				} else if (svcOpts?.parameters?.serviceOptions?.length > 0) {
+					console.log('[Webhook] Fallback rescue: → cotizar_servicio_seleccionar');
+					intentMap.set('Default Fallback Intent', quotesHandler.handleQuoteServiceEquipment);
+				}
 			}
 		}
 
