@@ -299,6 +299,10 @@ const handleLocalTimeSelection = async (agent) => {
 		return;
 	}
 
+	// Save parameters before clearing, because agent.context.set() mutates
+	// the object returned by agent.context.get() (same reference).
+	const savedParams = { ...context.parameters };
+
 	// Clear cita_local_en_curso so only cita_local_confirmar is active,
 	// preventing ambiguous intent matching during confirmation
 	agent.context.set({ name: 'cita_local_en_curso', lifespan: 0, parameters: {} });
@@ -307,16 +311,16 @@ const handleLocalTimeSelection = async (agent) => {
 		name: 'cita_local_confirmar',
 		lifespan: 3,
 		parameters: {
-			...context.parameters,
+			...savedParams,
 			scheduledTime: time,
 		},
 	});
 
 	const appointmentData = {
-		clientName: context.parameters.clientName,
-		phone: context.parameters.phone,
-		equipmentType: context.parameters.equipmentType,
-		problemDescription: context.parameters.problemDescription,
+		clientName: savedParams.clientName,
+		phone: savedParams.phone,
+		equipmentType: savedParams.equipmentType,
+		problemDescription: savedParams.problemDescription,
 		scheduledDate: date,
 		scheduledTime: time,
 		appointmentType: 'local',
@@ -400,6 +404,9 @@ const handleLocalConfirmNo = (agent) => {
 		return;
 	}
 
+	// Save parameters before clearing (context.set mutates the get() reference)
+	const savedParams = { ...context.parameters };
+
 	// C5: Delete stale contexts
 	agent.context.delete('cita_seleccion_tipo');
 	agent.context.set({ name: 'cita_local_confirmar', lifespan: 0, parameters: {} });
@@ -407,7 +414,7 @@ const handleLocalConfirmNo = (agent) => {
 	agent.context.set({
 		name: 'cita_local_en_curso',
 		lifespan: 10,
-		parameters: context.parameters,
+		parameters: savedParams,
 	});
 
 	agent.add(
@@ -692,6 +699,9 @@ const handleHomeTimeRange = async (agent) => {
 		return;
 	}
 
+	// Save parameters before clearing (context.set mutates the get() reference)
+	const savedParams = { ...context.parameters };
+
 	// Clear cita_domicilio_en_curso so only cita_domicilio_confirmar is active,
 	// preventing ambiguous intent matching during confirmation
 	agent.context.set({ name: 'cita_domicilio_en_curso', lifespan: 0, parameters: {} });
@@ -701,22 +711,22 @@ const handleHomeTimeRange = async (agent) => {
 		name: 'cita_domicilio_confirmar',
 		lifespan: 3,
 		parameters: {
-			...context.parameters,
+			...savedParams,
 			scheduledTime,
 			timeRange: timeRange,
 		},
 	});
 
 	const appointmentData = {
-		clientName: context.parameters.clientName,
-		phone: context.parameters.phone,
-		equipmentType: context.parameters.equipmentType,
-		problemDescription: context.parameters.problemDescription,
+		clientName: savedParams.clientName,
+		phone: savedParams.phone,
+		equipmentType: savedParams.equipmentType,
+		problemDescription: savedParams.problemDescription,
 		scheduledDate: date,
 		scheduledTime,
 		appointmentType: 'domicilio',
-		address: context.parameters.address,
-		addressReference: context.parameters.addressReference,
+		address: savedParams.address,
+		addressReference: savedParams.addressReference,
 	};
 
 	const summary = formatAppointmentSummary(appointmentData);
@@ -800,6 +810,9 @@ const handleHomeConfirmNo = (agent) => {
 		return;
 	}
 
+	// Save parameters before clearing (context.set mutates the get() reference)
+	const savedParams = { ...context.parameters };
+
 	// C5 + A4: Delete selection and all step contexts before re-entering the flow
 	agent.context.delete('cita_seleccion_tipo');
 	agent.context.set({ name: 'cita_domicilio_confirmar', lifespan: 0, parameters: {} });
@@ -808,7 +821,7 @@ const handleHomeConfirmNo = (agent) => {
 	agent.context.set({
 		name: 'cita_domicilio_en_curso',
 		lifespan: 12,
-		parameters: context.parameters,
+		parameters: savedParams,
 	});
 
 	agent.add(
