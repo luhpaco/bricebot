@@ -194,7 +194,7 @@ function formatPartOptions(parts, installationPrice) {
 		return line;
 	});
 
-	return `Encontré estas opciones:\n\n${options.join('\n\n')}\n\n¿Cuál le interesa?`;
+	return `Encontré estas opciones:\n\n${options.join('\n\n')}\n\n¿Cuál le interesa? Indique el número de la opción.`;
 }
 
 /**
@@ -211,7 +211,7 @@ function formatServiceOptions(services) {
 		return `${index + 1}️⃣ *${service.name}*\n   ${service.description}\n   💰 Desde S/ ${service.basePrice.toFixed(2)}\n   ⏱️ Duración estimada: ${service.estimatedDuration}`;
 	});
 
-	return `Estos son los servicios que ofrecemos:\n\n${options.join('\n\n')}\n\n¿Cuál le interesa?`;
+	return `Estos son los servicios que ofrecemos:\n\n${options.join('\n\n')}\n\n¿Cuál le interesa? Indique el número de la opción.`;
 }
 
 /**
@@ -222,9 +222,10 @@ function formatServiceOptions(services) {
 function formatQuoteSummary(quoteData) {
 	const { clientName, phone, items, subtotal, igv, totalAmount } = quoteData;
 
-	const itemLines = items.map((item) => {
+	const itemLines = items.map((item, index) => {
 		const lineTotal = item.unitPrice * item.quantity;
-		return `│ ${item.name}${item.quantity > 1 ? ` x${item.quantity}` : ''}\n│ S/ ${lineTotal.toFixed(2)}`;
+		const qty = item.quantity > 1 ? ` x${item.quantity}` : '';
+		return `  ${index + 1}. ${item.name}${qty}\n      S/ ${lineTotal.toFixed(2)}`;
 	});
 
 	return `Aquí tiene el resumen de su cotización: 📋
@@ -232,13 +233,13 @@ function formatQuoteSummary(quoteData) {
 👤 Cliente: ${clientName}
 📞 Teléfono: ${phone}
 
-┌──────────────────────────────────┐
-${itemLines.join('\n├──────────────────────────────────┤\n')}
-├──────────────────────────────────┤
-│ Subtotal:        S/ ${subtotal.toFixed(2)}
-│ IGV (18%):       S/ ${igv.toFixed(2)}
-│ *TOTAL:          S/ ${totalAmount.toFixed(2)}*
-└──────────────────────────────────┘
+🛒 *Detalle:*
+${itemLines.join('\n')}
+
+💰 Subtotal: S/ ${subtotal.toFixed(2)}
+💰 IGV (18%): S/ ${igv.toFixed(2)}
+✅ *TOTAL: S/ ${totalAmount.toFixed(2)}*
+
 📅 Validez: 7 días
 
 ¿Confirma la cotización? Responda *Sí* para generar o *No* si desea hacer cambios.`;
@@ -266,7 +267,7 @@ Le enviaremos los detalles completos por este medio.
  * @returns {string} Category options
  */
 function formatProductCategories() {
-	return `¿Qué tipo de producto le interesa?
+	return `¿Qué tipo de producto le interesa? Indique el número de la opción:
 
 1️⃣ Computadora de escritorio
 2️⃣ Repuestos de laptop
@@ -279,7 +280,7 @@ function formatProductCategories() {
  * @returns {string} Use case options
  */
 function formatComputerUseCases() {
-	return `¡Excelente elección! 🖥️ ¿Para qué uso principal será la computadora?
+	return `¡Excelente elección! 🖥️ ¿Para qué uso principal será la computadora? Indique el número:
 
 1️⃣ Ofimática (oficina, documentos, navegación)
 2️⃣ Diseño gráfico (Photoshop, Illustrator, edición)
@@ -310,7 +311,7 @@ Escriba el nombre del repuesto que necesita.`;
  * @returns {string} Quote type options
  */
 function formatQuoteTypes() {
-	return `Con gusto le ayudo con una cotización. 💰\n\n¿Qué desea cotizar?\n\n1️⃣ Productos (computadoras, repuestos, impresoras, etc.)\n2️⃣ Servicios (mantenimiento, reparaciones, instalaciones)`;
+	return `Con gusto le ayudo con una cotización. 💰\n\n¿Qué desea cotizar? Indique el número de la opción:\n\n1️⃣ Productos (computadoras, repuestos, impresoras, etc.)\n2️⃣ Servicios (mantenimiento, reparaciones, instalaciones)`;
 }
 
 module.exports = {
