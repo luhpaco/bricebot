@@ -110,10 +110,13 @@ function parseDialogflowTime(timeString) {
 
 	try {
 		if (timeString.includes('T')) {
-			const date = new Date(timeString);
-			const hours = String(date.getHours()).padStart(2, '0');
-			const minutes = String(date.getMinutes()).padStart(2, '0');
-			return `${hours}:${minutes}`;
+			// Extract hours:minutes directly from the ISO string to avoid
+			// server-timezone issues (getHours() returns local time, not the
+			// timezone encoded in the string).
+			const timeMatch = timeString.match(/T(\d{2}):(\d{2})/);
+			if (timeMatch) {
+				return `${timeMatch[1]}:${timeMatch[2]}`;
+			}
 		}
 
 		if (timeString.match(/^\d{1,2}:\d{2}/)) {
