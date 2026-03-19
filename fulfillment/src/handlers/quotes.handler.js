@@ -15,7 +15,7 @@ const {
 	formatPartTypes,
 	formatQuoteTypes,
 } = require('../utils/formatters');
-const { MESSAGES, CONTEXT_NAMES } = require('../config/constants');
+const { MESSAGES, CONTEXT_NAMES, CONFIG } = require('../config/constants');
 
 const ALL_QUOTE_CONTEXT_NAMES = CONTEXT_NAMES.QUOTE;
 const ALL_APPOINTMENT_CONTEXT_NAMES = CONTEXT_NAMES.APPOINTMENT;
@@ -109,7 +109,8 @@ const handleQuoteServiceType = async (agent) => {
 
 	// Equipment type was provided in the same message — show services directly
 	const normalizedType = quotesService.normalizeEquipmentType(equipmentType);
-	const services = await quotesService.getServices(normalizedType);
+	const allServices = await quotesService.getServices(normalizedType);
+	const displayServices = allServices.slice(0, CONFIG.MAX_DISPLAY_OPTIONS);
 
 	agent.context.set({
 		name: 'cotizacion_servicio',
@@ -119,7 +120,7 @@ const handleQuoteServiceType = async (agent) => {
 			quoteType: items.length > 0 ? 'mixto' : 'servicio',
 			equipmentType: normalizedType,
 			items,
-			serviceOptions: services.map((s) => ({
+			serviceOptions: displayServices.map((s) => ({
 				id: s._id.toString(),
 				name: s.name,
 				price: s.basePrice,
@@ -127,7 +128,7 @@ const handleQuoteServiceType = async (agent) => {
 		},
 	});
 
-	agent.add(formatServiceOptions(services));
+	agent.add(formatServiceOptions(displayServices, allServices.length));
 };
 
 /**
@@ -154,9 +155,9 @@ const handleQuoteServiceEquipment = async (agent) => {
 	const rawType = agent.parameters['tipo_equipo'] || agent.query;
 	const normalizedType = quotesService.normalizeEquipmentType(rawType);
 
-	const services = await quotesService.getServices(normalizedType);
+	const allServices = await quotesService.getServices(normalizedType);
 
-	if (services.length === 0) {
+	if (allServices.length === 0) {
 		agent.context.set({
 			name: 'cotizacion_servicio',
 			lifespan: 8,
@@ -166,6 +167,8 @@ const handleQuoteServiceEquipment = async (agent) => {
 		return;
 	}
 
+	const displayServices = allServices.slice(0, CONFIG.MAX_DISPLAY_OPTIONS);
+
 	agent.context.set({
 		name: 'cotizacion_servicio',
 		lifespan: 8,
@@ -174,7 +177,7 @@ const handleQuoteServiceEquipment = async (agent) => {
 			quoteType: 'servicio',
 			equipmentType: normalizedType,
 			items,
-			serviceOptions: services.map((s) => ({
+			serviceOptions: displayServices.map((s) => ({
 				id: s._id.toString(),
 				name: s.name,
 				price: s.basePrice,
@@ -182,7 +185,7 @@ const handleQuoteServiceEquipment = async (agent) => {
 		},
 	});
 
-	agent.add(formatServiceOptions(services));
+	agent.add(formatServiceOptions(displayServices, allServices.length));
 };
 
 /**
@@ -317,9 +320,9 @@ const handleQuoteComputerUse = async (agent) => {
 		return;
 	}
 
-	const computers = await quotesService.getComputersByUse(useCase);
+	const allComputers = await quotesService.getComputersByUse(useCase);
 
-	if (computers.length === 0) {
+	if (allComputers.length === 0) {
 		agent.context.set({
 			name: 'cotizar_computadora_en_curso',
 			lifespan: 8,
@@ -329,6 +332,8 @@ const handleQuoteComputerUse = async (agent) => {
 		return;
 	}
 
+	const displayComputers = allComputers.slice(0, CONFIG.MAX_DISPLAY_OPTIONS);
+
 	agent.context.set({
 		name: 'cotizar_computadora_opciones',
 		lifespan: 5,
@@ -337,7 +342,7 @@ const handleQuoteComputerUse = async (agent) => {
 			quoteType: 'producto',
 			items,
 			useCase,
-			computerOptions: computers.map((c) => ({
+			computerOptions: displayComputers.map((c) => ({
 				id: c._id.toString(),
 				name: c.name,
 				price: c.price,
@@ -346,7 +351,7 @@ const handleQuoteComputerUse = async (agent) => {
 		},
 	});
 
-	agent.add(formatProductOptions(computers));
+	agent.add(formatProductOptions(displayComputers, allComputers.length));
 };
 
 /**
@@ -450,14 +455,14 @@ const handleQuoteGenericProduct = async (agent) => {
 		return;
 	}
 
-	const products = await quotesService.getProductsByCategory(dbCategory);
+	const allProducts = await quotesService.getProductsByCategory(dbCategory);
 
 	// Clear cotizacion_producto so cotizar_repuesto_laptop (which shares this
 	// input context) cannot compete with cotizar_computadora_seleccionar on
 	// the next numeric selection turn.
 	agent.context.set({ name: 'cotizacion_producto', lifespan: 0, parameters: {} });
 
-	if (products.length === 0) {
+	if (allProducts.length === 0) {
 		agent.context.set({
 			name: 'cotizacion_producto',
 			lifespan: 8,
@@ -471,6 +476,8 @@ const handleQuoteGenericProduct = async (agent) => {
 		return;
 	}
 
+	const displayProducts = allProducts.slice(0, CONFIG.MAX_DISPLAY_OPTIONS);
+
 	// Reuse cotizar_computadora_opciones for the selection step
 	agent.context.set({
 		name: 'cotizar_computadora_opciones',
@@ -479,7 +486,7 @@ const handleQuoteGenericProduct = async (agent) => {
 			startTime,
 			quoteType: 'producto',
 			items,
-			computerOptions: products.map((p) => ({
+			computerOptions: displayProducts.map((p) => ({
 				id: p._id.toString(),
 				name: p.name,
 				price: p.price,
@@ -488,7 +495,7 @@ const handleQuoteGenericProduct = async (agent) => {
 		},
 	});
 
-	agent.add(formatProductOptions(products));
+	agent.add(formatProductOptions(displayProducts, allProducts.length));
 };
 
 /**
@@ -568,10 +575,10 @@ const handleQuoteLaptopPart = async (agent) => {
 		return;
 	}
 
-	const parts = await quotesService.getLaptopParts(storedModel, partType);
+	const allParts = await quotesService.getLaptopParts(storedModel, partType);
 	const installationPrice = await quotesService.getInstallationPrice(partType);
 
-	if (parts.length === 0) {
+	if (allParts.length === 0) {
 		agent.context.set({
 			name: 'cotizar_repuesto_en_curso',
 			lifespan: 8,
@@ -580,6 +587,8 @@ const handleQuoteLaptopPart = async (agent) => {
 		agent.add(MESSAGES.QUOTE_NO_PARTS);
 		return;
 	}
+
+	const displayParts = allParts.slice(0, CONFIG.MAX_DISPLAY_OPTIONS);
 
 	agent.context.set({
 		name: 'cotizar_repuesto_en_curso',
@@ -591,7 +600,7 @@ const handleQuoteLaptopPart = async (agent) => {
 			laptopModel: storedModel,
 			partType,
 			installationPrice,
-			partOptions: parts.map((p) => ({
+			partOptions: displayParts.map((p) => ({
 				id: p._id.toString(),
 				name: p.name,
 				price: p.price,
@@ -599,7 +608,7 @@ const handleQuoteLaptopPart = async (agent) => {
 		},
 	});
 
-	agent.add(formatPartOptions(parts, installationPrice));
+	agent.add(formatPartOptions(displayParts, installationPrice, allParts.length));
 };
 
 /**
