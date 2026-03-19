@@ -151,24 +151,30 @@ function formatTimeRanges() {
  * @param {Array} products - Array of product documents
  * @returns {string} Formatted product options
  */
-function formatProductOptions(products) {
+function formatProductOptions(products, totalCount) {
 	if (!products || products.length === 0) {
 		return 'Lamentablemente no tenemos productos disponibles en esa categoría por el momento. ¿Le gustaría ver otra opción?';
 	}
 
 	const options = products.map((product, index) => {
 		const specs = product.specifications || {};
-		let specLine = '';
+		const specParts = [];
 
-		if (specs.processor) specLine += specs.processor;
-		if (specs.ram) specLine += ` | ${specs.ram}`;
-		if (specs.storage) specLine += ` | ${specs.storage}`;
-		if (specs.gpu) specLine += ` | ${specs.gpu}`;
+		if (specs.processor) specParts.push(specs.processor);
+		if (specs.ram) specParts.push(specs.ram);
+		if (specs.storage) specParts.push(specs.storage);
+		if (specs.gpu) specParts.push(specs.gpu);
 
-		return `${index + 1}️⃣ *${product.name}*\n   ${specLine}\n   💰 S/ ${product.price.toFixed(2)}`;
+		const specLine = specParts.length > 0 ? `\n   ${specParts.join(' | ')}` : '';
+		return `${index + 1}. *${product.name}*${specLine}\n   💰 S/ ${product.price.toFixed(2)}`;
 	});
 
-	return `Estas son las opciones que tenemos disponibles:\n\n${options.join('\n\n')}\n\n¿Cuál le interesa? Puede indicarme el número.`;
+	let footer = '\n\n¿Cuál le interesa? Indique el número de la opción.';
+	if (totalCount && totalCount > products.length) {
+		footer = `\n\nMostrando ${products.length} de ${totalCount} productos disponibles.` + footer;
+	}
+
+	return `Estas son las opciones que tenemos disponibles:\n\n${options.join('\n')}\n${footer}`;
 }
 
 /**
@@ -177,24 +183,29 @@ function formatProductOptions(products) {
  * @param {number} installationPrice - Installation service price
  * @returns {string} Formatted part options
  */
-function formatPartOptions(parts, installationPrice) {
+function formatPartOptions(parts, installationPrice, totalCount) {
 	if (!parts || parts.length === 0) {
 		return 'No encontramos repuestos compatibles en nuestro inventario. ¿Desea que generemos un requerimiento para buscarlo? También puede agendar una cita y lo revisamos en persona.';
 	}
 
 	const options = parts.map((part, index) => {
-		let line = `${index + 1}️⃣ *${part.name}*\n   ${part.description}`;
-		line += `\n   💰 Repuesto: S/ ${part.price.toFixed(2)}`;
+		let line = `${index + 1}. *${part.name}*`;
+		line += `\n   💰 S/ ${part.price.toFixed(2)}`;
 
 		if (installationPrice > 0) {
 			const totalWithInstall = part.price + installationPrice;
-			line += `\n   🔧 Con instalación: S/ ${totalWithInstall.toFixed(2)}`;
+			line += ` | 🔧 Con instalación: S/ ${totalWithInstall.toFixed(2)}`;
 		}
 
 		return line;
 	});
 
-	return `Encontré estas opciones:\n\n${options.join('\n\n')}\n\n¿Cuál le interesa? Indique el número de la opción.`;
+	let footer = '\n\n¿Cuál le interesa? Indique el número de la opción.';
+	if (totalCount && totalCount > parts.length) {
+		footer = `\n\nMostrando ${parts.length} de ${totalCount} repuestos disponibles.` + footer;
+	}
+
+	return `Encontré estas opciones:\n\n${options.join('\n')}\n${footer}`;
 }
 
 /**
@@ -202,16 +213,21 @@ function formatPartOptions(parts, installationPrice) {
  * @param {Array} services - Array of service documents
  * @returns {string} Formatted service options
  */
-function formatServiceOptions(services) {
+function formatServiceOptions(services, totalCount) {
 	if (!services || services.length === 0) {
 		return 'No encontramos servicios disponibles para ese tipo de equipo. ¿Le gustaría consultar por otro equipo?';
 	}
 
 	const options = services.map((service, index) => {
-		return `${index + 1}️⃣ *${service.name}*\n   ${service.description}\n   💰 Desde S/ ${service.basePrice.toFixed(2)}\n   ⏱️ Duración estimada: ${service.estimatedDuration}`;
+		return `${index + 1}. *${service.name}*\n   💰 S/ ${service.basePrice.toFixed(2)} | ⏱️ ${service.estimatedDuration}`;
 	});
 
-	return `Estos son los servicios que ofrecemos:\n\n${options.join('\n\n')}\n\n¿Cuál le interesa? Indique el número de la opción.`;
+	let footer = '\n\n¿Cuál le interesa? Indique el número de la opción.';
+	if (totalCount && totalCount > services.length) {
+		footer = `\n\nMostrando ${services.length} de ${totalCount} servicios disponibles.` + footer;
+	}
+
+	return `Estos son los servicios que ofrecemos:\n\n${options.join('\n')}\n${footer}`;
 }
 
 /**
