@@ -1,0 +1,223 @@
+[
+  {
+    "id": "a1b2c3d4-1111-4aaa-bbbb-111111111111",
+    "data": [
+      {
+        "text": "ver más",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-2222-4aaa-bbbb-222222222222",
+    "data": [
+      {
+        "text": "más opciones",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-3333-4aaa-bbbb-333333333333",
+    "data": [
+      {
+        "text": "mostrar más",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-4444-4aaa-bbbb-444444444444",
+    "data": [
+      {
+        "text": "siguientes",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-5555-4aaa-bbbb-555555555555",
+    "data": [
+      {
+        "text": "más productos",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-6666-4aaa-bbbb-666666666666",
+    "data": [
+      {
+        "text": "más servicios",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-7777-4aaa-bbbb-777777777777",
+    "data": [
+      {
+        "text": "ver otros",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-8888-4aaa-bbbb-888888888888",
+    "data": [
+      {
+        "text": "otras opciones",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-9999-4aaa-bbbb-999999999999",
+    "data": [
+      {
+        "text": "quiero ver más",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-aaaa-4aaa-bbbb-aaaaaaaaaaaa",
+    "data": [
+      {
+        "text": "hay más?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-bbbb-4aaa-bbbb-bbbbbbbbbbbb",
+    "data": [
+      {
+        "text": "siguiente página",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-cccc-4aaa-bbbb-cccccccccccc",
+    "data": [
+      {
+        "text": "muéstrame más",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-dddd-4aaa-bbbb-dddddddddddd",
+    "data": [
+      {
+        "text": "ver más opciones",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-eeee-4aaa-bbbb-eeeeeeeeeeee",
+    "data": [
+      {
+        "text": "mostrar más productos",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1b2c3d4-ffff-4aaa-bbbb-ffffffffffff",
+    "data": [
+      {
+        "text": "quiero ver las demás opciones",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b1b2c3d4-1111-4aaa-bbbb-111111111111",
+    "data": [
+      {
+        "text": "ver siguiente",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b1b2c3d4-2222-4aaa-bbbb-222222222222",
+    "data": [
+      {
+        "text": "muéstrame más productos",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]
