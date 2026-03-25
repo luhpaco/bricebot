@@ -120,6 +120,8 @@ const handleQuoteServiceType = async (agent) => {
 			quoteType: items.length > 0 ? 'mixto' : 'servicio',
 			equipmentType: normalizedType,
 			items,
+			currentOffset: 0,
+			totalCount: allServices.length,
 			serviceOptions: displayServices.map((s) => ({
 				id: s._id.toString(),
 				name: s.name,
@@ -177,6 +179,8 @@ const handleQuoteServiceEquipment = async (agent) => {
 			quoteType: 'servicio',
 			equipmentType: normalizedType,
 			items,
+			currentOffset: 0,
+			totalCount: allServices.length,
 			serviceOptions: displayServices.map((s) => ({
 				id: s._id.toString(),
 				name: s.name,
@@ -342,6 +346,9 @@ const handleQuoteComputerUse = async (agent) => {
 			quoteType: 'producto',
 			items,
 			useCase,
+			searchType: 'computer',
+			currentOffset: 0,
+			totalCount: allComputers.length,
 			computerOptions: displayComputers.map((c) => ({
 				id: c._id.toString(),
 				name: c.name,
@@ -486,6 +493,10 @@ const handleQuoteGenericProduct = async (agent) => {
 			startTime,
 			quoteType: 'producto',
 			items,
+			searchType: 'generic',
+			dbCategory,
+			currentOffset: 0,
+			totalCount: allProducts.length,
 			computerOptions: displayProducts.map((p) => ({
 				id: p._id.toString(),
 				name: p.name,
@@ -600,6 +611,8 @@ const handleQuoteLaptopPart = async (agent) => {
 			laptopModel: storedModel,
 			partType,
 			installationPrice,
+			currentOffset: 0,
+			totalCount: allParts.length,
 			partOptions: displayParts.map((p) => ({
 				id: p._id.toString(),
 				name: p.name,
@@ -882,6 +895,133 @@ const handleQuoteConfirmNo = (agent) => {
 	agent.add('Sin problema. ¿Qué le gustaría hacer?\n\n1️⃣ Agregar más productos o servicios\n2️⃣ Empezar una cotización nueva desde cero');
 };
 
+/**
+ * Handles "ver más" pagination — loads next page of products/services
+ * @param {Object} agent - Dialogflow WebhookClient agent
+ */
+const handleQuoteShowMore = async (agent) => {
+	const compContext = agent.context.get('cotizar_computadora_opciones');
+	const repContext = agent.context.get('cotizar_repuesto_en_curso');
+	const svcContext = agent.context.get('cotizacion_servicio');
+
+	// Determine which selection flow is active
+	if (compContext?.parameters?.computerOptions?.length > 0) {
+		const params = compContext.parameters;
+		const newOffset = (params.currentOffset || 0) + CONFIG.MAX_DISPLAY_OPTIONS;
+
+		if (newOffset >= (params.totalCount || 0)) {
+			agent.context.set({
+				name: 'cotizar_computadora_opciones',
+				lifespan: 5,
+				parameters: params,
+			});
+			agent.add(`Ya se mostraron todas las opciones disponibles (${params.totalCount}). Indique el número de la opción que le interesa.`);
+			return;
+		}
+
+		let allItems;
+		if (params.searchType === 'generic') {
+			allItems = await quotesService.getProductsByCategory(params.dbCategory);
+		} else {
+			allItems = await quotesService.getComputersByUse(params.useCase);
+		}
+
+		const displayItems = allItems.slice(newOffset, newOffset + CONFIG.MAX_DISPLAY_OPTIONS);
+
+		agent.context.set({
+			name: 'cotizar_computadora_opciones',
+			lifespan: 5,
+			parameters: {
+				...params,
+				currentOffset: newOffset,
+				computerOptions: displayItems.map((p) => ({
+					id: p._id.toString(),
+					name: p.name,
+					price: p.price,
+					specs: p.specifications,
+				})),
+			},
+		});
+
+		agent.add(formatProductOptions(displayItems, allItems.length, newOffset));
+		return;
+	}
+
+	if (repContext?.parameters?.partOptions?.length > 0) {
+		const params = repContext.parameters;
+		const newOffset = (params.currentOffset || 0) + CONFIG.MAX_DISPLAY_OPTIONS;
+
+		if (newOffset >= (params.totalCount || 0)) {
+			agent.context.set({
+				name: 'cotizar_repuesto_en_curso',
+				lifespan: 8,
+				parameters: params,
+			});
+			agent.add(`Ya se mostraron todos los repuestos disponibles (${params.totalCount}). Indique el número de la opción que le interesa.`);
+			return;
+		}
+
+		const allParts = await quotesService.getLaptopParts(params.laptopModel, params.partType);
+		const installationPrice = params.installationPrice || 0;
+		const displayParts = allParts.slice(newOffset, newOffset + CONFIG.MAX_DISPLAY_OPTIONS);
+
+		agent.context.set({
+			name: 'cotizar_repuesto_en_curso',
+			lifespan: 8,
+			parameters: {
+				...params,
+				currentOffset: newOffset,
+				partOptions: displayParts.map((p) => ({
+					id: p._id.toString(),
+					name: p.name,
+					price: p.price,
+				})),
+			},
+		});
+
+		agent.add(formatPartOptions(displayParts, installationPrice, allParts.length, newOffset));
+		return;
+	}
+
+	if (svcContext?.parameters?.serviceOptions?.length > 0) {
+		const params = svcContext.parameters;
+		const newOffset = (params.currentOffset || 0) + CONFIG.MAX_DISPLAY_OPTIONS;
+
+		if (newOffset >= (params.totalCount || 0)) {
+			agent.context.set({
+				name: 'cotizacion_servicio',
+				lifespan: 8,
+				parameters: params,
+			});
+			agent.add(`Ya se mostraron todos los servicios disponibles (${params.totalCount}). Indique el número de la opción que le interesa.`);
+			return;
+		}
+
+		const allServices = await quotesService.getServices(params.equipmentType);
+		const displayServices = allServices.slice(newOffset, newOffset + CONFIG.MAX_DISPLAY_OPTIONS);
+
+		agent.context.set({
+			name: 'cotizacion_servicio',
+			lifespan: 8,
+			parameters: {
+				...params,
+				currentOffset: newOffset,
+				serviceOptions: displayServices.map((s) => ({
+					id: s._id.toString(),
+					name: s.name,
+					price: s.basePrice,
+				})),
+			},
+		});
+
+		agent.add(formatServiceOptions(displayServices, allServices.length, newOffset));
+		return;
+	}
+
+	// No active selection flow
+	agent.add('No hay una lista de opciones activa en este momento. ¿En qué puedo ayudarle?\n\n📋 Información del negocio\n📅 Agendar una cita\n💰 Solicitar una cotización');
+};
+
 module.exports = {
 	handleQuoteInitiate,
 	handleQuoteProductCategory,
@@ -898,4 +1038,5 @@ module.exports = {
 	handleQuoteClientData,
 	handleQuoteConfirmYes,
 	handleQuoteConfirmNo,
+	handleQuoteShowMore,
 };

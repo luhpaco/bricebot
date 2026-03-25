@@ -201,6 +201,7 @@ app.post('/webhook', async (req, res) => {
 		intentMap.set('cotizar_datos_cliente', quotesHandler.handleQuoteClientData);
 		intentMap.set('cotizar_confirmar_si', quotesHandler.handleQuoteConfirmYes);
 		intentMap.set('cotizar_confirmar_no', quotesHandler.handleQuoteConfirmNo);
+		intentMap.set('cotizar_ver_mas', quotesHandler.handleQuoteShowMore);
 
 		// Apply override: replace the misrouted intent's handler with the correct one
 		const NON_OVERRIDABLE = ['saludo', 'despedida', 'ayuda', 'Default Fallback Intent',
@@ -241,15 +242,15 @@ app.post('/webhook', async (req, res) => {
 		// flow and the user typed a numeric input, redirect to the selection handler.
 		// This compensates for Dialogflow not having training phrases for all numbers.
 		if (intent === 'Default Fallback Intent') {
+			const compOpts = agent.context.get('cotizar_computadora_opciones');
+			const repOpts = agent.context.get('cotizar_repuesto_en_curso');
+			const svcOpts = agent.context.get('cotizacion_servicio');
+
 			const isNumericSelection = /^\d{1,2}$/.test(queryText.trim()) ||
 				/opci[oó]n\s*\d/i.test(queryText) ||
 				/^(la\s+)?(primera|segunda|tercera|cuarta|quinta|sexta|s[eé]ptima|octava)/i.test(queryText);
 
 			if (isNumericSelection) {
-				const compOpts = agent.context.get('cotizar_computadora_opciones');
-				const repOpts = agent.context.get('cotizar_repuesto_en_curso');
-				const svcOpts = agent.context.get('cotizacion_servicio');
-
 				if (compOpts?.parameters?.computerOptions?.length > 0) {
 					console.log('[Webhook] Fallback rescue: → cotizar_computadora_seleccionar');
 					intentMap.set('Default Fallback Intent', quotesHandler.handleQuoteComputerSelect);
@@ -259,6 +260,20 @@ app.post('/webhook', async (req, res) => {
 				} else if (svcOpts?.parameters?.serviceOptions?.length > 0) {
 					console.log('[Webhook] Fallback rescue: → cotizar_servicio_seleccionar');
 					intentMap.set('Default Fallback Intent', quotesHandler.handleQuoteServiceEquipment);
+				}
+			}
+
+			// "Show more" rescue: redirect to pagination handler when user asks
+			// for more options during an active selection flow
+			const isShowMore = /ver\s*m[aá]s|m[aá]s\s*(opciones|productos|servicios)|siguientes?|mu[eé]strame\s*m[aá]s|otras?\s*opciones?|hay\s*m[aá]s/i.test(queryText);
+			if (isShowMore) {
+				const hasActiveOptions =
+					compOpts?.parameters?.computerOptions?.length > 0 ||
+					repOpts?.parameters?.partOptions?.length > 0 ||
+					svcOpts?.parameters?.serviceOptions?.length > 0;
+				if (hasActiveOptions) {
+					console.log('[Webhook] Fallback rescue: → cotizar_ver_mas');
+					intentMap.set('Default Fallback Intent', quotesHandler.handleQuoteShowMore);
 				}
 			}
 		}

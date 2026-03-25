@@ -149,9 +149,11 @@ function formatTimeRanges() {
 /**
  * Formats product options for display
  * @param {Array} products - Array of product documents
+ * @param {number} totalCount - Total number of products available
+ * @param {number} [offset=0] - Current pagination offset
  * @returns {string} Formatted product options
  */
-function formatProductOptions(products, totalCount) {
+function formatProductOptions(products, totalCount, offset = 0) {
 	if (!products || products.length === 0) {
 		return 'Lamentablemente no tenemos productos disponibles en esa categoría por el momento. ¿Le gustaría ver otra opción?';
 	}
@@ -169,9 +171,15 @@ function formatProductOptions(products, totalCount) {
 		return `${index + 1}. *${product.name}*${specLine}\n   💰 S/ ${product.price.toFixed(2)}`;
 	});
 
+	const rangeStart = offset + 1;
+	const rangeEnd = offset + products.length;
+	const hasMore = totalCount && rangeEnd < totalCount;
+
 	let footer = '\n\n¿Cuál le interesa? Indique el número de la opción.';
 	if (totalCount && totalCount > products.length) {
-		footer = `\n\nMostrando ${products.length} de ${totalCount} productos disponibles.` + footer;
+		footer = `\n\nMostrando ${rangeStart}-${rangeEnd} de ${totalCount} productos disponibles.`
+			+ (hasMore ? '\nEscriba *"ver más"* para ver más opciones.' : '')
+			+ footer;
 	}
 
 	return `Estas son las opciones que tenemos disponibles:\n\n${options.join('\n')}\n${footer}`;
@@ -181,9 +189,11 @@ function formatProductOptions(products, totalCount) {
  * Formats laptop part options for display
  * @param {Array} parts - Array of part product documents
  * @param {number} installationPrice - Installation service price
+ * @param {number} totalCount - Total number of parts available
+ * @param {number} [offset=0] - Current pagination offset
  * @returns {string} Formatted part options
  */
-function formatPartOptions(parts, installationPrice, totalCount) {
+function formatPartOptions(parts, installationPrice, totalCount, offset = 0) {
 	if (!parts || parts.length === 0) {
 		return 'No encontramos repuestos compatibles en nuestro inventario. ¿Desea que generemos un requerimiento para buscarlo? También puede agendar una cita y lo revisamos en persona.';
 	}
@@ -200,9 +210,15 @@ function formatPartOptions(parts, installationPrice, totalCount) {
 		return line;
 	});
 
+	const rangeStart = offset + 1;
+	const rangeEnd = offset + parts.length;
+	const hasMore = totalCount && rangeEnd < totalCount;
+
 	let footer = '\n\n¿Cuál le interesa? Indique el número de la opción.';
 	if (totalCount && totalCount > parts.length) {
-		footer = `\n\nMostrando ${parts.length} de ${totalCount} repuestos disponibles.` + footer;
+		footer = `\n\nMostrando ${rangeStart}-${rangeEnd} de ${totalCount} repuestos disponibles.`
+			+ (hasMore ? '\nEscriba *"ver más"* para ver más opciones.' : '')
+			+ footer;
 	}
 
 	return `Encontré estas opciones:\n\n${options.join('\n')}\n${footer}`;
@@ -211,9 +227,11 @@ function formatPartOptions(parts, installationPrice, totalCount) {
 /**
  * Formats service options for display
  * @param {Array} services - Array of service documents
+ * @param {number} totalCount - Total number of services available
+ * @param {number} [offset=0] - Current pagination offset
  * @returns {string} Formatted service options
  */
-function formatServiceOptions(services, totalCount) {
+function formatServiceOptions(services, totalCount, offset = 0) {
 	if (!services || services.length === 0) {
 		return 'No encontramos servicios disponibles para ese tipo de equipo. ¿Le gustaría consultar por otro equipo?';
 	}
@@ -222,9 +240,15 @@ function formatServiceOptions(services, totalCount) {
 		return `${index + 1}. *${service.name}*\n   💰 S/ ${service.basePrice.toFixed(2)} | ⏱️ ${service.estimatedDuration}`;
 	});
 
+	const rangeStart = offset + 1;
+	const rangeEnd = offset + services.length;
+	const hasMore = totalCount && rangeEnd < totalCount;
+
 	let footer = '\n\n¿Cuál le interesa? Indique el número de la opción.';
 	if (totalCount && totalCount > services.length) {
-		footer = `\n\nMostrando ${services.length} de ${totalCount} servicios disponibles.` + footer;
+		footer = `\n\nMostrando ${rangeStart}-${rangeEnd} de ${totalCount} servicios disponibles.`
+			+ (hasMore ? '\nEscriba *"ver más"* para ver más opciones.' : '')
+			+ footer;
 	}
 
 	return `Estos son los servicios que ofrecemos:\n\n${options.join('\n')}\n${footer}`;
