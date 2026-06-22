@@ -30,6 +30,21 @@ describe('MetricsService', () => {
 			expect(conversation.messages).toHaveLength(2);
 			expect(conversation.totalMessages).toBe(2);
 		});
+
+		it('should record a bot message with responseDurationMs', async () => {
+			const result = await MetricsService.recordMessage(
+				'session-bot-dur',
+				'user-x',
+				'bot',
+				'Respuesta del bot',
+				'faq_horarios',
+				null,
+				'messenger',
+				350,
+			);
+
+			expect(result.messages[0].responseDurationMs).toBe(350);
+		});
 	});
 
 	describe('recordInteraction', () => {
@@ -76,6 +91,23 @@ describe('MetricsService', () => {
 			expect(conversation.resolved).toBe(true);
 			expect(conversation.endedAt).toBeDefined();
 		});
+
+		it('should be idempotent — calling endConversation twice does not error and endedAt remains set', async () => {
+			await MetricsService.recordMessage('session-end-guard', 'user-g', 'user', 'Bye', null, null);
+			await MetricsService.endConversation('session-end-guard');
+			await expect(MetricsService.endConversation('session-end-guard')).resolves.not.toThrow();
+
+			const conversation = await Conversation.findOne({ sessionId: 'session-end-guard' });
+			// endedAt is set and conversation is resolved
+			expect(conversation.endedAt).toBeDefined();
+			expect(conversation.resolved).toBe(true);
+		});
+
+		it('should silently handle a non-existent session', async () => {
+			await expect(
+				MetricsService.endConversation('session-does-not-exist'),
+			).resolves.not.toThrow();
+		});
 	});
 
 	describe('getStatistics', () => {
@@ -106,6 +138,47 @@ describe('MetricsService', () => {
 			const stats = await MetricsService.getStatistics(start, end);
 			expect(stats.escalatedConversations).toBeGreaterThanOrEqual(1);
 			expect(stats.escalationRate).toBeGreaterThan(0);
+		});
+
+		it('should return non-null avgSatisfaction when a conversation has satisfactionRating > 0', async () => {
+			await MetricsService.recordMessage('session-sat', 'user-sat', 'user', 'Hola', null, null);
+			const conv = await Conversation.findOne({ sessionId: 'session-sat' });
+			conv.satisfactionRating = 4;
+			await conv.save();
+
+			const start = new Date();
+			start.setHours(0, 0, 0, 0);
+			const end = new Date();
+			end.setHours(23, 59, 59, 999);
+
+			const stats = await MetricsService.getStatistics(start, end);
+			expect(stats.avgSatisfaction).not.toBeNull();
+			expect(stats.avgSatisfaction).toBeGreaterThan(0);
+			expect(stats.ratingsCount).toBeGreaterThanOrEqual(1);
+		});
+
+		it('should return non-null avgResponseDurationMs when a bot message has responseDurationMs', async () => {
+			// Record a bot message with responseDurationMs to trigger the non-null branch
+			await MetricsService.recordMessage(
+				'session-resp-dur',
+				'user-rd',
+				'bot',
+				'Respuesta',
+				'faq',
+				null,
+				'messenger',
+				250,
+			);
+
+			const start = new Date();
+			start.setHours(0, 0, 0, 0);
+			const end = new Date();
+			end.setHours(23, 59, 59, 999);
+
+			const stats = await MetricsService.getStatistics(start, end);
+			expect(stats.avgResponseDurationMs).not.toBeNull();
+			expect(stats.avgResponseDurationMs).toBeGreaterThan(0);
+			expect(stats.totalResponseSamples).toBeGreaterThanOrEqual(1);
 		});
 	});
 });
