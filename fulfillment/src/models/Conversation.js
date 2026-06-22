@@ -82,7 +82,7 @@ const ConversationSchema = new mongoose.Schema(
 	},
 	{
 		timestamps: true,
-	},
+	}
 );
 
 ConversationSchema.index({ sessionId: 1, userId: 1 });
@@ -93,7 +93,7 @@ ConversationSchema.methods.addMessage = function (
 	content,
 	intent = null,
 	confidence = null,
-	responseDurationMs = null,
+	responseDurationMs = null
 ) {
 	this.messages.push({
 		role,

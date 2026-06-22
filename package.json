@@ -8,7 +8,9 @@
 		"dev": "nodemon fulfillment/src/index.js",
 		"test": "jest --coverage",
 		"test:unit": "jest --testPathPattern=fulfillment/tests --coverage",
-		"lint": "eslint fulfillment/src/**/*.js"
+		"lint": "eslint .",
+		"format": "prettier --write .",
+		"format:check": "prettier --check ."
 	},
 	"jest": {
 		"testEnvironment": "node",
@@ -68,9 +70,11 @@
 	},
 	"devDependencies": {
 		"eslint": "^8.55.0",
+		"eslint-config-prettier": "^10.1.8",
 		"jest": "^29.7.0",
 		"mongodb-memory-server": "^9.5.0",
-		"nodemon": "^3.0.2"
+		"nodemon": "^3.0.2",
+		"prettier": "^3.8.4"
 	},
 	"engines": {
 		"node": ">=18.0.0"

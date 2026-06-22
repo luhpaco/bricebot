@@ -71,14 +71,11 @@ class AvailabilityService {
 			}
 
 			console.log(
-				`[AvailabilityService] Found ${availableSlots.length} available slots for ${date.toDateString()}`,
+				`[AvailabilityService] Found ${availableSlots.length} available slots for ${date.toDateString()}`
 			);
 			return availableSlots;
 		} catch (error) {
-			console.error(
-				'[AvailabilityService] Error getting available slots:',
-				error,
-			);
+			console.error('[AvailabilityService] Error getting available slots:', error);
 			return this.getDefaultSlots(dayOfWeek);
 		}
 	}
@@ -95,16 +92,7 @@ class AvailabilityService {
 			return ['09:00', '10:00', '11:00', '12:00'];
 		}
 
-		return [
-			'09:00',
-			'10:00',
-			'11:00',
-			'12:00',
-			'14:00',
-			'15:00',
-			'16:00',
-			'17:00',
-		];
+		return ['09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'];
 	}
 
 	/**

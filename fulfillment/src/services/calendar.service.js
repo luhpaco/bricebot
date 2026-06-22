@@ -1,6 +1,6 @@
 const { google } = require('googleapis');
 require('dotenv').config();
-const { formatForCalendar, addDuration, formatDateISO } = require('../utils/dateHelpers');
+const { formatForCalendar, addDuration } = require('../utils/dateHelpers');
 
 const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'primary';
 const TIMEZONE = process.env.GOOGLE_CALENDAR_TIMEZONE || 'America/Lima';
@@ -100,9 +100,7 @@ class CalendarService {
 				resource: event,
 			});
 
-			console.log(
-				`[CalendarService] Event created: ${response.data.id} for ${clientName}`,
-			);
+			console.log(`[CalendarService] Event created: ${response.data.id} for ${clientName}`);
 			return response.data.id;
 		} catch (error) {
 			console.error('[CalendarService] Error creating event:', error);
@@ -145,7 +143,7 @@ class CalendarService {
 	 * @param {Object} businessHours - Business hours configuration
 	 * @returns {Promise<Array<string>>} Array of available time slots in HH:MM format
 	 */
-	async listAvailableSlots(date, businessHours) {
+	async listAvailableSlots(date, _businessHours) {
 		await this.initialize();
 
 		const dayOfWeek = date.getDay();
@@ -162,7 +160,6 @@ class CalendarService {
 		}
 
 		const slots = [];
-		const dateISO = formatDateISO(date);
 
 		for (let hour = startHour; hour < endHour; hour++) {
 			const timeSlot = `${String(hour).padStart(2, '0')}:00`;
@@ -218,7 +215,7 @@ class CalendarService {
 		}
 
 		try {
-			const response = await this.calendar.events.patch({
+			await this.calendar.events.patch({
 				calendarId: CALENDAR_ID,
 				eventId: eventId,
 				resource: updates,

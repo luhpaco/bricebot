@@ -1,0 +1,10 @@
+node_modules/
+coverage/
+dialogflow/
+package-lock.json
+skills-lock.json
+.claude/
+.agents/
+# Documentation is intentionally excluded to avoid markdown reflow/corruption
+*.md
+docs/

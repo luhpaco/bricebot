@@ -474,9 +474,7 @@ describe('quotesService', () => {
 				ruc: null,
 				companyName: null,
 				quoteType: 'producto',
-				items: [
-					{ name: 'PC Básica', quantity: 1, unitPrice: 1500 },
-				],
+				items: [{ name: 'PC Básica', quantity: 1, unitPrice: 1500 }],
 				creationStartTime: new Date(Date.now() - 5000),
 			};
 
@@ -530,7 +528,7 @@ describe('quotesService', () => {
 				quotesService.createQuote({
 					items: [{ name: 'Item', quantity: 1, unitPrice: 10 }],
 					creationStartTime: new Date(),
-				}),
+				})
 			).rejects.toThrow();
 		});
 	});

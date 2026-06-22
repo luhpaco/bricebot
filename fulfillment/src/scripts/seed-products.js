@@ -60,10 +60,10 @@ function parseCSVLine(line) {
  */
 function parseCSV(filePath) {
 	const content = fs.readFileSync(filePath, 'utf-8');
-	const lines = content.split('\n').filter(line => line.trim());
+	const lines = content.split('\n').filter((line) => line.trim());
 	const headers = parseCSVLine(lines[0]);
 
-	return lines.slice(1).map(line => {
+	return lines.slice(1).map((line) => {
 		const values = parseCSVLine(line);
 		const row = {};
 		headers.forEach((header, i) => {
@@ -149,13 +149,15 @@ async function seedDatabase() {
 		await Product.insertMany(products);
 
 		const productCats = {};
-		products.forEach(p => {
+		products.forEach((p) => {
 			productCats[p.category] = (productCats[p.category] || 0) + 1;
 		});
 		console.log(`  Total products: ${products.length}`);
-		Object.entries(productCats).sort().forEach(([cat, count]) => {
-			console.log(`    ${cat}: ${count}`);
-		});
+		Object.entries(productCats)
+			.sort()
+			.forEach(([cat, count]) => {
+				console.log(`    ${cat}: ${count}`);
+			});
 
 		// --- Services ---
 		console.log('\n[Seed] Processing services...');
@@ -164,13 +166,15 @@ async function seedDatabase() {
 		await Service.insertMany(services);
 
 		const serviceCats = {};
-		services.forEach(s => {
+		services.forEach((s) => {
 			serviceCats[s.category] = (serviceCats[s.category] || 0) + 1;
 		});
 		console.log(`  Total services: ${services.length}`);
-		Object.entries(serviceCats).sort().forEach(([cat, count]) => {
-			console.log(`    ${cat}: ${count}`);
-		});
+		Object.entries(serviceCats)
+			.sort()
+			.forEach(([cat, count]) => {
+				console.log(`    ${cat}: ${count}`);
+			});
 
 		// --- Summary ---
 		console.log('\n[Seed] ========== SUMMARY ==========');

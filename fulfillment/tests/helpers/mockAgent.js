@@ -7,7 +7,12 @@
  * @param {string} options.session    - Session identifier
  * @returns {Object} Mock agent
  */
-function createMockAgent({ parameters = {}, contexts = [], query = '', session = 'test-session-123' } = {}) {
+function createMockAgent({
+	parameters = {},
+	contexts = [],
+	query = '',
+	session = 'test-session-123',
+} = {}) {
 	const contextStore = new Map(contexts.map((c) => [c.name, c]));
 
 	return {

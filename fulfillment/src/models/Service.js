@@ -41,7 +41,7 @@ const ServiceSchema = new mongoose.Schema(
 	},
 	{
 		timestamps: true,
-	},
+	}
 );
 
 ServiceSchema.index({ category: 1, isActive: 1 });

@@ -1,9 +1,5 @@
 const quotesService = require('../services/quotes.service');
-const {
-	validatePhone,
-	normalizePhone,
-	parseSelectionIndex,
-} = require('../utils/validators');
+const { validatePhone, normalizePhone, parseSelectionIndex } = require('../utils/validators');
 const {
 	formatProductOptions,
 	formatPartOptions,
@@ -205,7 +201,9 @@ function handleQuoteServiceSelectInternal(agent, context) {
 	const selectionIndex = parseSelectionIndex(agent.query, options.length);
 
 	if (selectionIndex === null) {
-		agent.add(`Por favor, indíqueme el número de la opción que le interesa (1 a ${options.length}).`);
+		agent.add(
+			`Por favor, indíqueme el número de la opción que le interesa (1 a ${options.length}).`
+		);
 		return;
 	}
 
@@ -233,7 +231,9 @@ function handleQuoteServiceSelectInternal(agent, context) {
 		},
 	});
 
-	agent.add(`${MESSAGES.QUOTE_ITEM_ADDED} Se agregó *${selected.name}* (S/ ${selected.price.toFixed(2)}).\n\n${MESSAGES.QUOTE_ASK_ADD_MORE}`);
+	agent.add(
+		`${MESSAGES.QUOTE_ITEM_ADDED} Se agregó *${selected.name}* (S/ ${selected.price.toFixed(2)}).\n\n${MESSAGES.QUOTE_ASK_ADD_MORE}`
+	);
 }
 
 /**
@@ -309,7 +309,9 @@ const handleQuoteComputer = async (agent) => {
 const handleQuoteComputerUse = async (agent) => {
 	const context = agent.context.get('cotizar_computadora_en_curso');
 	if (!context) {
-		agent.add('Lo siento, hubo un problema. ¿Podría indicarme para qué uso necesita la computadora?');
+		agent.add(
+			'Lo siento, hubo un problema. ¿Podría indicarme para qué uso necesita la computadora?'
+		);
 		return;
 	}
 
@@ -320,7 +322,9 @@ const handleQuoteComputerUse = async (agent) => {
 	const useCase = quotesService.normalizeUseCase(rawUseCase);
 
 	if (!useCase) {
-		agent.add('No identifiqué el uso. ¿Podría indicarme si es para ofimática, diseño, programación, gaming o estudio?');
+		agent.add(
+			'No identifiqué el uso. ¿Podría indicarme si es para ofimática, diseño, programación, gaming o estudio?'
+		);
 		return;
 	}
 
@@ -368,7 +372,9 @@ const handleQuoteComputerUse = async (agent) => {
 const handleQuoteComputerSelect = (agent) => {
 	const context = agent.context.get('cotizar_computadora_opciones');
 	if (!context) {
-		agent.add('Lo siento, hubo un problema con la selección. ¿Podría indicarme el uso de la computadora nuevamente?');
+		agent.add(
+			'Lo siento, hubo un problema con la selección. ¿Podría indicarme el uso de la computadora nuevamente?'
+		);
 		return;
 	}
 
@@ -379,7 +385,9 @@ const handleQuoteComputerSelect = (agent) => {
 	const selectionIndex = parseSelectionIndex(agent.query, options.length);
 
 	if (selectionIndex === null) {
-		agent.add(`Por favor, indíqueme el número de la opción que le interesa (1 a ${options.length}).`);
+		agent.add(
+			`Por favor, indíqueme el número de la opción que le interesa (1 a ${options.length}).`
+		);
 		return;
 	}
 
@@ -409,7 +417,9 @@ const handleQuoteComputerSelect = (agent) => {
 		},
 	});
 
-	agent.add(`${MESSAGES.QUOTE_ITEM_ADDED} Se agregó *${selected.name}* (S/ ${selected.price.toFixed(2)}).\n\n${MESSAGES.QUOTE_ASK_ADD_MORE}`);
+	agent.add(
+		`${MESSAGES.QUOTE_ITEM_ADDED} Se agregó *${selected.name}* (S/ ${selected.price.toFixed(2)}).\n\n${MESSAGES.QUOTE_ASK_ADD_MORE}`
+	);
 };
 
 /**
@@ -458,7 +468,9 @@ const handleQuoteGenericProduct = async (agent) => {
 			lifespan: 8,
 			parameters: context.parameters,
 		});
-		agent.add(`No identifiqué la categoría. ¿Le interesa una impresora o accesorios y componentes?\n\n${formatProductCategories()}`);
+		agent.add(
+			`No identifiqué la categoría. ¿Le interesa una impresora o accesorios y componentes?\n\n${formatProductCategories()}`
+		);
 		return;
 	}
 
@@ -582,7 +594,9 @@ const handleQuoteLaptopPart = async (agent) => {
 			lifespan: 8,
 			parameters: repuestoContext.parameters,
 		});
-		agent.add(`No identifiqué el tipo de repuesto. ¿Podría elegir una opción?\n\n${formatPartTypes()}`);
+		agent.add(
+			`No identifiqué el tipo de repuesto. ¿Podría elegir una opción?\n\n${formatPartTypes()}`
+		);
 		return;
 	}
 
@@ -755,7 +769,9 @@ const handleQuoteAddMore = (agent) => {
 		parameters: { startTime, quoteType, items },
 	});
 
-	agent.add(`¿Qué desea agregar a su cotización?\n\n1️⃣ Productos (computadoras, repuestos, impresoras, etc.)\n2️⃣ Servicios (mantenimiento, reparaciones, instalaciones)\n3️⃣ Ya no, proceder con mis datos`);
+	agent.add(
+		`¿Qué desea agregar a su cotización?\n\n1️⃣ Productos (computadoras, repuestos, impresoras, etc.)\n2️⃣ Servicios (mantenimiento, reparaciones, instalaciones)\n3️⃣ Ya no, proceder con mis datos`
+	);
 };
 
 /**
@@ -763,9 +779,7 @@ const handleQuoteAddMore = (agent) => {
  * @param {Object} agent - Dialogflow WebhookClient agent
  */
 const handleQuoteClientData = async (agent) => {
-	const context =
-		agent.context.get('cotizacion_items') ||
-		agent.context.get('cotizacion_servicio');
+	const context = agent.context.get('cotizacion_items') || agent.context.get('cotizacion_servicio');
 
 	if (!context) {
 		agent.add('Lo siento, hubo un problema. ¿Podría indicarme qué desea cotizar?');
@@ -790,8 +804,7 @@ const handleQuoteClientData = async (agent) => {
 	}
 
 	const parsedName =
-		(clientName && typeof clientName === 'object' ? clientName.name : clientName) ||
-		agent.query;
+		(clientName && typeof clientName === 'object' ? clientName.name : clientName) || agent.query;
 
 	if (!rawPhone) {
 		agent.context.set({
@@ -845,7 +858,9 @@ const handleQuoteClientData = async (agent) => {
 const handleQuoteConfirmYes = async (agent) => {
 	const context = agent.context.get('cotizacion_confirmar');
 	if (!context) {
-		agent.add('Lo siento, no encontré la cotización pendiente. ¿Podría iniciar el proceso nuevamente?');
+		agent.add(
+			'Lo siento, no encontré la cotización pendiente. ¿Podría iniciar el proceso nuevamente?'
+		);
 		return;
 	}
 
@@ -892,7 +907,9 @@ const handleQuoteConfirmNo = (agent) => {
 		},
 	});
 
-	agent.add('Sin problema. ¿Qué le gustaría hacer?\n\n1️⃣ Agregar más productos o servicios\n2️⃣ Empezar una cotización nueva desde cero');
+	agent.add(
+		'Sin problema. ¿Qué le gustaría hacer?\n\n1️⃣ Agregar más productos o servicios\n2️⃣ Empezar una cotización nueva desde cero'
+	);
 };
 
 /**
@@ -915,7 +932,9 @@ const handleQuoteShowMore = async (agent) => {
 				lifespan: 5,
 				parameters: params,
 			});
-			agent.add(`Ya se mostraron todas las opciones disponibles (${params.totalCount}). Indique el número de la opción que le interesa.`);
+			agent.add(
+				`Ya se mostraron todas las opciones disponibles (${params.totalCount}). Indique el número de la opción que le interesa.`
+			);
 			return;
 		}
 
@@ -957,7 +976,9 @@ const handleQuoteShowMore = async (agent) => {
 				lifespan: 8,
 				parameters: params,
 			});
-			agent.add(`Ya se mostraron todos los repuestos disponibles (${params.totalCount}). Indique el número de la opción que le interesa.`);
+			agent.add(
+				`Ya se mostraron todos los repuestos disponibles (${params.totalCount}). Indique el número de la opción que le interesa.`
+			);
 			return;
 		}
 
@@ -993,7 +1014,9 @@ const handleQuoteShowMore = async (agent) => {
 				lifespan: 8,
 				parameters: params,
 			});
-			agent.add(`Ya se mostraron todos los servicios disponibles (${params.totalCount}). Indique el número de la opción que le interesa.`);
+			agent.add(
+				`Ya se mostraron todos los servicios disponibles (${params.totalCount}). Indique el número de la opción que le interesa.`
+			);
 			return;
 		}
 
@@ -1019,7 +1042,9 @@ const handleQuoteShowMore = async (agent) => {
 	}
 
 	// No active selection flow
-	agent.add('No hay una lista de opciones activa en este momento. ¿En qué puedo ayudarle?\n\n📋 Información del negocio\n📅 Agendar una cita\n💰 Solicitar una cotización');
+	agent.add(
+		'No hay una lista de opciones activa en este momento. ¿En qué puedo ayudarle?\n\n📋 Información del negocio\n📅 Agendar una cita\n💰 Solicitar una cotización'
+	);
 };
 
 module.exports = {
