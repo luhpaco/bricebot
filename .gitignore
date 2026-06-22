@@ -54,3 +54,6 @@ thesis-pretest/
 pretest-resultados/
 postest-resultados/
 encuesta-satisfaccion/
+other-convs-raw-data/
+# Local AI runtime state
+.atl/
