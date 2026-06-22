@@ -43,6 +43,11 @@
 				"statements": 55,
 				"functions": 65,
 				"lines": 55
+			},
+			"./fulfillment/src/services/quotes.service.js": {
+				"statements": 75,
+				"functions": 75,
+				"lines": 75
 			}
 		}
 	},
