@@ -21,7 +21,7 @@ class MetricsService {
 		intent = null,
 		confidence = null,
 		channel = 'messenger',
-		responseDurationMs = null,
+		responseDurationMs = null
 	) {
 		try {
 			let conversation = await Conversation.findOne({ sessionId });
@@ -55,8 +55,7 @@ class MetricsService {
 	 * @returns {Promise<void>}
 	 */
 	static async recordInteraction(data) {
-		const { sessionId, userId, intent, startTime, endTime, success, error } =
-			data;
+		const { sessionId, userId: _userId, intent, startTime, endTime, success, error } = data;
 
 		try {
 			const conversation = await Conversation.findOne({ sessionId });
@@ -74,13 +73,11 @@ class MetricsService {
 			} else {
 				// M3: Log warning so missing metrics are visible without crashing
 				console.warn(
-					`[Metrics] Conversation not found for session: ${sessionId} — interaction not recorded`,
+					`[Metrics] Conversation not found for session: ${sessionId} — interaction not recorded`
 				);
 			}
 
-			console.log(
-				`[Metrics] Interaction recorded: ${intent} (${endTime - startTime}ms)`,
-			);
+			console.log(`[Metrics] Interaction recorded: ${intent} (${endTime - startTime}ms)`);
 		} catch (error) {
 			console.error('[Metrics] Error recording interaction:', error);
 		}
@@ -124,39 +121,26 @@ class MetricsService {
 			});
 
 			const totalConversations = conversations.length;
-			const resolvedConversations = conversations.filter(
-				(c) => c.resolved,
-			).length;
-			const escalatedConversations = conversations.filter(
-				(c) => c.escalatedToHuman,
-			).length;
+			const resolvedConversations = conversations.filter((c) => c.resolved).length;
+			const escalatedConversations = conversations.filter((c) => c.escalatedToHuman).length;
 
-			const totalMessages = conversations.reduce(
-				(sum, c) => sum + c.totalMessages,
-				0,
-			);
+			const totalMessages = conversations.reduce((sum, c) => sum + c.totalMessages, 0);
 			const avgMessagesPerConversation =
 				totalConversations > 0 ? totalMessages / totalConversations : 0;
 
-			const totalDuration = conversations.reduce(
-				(sum, c) => sum + c.totalDurationMs,
-				0,
-			);
-			const avgDurationMs =
-				totalConversations > 0 ? totalDuration / totalConversations : 0;
+			const totalDuration = conversations.reduce((sum, c) => sum + c.totalDurationMs, 0);
+			const avgDurationMs = totalConversations > 0 ? totalDuration / totalConversations : 0;
 
 			const ratings = conversations
 				.filter((c) => c.satisfactionRating)
 				.map((c) => c.satisfactionRating);
 			const avgSatisfaction =
-				ratings.length > 0
-					? ratings.reduce((sum, r) => sum + r, 0) / ratings.length
-					: null;
+				ratings.length > 0 ? ratings.reduce((sum, r) => sum + r, 0) / ratings.length : null;
 
 			const responseTimes = conversations.flatMap((c) =>
 				c.messages
 					.filter((m) => m.role === 'bot' && m.responseDurationMs != null)
-					.map((m) => m.responseDurationMs),
+					.map((m) => m.responseDurationMs)
 			);
 			const avgResponseDurationMs =
 				responseTimes.length > 0
@@ -168,13 +152,9 @@ class MetricsService {
 				resolvedConversations,
 				escalatedConversations,
 				resolutionRate:
-					totalConversations > 0
-						? (resolvedConversations / totalConversations) * 100
-						: 0,
+					totalConversations > 0 ? (resolvedConversations / totalConversations) * 100 : 0,
 				escalationRate:
-					totalConversations > 0
-						? (escalatedConversations / totalConversations) * 100
-						: 0,
+					totalConversations > 0 ? (escalatedConversations / totalConversations) * 100 : 0,
 				avgMessagesPerConversation,
 				avgDurationMs,
 				avgDurationSeconds: avgDurationMs / 1000,

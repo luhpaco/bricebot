@@ -9,10 +9,7 @@ const {
 	validateAddress,
 	validateCoverageArea,
 } = require('../utils/validators');
-const {
-	parseDialogflowDate,
-	parseDialogflowTime,
-} = require('../utils/dateHelpers');
+const { parseDialogflowDate, parseDialogflowTime } = require('../utils/dateHelpers');
 const {
 	formatAppointmentSummary,
 	formatAvailableSlots,
@@ -113,7 +110,7 @@ const handleLocalEquipmentType = (agent) => {
 
 	const article = ['laptop', 'impresora', 'camara'].includes(equipmentType) ? 'una' : 'un';
 	agent.add(
-		`Perfecto, ${article} ${equipmentType}. Cuénteme, ¿qué problema presenta o qué servicio necesita?\n\n(Ejemplo: "No enciende", "Pantalla rota", "Necesita mantenimiento")`,
+		`Perfecto, ${article} ${equipmentType}. Cuénteme, ¿qué problema presenta o qué servicio necesita?\n\n(Ejemplo: "No enciende", "Pantalla rota", "Necesita mantenimiento")`
 	);
 };
 
@@ -127,8 +124,7 @@ const handleLocalProblemDescription = (agent) => {
 		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
 		return;
 	}
-	const problemDescription =
-		agent.parameters['descripcion_problema'] || agent.query;
+	const problemDescription = agent.parameters['descripcion_problema'] || agent.query;
 
 	agent.context.set({
 		name: 'cita_local_en_curso',
@@ -140,7 +136,7 @@ const handleLocalProblemDescription = (agent) => {
 	});
 
 	agent.add(
-		`Ya veo, "${problemDescription}". No se preocupe, vamos a ayudarle con eso. 💪\n\nPara agendar su cita, necesito algunos datos. ¿Me comparte su nombre completo?\n(Ejemplo: Juan Pérez López)`,
+		`Ya veo, "${problemDescription}". No se preocupe, vamos a ayudarle con eso. 💪\n\nPara agendar su cita, necesito algunos datos. ¿Me comparte su nombre completo?\n(Ejemplo: Juan Pérez López)`
 	);
 };
 
@@ -156,8 +152,7 @@ const handleLocalClientName = (agent) => {
 	}
 	const rawName = agent.parameters['nombre_cliente'];
 	const clientName =
-		(rawName && typeof rawName === 'object' ? rawName.name : rawName) ||
-		agent.query;
+		(rawName && typeof rawName === 'object' ? rawName.name : rawName) || agent.query;
 
 	agent.context.set({
 		name: 'cita_local_en_curso',
@@ -169,7 +164,7 @@ const handleLocalClientName = (agent) => {
 	});
 
 	agent.add(
-		`Mucho gusto, ${clientName}. 😊 ¿A qué número de teléfono podemos contactarlo?\n(9 dígitos, ejemplo: 987654321)`,
+		`Mucho gusto, ${clientName}. 😊 ¿A qué número de teléfono podemos contactarlo?\n(9 dígitos, ejemplo: 987654321)`
 	);
 };
 
@@ -246,7 +241,7 @@ const handleLocalDateSelection = async (agent) => {
 
 		if (availableSlots.length === 0) {
 			agent.add(
-				'Lamentablemente no nos quedan horarios disponibles para ese día. 😔 ¿Le gustaría intentar con otra fecha?',
+				'Lamentablemente no nos quedan horarios disponibles para ese día. 😔 ¿Le gustaría intentar con otra fecha?'
 			);
 			return;
 		}
@@ -254,12 +249,9 @@ const handleLocalDateSelection = async (agent) => {
 		const formattedSlots = formatAvailableSlots(availableSlots);
 		agent.add(formattedSlots);
 	} catch (error) {
-		console.error(
-			'[AppointmentsHandler] Error getting available slots:',
-			error,
-		);
+		console.error('[AppointmentsHandler] Error getting available slots:', error);
 		agent.add(
-			'Disculpe, tuvimos un problema al consultar los horarios. ¿Podría intentarlo una vez más?',
+			'Disculpe, tuvimos un problema al consultar los horarios. ¿Podría intentarlo una vez más?'
 		);
 	}
 };
@@ -290,10 +282,7 @@ const handleLocalTimeSelection = async (agent) => {
 		return;
 	}
 
-	const slotValidation = await availabilityService.validateAppointmentSlot(
-		date,
-		time,
-	);
+	const slotValidation = await availabilityService.validateAppointmentSlot(date, time);
 	if (!slotValidation.valid) {
 		agent.add(slotValidation.message);
 		return;
@@ -339,7 +328,9 @@ const handleLocalConfirmYes = async (agent) => {
 
 	// M1: Guard against missing context
 	if (!context) {
-		agent.add('Lo siento, no encontré la información de su cita. Por favor, inicie el proceso nuevamente.');
+		agent.add(
+			'Lo siento, no encontré la información de su cita. Por favor, inicie el proceso nuevamente.'
+		);
 		return;
 	}
 
@@ -369,10 +360,7 @@ const handleLocalConfirmYes = async (agent) => {
 			const eventId = await calendarService.createEvent(appointmentData);
 			appointmentData.googleCalendarEventId = eventId;
 		} catch (calendarError) {
-			console.error(
-				'[AppointmentsHandler] Error creating calendar event:',
-				calendarError,
-			);
+			console.error('[AppointmentsHandler] Error creating calendar event:', calendarError);
 		}
 
 		const appointment = new Appointment(appointmentData);
@@ -400,7 +388,9 @@ const handleLocalConfirmNo = (agent) => {
 
 	// M1: Guard against missing context
 	if (!context) {
-		agent.add('Lo siento, no encontré la información de su cita. Por favor, inicie el proceso nuevamente.');
+		agent.add(
+			'Lo siento, no encontré la información de su cita. Por favor, inicie el proceso nuevamente.'
+		);
 		return;
 	}
 
@@ -418,7 +408,7 @@ const handleLocalConfirmNo = (agent) => {
 	});
 
 	agent.add(
-		'Sin problema. ¿Qué le gustaría hacer?\n\n1️⃣ Cambiar la fecha u hora\n2️⃣ Empezar una cita nueva desde cero',
+		'Sin problema. ¿Qué le gustaría hacer?\n\n1️⃣ Cambiar la fecha u hora\n2️⃣ Empezar una cita nueva desde cero'
 	);
 };
 
@@ -467,7 +457,7 @@ const handleHomeEquipmentType = (agent) => {
 
 	const article = ['laptop', 'impresora', 'camara'].includes(equipmentType) ? 'una' : 'un';
 	agent.add(
-		`Bien, ${article} ${equipmentType}. ¿Me puede describir qué problema tiene o qué servicio necesita?\n\n(Ejemplo: "No enciende", "Pantalla rota", "Necesita mantenimiento")`,
+		`Bien, ${article} ${equipmentType}. ¿Me puede describir qué problema tiene o qué servicio necesita?\n\n(Ejemplo: "No enciende", "Pantalla rota", "Necesita mantenimiento")`
 	);
 };
 
@@ -481,8 +471,7 @@ const handleHomeProblemDescription = (agent) => {
 		agent.add('Su sesión ha expirado. Por favor, inicie el proceso de cita nuevamente.');
 		return;
 	}
-	const problemDescription =
-		agent.parameters['descripcion_problema'] || agent.query;
+	const problemDescription = agent.parameters['descripcion_problema'] || agent.query;
 
 	agent.context.set({
 		name: 'cita_domicilio_en_curso',
@@ -495,7 +484,7 @@ const handleHomeProblemDescription = (agent) => {
 	agent.context.set({ name: 'cita_domicilio_paso_nombre', lifespan: 2, parameters: {} });
 
 	agent.add(
-		`Entiendo, "${problemDescription}". Nos encargaremos de eso. 🔧\n\nPara coordinar la visita, necesito algunos datos. ¿Cuál es su nombre completo?\n(Ejemplo: Juan Pérez López)`,
+		`Entiendo, "${problemDescription}". Nos encargaremos de eso. 🔧\n\nPara coordinar la visita, necesito algunos datos. ¿Cuál es su nombre completo?\n(Ejemplo: Juan Pérez López)`
 	);
 };
 
@@ -511,8 +500,7 @@ const handleHomeClientName = (agent) => {
 	}
 	const rawName = agent.parameters['nombre_cliente'];
 	const clientName =
-		(rawName && typeof rawName === 'object' ? rawName.name : rawName) ||
-		agent.query;
+		(rawName && typeof rawName === 'object' ? rawName.name : rawName) || agent.query;
 
 	agent.context.set({
 		name: 'cita_domicilio_en_curso',
@@ -525,7 +513,7 @@ const handleHomeClientName = (agent) => {
 	agent.context.set({ name: 'cita_domicilio_paso_telefono', lifespan: 2, parameters: {} });
 
 	agent.add(
-		`Gracias, ${clientName}. 😊 ¿Me indica su número de teléfono para coordinar la visita?\n(9 dígitos, ejemplo: 987654321)`,
+		`Gracias, ${clientName}. 😊 ¿Me indica su número de teléfono para coordinar la visita?\n(9 dígitos, ejemplo: 987654321)`
 	);
 };
 
@@ -561,7 +549,7 @@ const handleHomeClientPhone = (agent) => {
 	agent.context.set({ name: 'cita_domicilio_paso_direccion', lifespan: 2, parameters: {} });
 
 	agent.add(
-		'¡Listo! Ahora, para poder llegar hasta usted, necesito su dirección completa. ¿Dónde podemos recoger su equipo? 🏠\n(Ejemplo: Av. Grau 123, Paita)',
+		'¡Listo! Ahora, para poder llegar hasta usted, necesito su dirección completa. ¿Dónde podemos recoger su equipo? 🏠\n(Ejemplo: Av. Grau 123, Paita)'
 	);
 };
 
@@ -670,21 +658,18 @@ const handleHomeTimeRange = async (agent) => {
 		return;
 	}
 
-	const rangoHorario =
-		agent.parameters['rango_horario'] || agent.query.toLowerCase();
+	const rangoHorario = agent.parameters['rango_horario'] || agent.query.toLowerCase();
 
 	let timeRange;
-	if (
-		rangoHorario.includes('mañana') ||
-		rangoHorario.includes('manana') ||
-		rangoHorario === '1'
-	) {
+	if (rangoHorario.includes('mañana') || rangoHorario.includes('manana') || rangoHorario === '1') {
 		timeRange = 'mañana';
 	} else if (rangoHorario.includes('tarde') || rangoHorario === '2') {
 		timeRange = 'tarde';
 	} else {
 		agent.context.set({ name: 'cita_domicilio_paso_horario', lifespan: 2, parameters: {} });
-		agent.add('¿Podría indicarme si prefiere en la mañana o en la tarde? Son las dos opciones disponibles.');
+		agent.add(
+			'¿Podría indicarme si prefiere en la mañana o en la tarde? Son las dos opciones disponibles.'
+		);
 		return;
 	}
 
@@ -742,7 +727,9 @@ const handleHomeConfirmYes = async (agent) => {
 
 	// M1: Guard against missing context
 	if (!context) {
-		agent.add('Lo siento, no encontré la información de su cita. Por favor, inicie el proceso nuevamente.');
+		agent.add(
+			'Lo siento, no encontré la información de su cita. Por favor, inicie el proceso nuevamente.'
+		);
 		return;
 	}
 
@@ -774,10 +761,7 @@ const handleHomeConfirmYes = async (agent) => {
 			const eventId = await calendarService.createEvent(appointmentData);
 			appointmentData.googleCalendarEventId = eventId;
 		} catch (calendarError) {
-			console.error(
-				'[AppointmentsHandler] Error creating calendar event:',
-				calendarError,
-			);
+			console.error('[AppointmentsHandler] Error creating calendar event:', calendarError);
 		}
 
 		const appointment = new Appointment(appointmentData);
@@ -806,7 +790,9 @@ const handleHomeConfirmNo = (agent) => {
 
 	// M1: Guard against missing context
 	if (!context) {
-		agent.add('Lo siento, no encontré la información de su cita. Por favor, inicie el proceso nuevamente.');
+		agent.add(
+			'Lo siento, no encontré la información de su cita. Por favor, inicie el proceso nuevamente.'
+		);
 		return;
 	}
 
@@ -825,7 +811,7 @@ const handleHomeConfirmNo = (agent) => {
 	});
 
 	agent.add(
-		'Sin problema. ¿Qué le gustaría hacer?\n\n1️⃣ Cambiar la fecha u horario\n2️⃣ Cambiar la dirección\n3️⃣ Empezar una cita nueva desde cero',
+		'Sin problema. ¿Qué le gustaría hacer?\n\n1️⃣ Cambiar la fecha u horario\n2️⃣ Cambiar la dirección\n3️⃣ Empezar una cita nueva desde cero'
 	);
 };
 

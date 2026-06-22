@@ -11,7 +11,7 @@ describe('MetricsService', () => {
 				'user',
 				'Hola',
 				'saludo',
-				0.95,
+				0.95
 			);
 
 			expect(result).toBeDefined();
@@ -24,7 +24,14 @@ describe('MetricsService', () => {
 
 		it('should append to existing conversation on subsequent messages', async () => {
 			await MetricsService.recordMessage('session-002', 'user-002', 'user', 'Hola', 'saludo', 0.9);
-			await MetricsService.recordMessage('session-002', 'user-002', 'bot', 'Bienvenido', 'saludo', null);
+			await MetricsService.recordMessage(
+				'session-002',
+				'user-002',
+				'bot',
+				'Bienvenido',
+				'saludo',
+				null
+			);
 
 			const conversation = await Conversation.findOne({ sessionId: 'session-002' });
 			expect(conversation.messages).toHaveLength(2);
@@ -40,7 +47,7 @@ describe('MetricsService', () => {
 				'faq_horarios',
 				null,
 				'messenger',
-				350,
+				350
 			);
 
 			expect(result.messages[0].responseDurationMs).toBe(350);
@@ -77,7 +84,7 @@ describe('MetricsService', () => {
 					startTime: Date.now(),
 					endTime: Date.now(),
 					success: true,
-				}),
+				})
 			).resolves.not.toThrow();
 		});
 	});
@@ -104,9 +111,7 @@ describe('MetricsService', () => {
 		});
 
 		it('should silently handle a non-existent session', async () => {
-			await expect(
-				MetricsService.endConversation('session-does-not-exist'),
-			).resolves.not.toThrow();
+			await expect(MetricsService.endConversation('session-does-not-exist')).resolves.not.toThrow();
 		});
 	});
 
@@ -114,7 +119,7 @@ describe('MetricsService', () => {
 		it('should return zero stats when no conversations exist', async () => {
 			const stats = await MetricsService.getStatistics(
 				new Date('2000-01-01'),
-				new Date('2000-01-02'),
+				new Date('2000-01-02')
 			);
 
 			expect(stats.totalConversations).toBe(0);
@@ -167,7 +172,7 @@ describe('MetricsService', () => {
 				'faq',
 				null,
 				'messenger',
-				250,
+				250
 			);
 
 			const start = new Date();

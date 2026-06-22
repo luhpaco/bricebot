@@ -41,7 +41,8 @@ function formatAppointmentSummary(appointmentData) {
 		summary += '\n🚗 Modalidad: Servicio a domicilio';
 	}
 
-	summary += '\n\n¿Está todo correcto? Responda *Sí* para confirmar o *No* si desea hacer algún cambio.';
+	summary +=
+		'\n\n¿Está todo correcto? Responda *Sí* para confirmar o *No* si desea hacer algún cambio.';
 
 	return summary;
 }
@@ -89,8 +90,7 @@ function formatAvailableDates(dates) {
  * @returns {string} Confirmation message
  */
 function formatAppointmentConfirmation(appointment) {
-	const { referenceNumber, clientName, scheduledDate, scheduledTime } =
-		appointment;
+	const { referenceNumber, clientName, scheduledDate, scheduledTime } = appointment;
 
 	const dateLabel = getRelativeDateLabel(scheduledDate);
 	const formattedDate = formatDate(scheduledDate);
@@ -177,9 +177,10 @@ function formatProductOptions(products, totalCount, offset = 0) {
 
 	let footer = '\n\n¿Cuál le interesa? Indique el número de la opción.';
 	if (totalCount && totalCount > products.length) {
-		footer = `\n\nMostrando ${rangeStart}-${rangeEnd} de ${totalCount} productos disponibles.`
-			+ (hasMore ? '\nEscriba *"ver más"* para ver más opciones.' : '')
-			+ footer;
+		footer =
+			`\n\nMostrando ${rangeStart}-${rangeEnd} de ${totalCount} productos disponibles.` +
+			(hasMore ? '\nEscriba *"ver más"* para ver más opciones.' : '') +
+			footer;
 	}
 
 	return `Estas son las opciones que tenemos disponibles:\n\n${options.join('\n')}\n${footer}`;
@@ -216,9 +217,10 @@ function formatPartOptions(parts, installationPrice, totalCount, offset = 0) {
 
 	let footer = '\n\n¿Cuál le interesa? Indique el número de la opción.';
 	if (totalCount && totalCount > parts.length) {
-		footer = `\n\nMostrando ${rangeStart}-${rangeEnd} de ${totalCount} repuestos disponibles.`
-			+ (hasMore ? '\nEscriba *"ver más"* para ver más opciones.' : '')
-			+ footer;
+		footer =
+			`\n\nMostrando ${rangeStart}-${rangeEnd} de ${totalCount} repuestos disponibles.` +
+			(hasMore ? '\nEscriba *"ver más"* para ver más opciones.' : '') +
+			footer;
 	}
 
 	return `Encontré estas opciones:\n\n${options.join('\n')}\n${footer}`;
@@ -246,9 +248,10 @@ function formatServiceOptions(services, totalCount, offset = 0) {
 
 	let footer = '\n\n¿Cuál le interesa? Indique el número de la opción.';
 	if (totalCount && totalCount > services.length) {
-		footer = `\n\nMostrando ${rangeStart}-${rangeEnd} de ${totalCount} servicios disponibles.`
-			+ (hasMore ? '\nEscriba *"ver más"* para ver más opciones.' : '')
-			+ footer;
+		footer =
+			`\n\nMostrando ${rangeStart}-${rangeEnd} de ${totalCount} servicios disponibles.` +
+			(hasMore ? '\nEscriba *"ver más"* para ver más opciones.' : '') +
+			footer;
 	}
 
 	return `Estos son los servicios que ofrecemos:\n\n${options.join('\n')}\n${footer}`;

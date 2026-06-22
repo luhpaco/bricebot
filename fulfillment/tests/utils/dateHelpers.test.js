@@ -60,7 +60,7 @@ describe('dateHelpers', () => {
 	});
 
 	describe('isToday', () => {
-		it('should return true for today\'s date', () => {
+		it("should return true for today's date", () => {
 			expect(isToday(new Date())).toBe(true);
 		});
 
@@ -72,7 +72,7 @@ describe('dateHelpers', () => {
 	});
 
 	describe('isTomorrow', () => {
-		it('should return true for tomorrow\'s date', () => {
+		it("should return true for tomorrow's date", () => {
 			const tomorrow = new Date();
 			tomorrow.setDate(tomorrow.getDate() + 1);
 			expect(isTomorrow(tomorrow)).toBe(true);

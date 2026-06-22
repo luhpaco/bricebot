@@ -135,8 +135,7 @@ function validateTime(time, date) {
 		if (hours < 9 || hours >= 18) {
 			return {
 				valid: false,
-				message:
-					'Para días de semana, el horario de atención es de 9:00 AM a 6:00 PM.',
+				message: 'Para días de semana, el horario de atención es de 9:00 AM a 6:00 PM.',
 			};
 		}
 	} else if (dayOfWeek === 6) {
@@ -253,9 +252,7 @@ function validateCoverageArea(address) {
 		'chimbote',
 	];
 
-	const isExcluded = excludedLocations.some((loc) =>
-		addressNormalized.includes(loc),
-	);
+	const isExcluded = excludedLocations.some((loc) => addressNormalized.includes(loc));
 
 	if (isExcluded) {
 		return {
@@ -287,7 +284,8 @@ function validateEmail(email) {
 	if (!email || typeof email !== 'string') {
 		return {
 			valid: false,
-			message: 'El correo electrónico no parece válido. ¿Podría verificarlo e ingresarlo nuevamente?',
+			message:
+				'El correo electrónico no parece válido. ¿Podría verificarlo e ingresarlo nuevamente?',
 		};
 	}
 
@@ -297,7 +295,8 @@ function validateEmail(email) {
 	if (!emailRegex.test(trimmed)) {
 		return {
 			valid: false,
-			message: 'Ese correo no parece estar bien escrito. ¿Podría verificarlo? Ejemplo: nombre@correo.com',
+			message:
+				'Ese correo no parece estar bien escrito. ¿Podría verificarlo? Ejemplo: nombre@correo.com',
 		};
 	}
 
@@ -330,11 +329,22 @@ function parseSelectionIndex(input, maxOptions) {
 		.replace(/[\u0300-\u036f]/g, '');
 
 	const ordinalMap = {
-		primera: 1, primero: 1, primer: 1, uno: 1,
-		segunda: 2, segundo: 2, dos: 2,
-		tercera: 3, tercero: 3, tres: 3,
-		cuarta: 4, cuarto: 4, cuatro: 4,
-		quinta: 5, quinto: 5, cinco: 5,
+		primera: 1,
+		primero: 1,
+		primer: 1,
+		uno: 1,
+		segunda: 2,
+		segundo: 2,
+		dos: 2,
+		tercera: 3,
+		tercero: 3,
+		tres: 3,
+		cuarta: 4,
+		cuarto: 4,
+		cuatro: 4,
+		quinta: 5,
+		quinto: 5,
+		cinco: 5,
 	};
 
 	for (const [word, n] of Object.entries(ordinalMap)) {

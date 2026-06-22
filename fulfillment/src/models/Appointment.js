@@ -82,7 +82,7 @@ const AppointmentSchema = new mongoose.Schema(
 	},
 	{
 		timestamps: true,
-	},
+	}
 );
 
 AppointmentSchema.index({ scheduledDate: 1, scheduledTime: 1 });
@@ -98,13 +98,14 @@ AppointmentSchema.statics.generateReferenceNumber = async function () {
 	const date = new Date();
 	const dateStr = date.toISOString().split('T')[0].replace(/-/g, '');
 
-	const Counter = mongoose.models.AppointmentCounter ||
+	const Counter =
+		mongoose.models.AppointmentCounter ||
 		mongoose.model('AppointmentCounter', AppointmentCounterSchema);
 
 	const result = await Counter.findOneAndUpdate(
 		{ _id: `cita-${dateStr}` },
 		{ $inc: { seq: 1 } },
-		{ upsert: true, new: true },
+		{ upsert: true, new: true }
 	);
 
 	const sequence = String(result.seq).padStart(3, '0');

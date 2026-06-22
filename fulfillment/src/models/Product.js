@@ -11,15 +11,7 @@ const ProductSchema = new mongoose.Schema(
 		category: {
 			type: String,
 			required: true,
-			enum: [
-				'computadora',
-				'laptop',
-				'impresora',
-				'accesorio',
-				'componente',
-				'camara',
-				'monitor',
-			],
+			enum: ['computadora', 'laptop', 'impresora', 'accesorio', 'componente', 'camara', 'monitor'],
 		},
 		name: {
 			type: String,
@@ -58,7 +50,7 @@ const ProductSchema = new mongoose.Schema(
 	},
 	{
 		timestamps: true,
-	},
+	}
 );
 
 ProductSchema.index({ category: 1, isActive: 1 });

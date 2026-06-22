@@ -21,9 +21,7 @@ class QuotesService {
 				stock: { $gt: 0 },
 			}).sort({ price: 1 });
 
-			console.log(
-				`[QuotesService] Found ${products.length} computers for use case: ${useCase}`,
-			);
+			console.log(`[QuotesService] Found ${products.length} computers for use case: ${useCase}`);
 			return products;
 		} catch (error) {
 			console.error('[QuotesService] Error finding computers:', error);
@@ -54,9 +52,9 @@ class QuotesService {
 				const modelLower = normalizedModel.toLowerCase();
 				const filtered = parts.filter((part) => {
 					const compatibleWith = part.specifications?.compatibleWith || [];
-					return compatibleWith.some((compat) =>
-						modelLower.includes(compat.toLowerCase()) ||
-						compat.toLowerCase().includes(modelLower),
+					return compatibleWith.some(
+						(compat) =>
+							modelLower.includes(compat.toLowerCase()) || compat.toLowerCase().includes(modelLower)
 					);
 				});
 
@@ -65,9 +63,7 @@ class QuotesService {
 				}
 			}
 
-			console.log(
-				`[QuotesService] Found ${parts.length} parts for ${laptopModel} (${partType})`,
-			);
+			console.log(`[QuotesService] Found ${parts.length} parts for ${laptopModel} (${partType})`);
 			return parts;
 		} catch (error) {
 			console.error('[QuotesService] Error finding laptop parts:', error);
@@ -88,10 +84,10 @@ class QuotesService {
 		const trimmed = input.trim();
 
 		const numberMap = {
-			'1': 'PC',
-			'2': 'laptop',
-			'3': 'impresora',
-			'4': 'camara',
+			1: 'PC',
+			2: 'laptop',
+			3: 'impresora',
+			4: 'camara',
 		};
 		if (numberMap[trimmed]) return numberMap[trimmed];
 
@@ -100,7 +96,9 @@ class QuotesService {
 			.normalize('NFD')
 			.replace(/[\u0300-\u036f]/g, '');
 
-		if (['pc', 'computadora', 'desktop', 'escritorio', 'equipo de escritorio'].includes(normalized)) {
+		if (
+			['pc', 'computadora', 'desktop', 'escritorio', 'equipo de escritorio'].includes(normalized)
+		) {
 			return 'PC';
 		}
 		if (['laptop', 'notebook', 'portatil'].includes(normalized)) {
@@ -129,9 +127,7 @@ class QuotesService {
 				stock: { $gt: 0 },
 			}).sort({ price: 1 });
 
-			console.log(
-				`[QuotesService] Found ${products.length} products for category: ${category}`,
-			);
+			console.log(`[QuotesService] Found ${products.length} products for category: ${category}`);
 			return products;
 		} catch (error) {
 			console.error('[QuotesService] Error finding products by category:', error);
@@ -161,9 +157,7 @@ class QuotesService {
 
 			const services = await Service.find(query).sort({ basePrice: 1 });
 
-			console.log(
-				`[QuotesService] Found ${services.length} services for ${normalizedType}`,
-			);
+			console.log(`[QuotesService] Found ${services.length} services for ${normalizedType}`);
 			return services;
 		} catch (error) {
 			console.error('[QuotesService] Error finding services:', error);
@@ -262,9 +256,7 @@ class QuotesService {
 
 			await quote.save();
 
-			console.log(
-				`[QuotesService] Quote created: ${quoteNumber} for ${quoteData.clientName}`,
-			);
+			console.log(`[QuotesService] Quote created: ${quoteNumber} for ${quoteData.clientName}`);
 			return quote;
 		} catch (error) {
 			console.error('[QuotesService] Error creating quote:', error);
@@ -283,12 +275,12 @@ class QuotesService {
 		const trimmed = input.trim();
 
 		const numberMap = {
-			'1': 'pantalla',
-			'2': 'teclado',
-			'3': 'bateria',
-			'4': 'disco',
-			'5': 'memoria',
-			'6': 'cargador',
+			1: 'pantalla',
+			2: 'teclado',
+			3: 'bateria',
+			4: 'disco',
+			5: 'memoria',
+			6: 'cargador',
 		};
 		if (numberMap[trimmed]) return numberMap[trimmed];
 
@@ -340,11 +332,11 @@ class QuotesService {
 		const trimmed = input.trim();
 
 		const numberMap = {
-			'1': 'ofimatica',
-			'2': 'diseno',
-			'3': 'programacion',
-			'4': 'gaming',
-			'5': 'estudio',
+			1: 'ofimatica',
+			2: 'diseno',
+			3: 'programacion',
+			4: 'gaming',
+			5: 'estudio',
 		};
 		if (numberMap[trimmed]) return numberMap[trimmed];
 

@@ -54,8 +54,7 @@ Estaremos encantados de atenderle. ¿Hay algo más en lo que pueda ayudarle?`,
 		'¡Claro que sí! Con mucho gusto le ayudo a programar su cita. 🔧\n\nCuénteme, ¿cómo le resulta más cómodo?\n\n1️⃣ Traer su equipo a nuestro local\n2️⃣ Que pasemos a recogerlo a su domicilio',
 	APPOINTMENT_DATE_ASK: '📅 ¿Qué fecha le vendría bien para su cita?',
 	APPOINTMENT_TIME_ASK: '🕐 ¿A qué hora le resultaría más conveniente?',
-	APPOINTMENT_CONFIRMED:
-		'✅ ¡Excelente! Su cita ha quedado registrada con éxito.',
+	APPOINTMENT_CONFIRMED: '✅ ¡Excelente! Su cita ha quedado registrada con éxito.',
 	APPOINTMENT_ERROR:
 		'Lamentamos mucho el inconveniente, hubo un problema al registrar su cita. 😔 ¿Desea que lo intentemos nuevamente? También puede contactarnos directamente y con gusto le atendemos.',
 	APPOINTMENT_SLOT_UNAVAILABLE:
@@ -66,8 +65,7 @@ Estaremos encantados de atenderle. ¿Hay algo más en lo que pueda ayudarle?`,
 		'Su cita ha sido cancelada sin problema. ¿Hay algo más en lo que pueda colaborarle?',
 
 	// Quotes
-	QUOTE_TYPE_ASK:
-		'¡Con gusto! ¿Qué le gustaría cotizar: un producto o un servicio?',
+	QUOTE_TYPE_ASK: '¡Con gusto! ¿Qué le gustaría cotizar: un producto o un servicio?',
 	QUOTE_PRODUCT_CATEGORY:
 		'¿Qué tipo de producto le interesa? Le cuento las opciones:\n\n• Computadora de escritorio\n• Laptop\n• Impresora\n• Accesorios\n• Componentes',
 	QUOTE_READY:
@@ -86,14 +84,11 @@ Estaremos encantados de atenderle. ¿Hay algo más en lo que pueda ayudarle?`,
 		'¿Desea agregar algo más a su cotización o procedemos con sus datos?\nResponda *Sí* para agregar más o *No* para continuar.',
 	QUOTE_ASK_CLIENT_NAME:
 		'Para generar su cotización necesito algunos datos. ¿Cuál es su nombre completo?\n(Ejemplo: Juan Pérez López)',
-	QUOTE_ASK_CLIENT_PHONE:
-		'Gracias. ¿Su número de teléfono?\n(9 dígitos, ejemplo: 987654321)',
+	QUOTE_ASK_CLIENT_PHONE: 'Gracias. ¿Su número de teléfono?\n(9 dígitos, ejemplo: 987654321)',
 	QUOTE_ERROR:
 		'Disculpe, hubo un problema al generar su cotización. ¿Podría intentarlo nuevamente?',
-	QUOTE_CANCELLED:
-		'Cotización cancelada. ¿Hay algo más en lo que pueda ayudarle?',
-	QUOTE_ITEM_ADDED:
-		'He agregado el producto a su cotización.',
+	QUOTE_CANCELLED: 'Cotización cancelada. ¿Hay algo más en lo que pueda ayudarle?',
+	QUOTE_ITEM_ADDED: 'He agregado el producto a su cotización.',
 	QUOTE_ASK_EQUIPMENT_TYPE:
 		'¿Para qué tipo de equipo necesita el servicio?\n\n1️⃣ PC (escritorio)\n2️⃣ Laptop\n3️⃣ Impresora\n4️⃣ Cámara de seguridad\n\nIndique el número o escriba el tipo de equipo.',
 
@@ -162,10 +157,8 @@ const CONFIG = {
 	IGV_PERCENTAGE: parseFloat(process.env.IGV_PERCENTAGE) || 18,
 	PORT: parseInt(process.env.PORT) || 3000,
 	MAX_DISPLAY_OPTIONS: parseInt(process.env.MAX_DISPLAY_OPTIONS) || 8,
-	MAX_SIMULTANEOUS_APPOINTMENTS:
-		parseInt(process.env.MAX_SIMULTANEOUS_APPOINTMENTS) || 3,
-	APPOINTMENT_SLOT_DURATION_MINUTES:
-		parseInt(process.env.APPOINTMENT_SLOT_DURATION_MINUTES) || 60,
+	MAX_SIMULTANEOUS_APPOINTMENTS: parseInt(process.env.MAX_SIMULTANEOUS_APPOINTMENTS) || 3,
+	APPOINTMENT_SLOT_DURATION_MINUTES: parseInt(process.env.APPOINTMENT_SLOT_DURATION_MINUTES) || 60,
 };
 
 const CONTEXT_NAMES = {

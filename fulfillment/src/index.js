@@ -22,14 +22,20 @@ function detectOverrideIntent(query) {
 		.normalize('NFD')
 		.replace(/[\u0300-\u036f]/g, '');
 
-	if (/\b(cancelar|cancela|quiero cancelar|no quiero continuar|cancelar proceso|cancelar la cita|cancelar la cotizacion)\b/.test(normalized)) {
+	if (
+		/\b(cancelar|cancela|quiero cancelar|no quiero continuar|cancelar proceso|cancelar la cita|cancelar la cotizacion)\b/.test(
+			normalized
+		)
+	) {
 		return 'cancelar';
 	}
 	if (/\b(adios|chau|hasta luego|bye|nos vemos|me voy|hasta pronto)\b/.test(normalized)) {
 		return 'despedida';
 	}
-	if (/hablar con (un |una )?(agente|persona|asesor|humano|alguien)/.test(normalized) ||
-		/\b(agente humano|persona real|asesor humano)\b/.test(normalized)) {
+	if (
+		/hablar con (un |una )?(agente|persona|asesor|humano|alguien)/.test(normalized) ||
+		/\b(agente humano|persona real|asesor humano)\b/.test(normalized)
+	) {
 		return 'derivar';
 	}
 
@@ -41,19 +47,19 @@ function detectOverrideIntent(query) {
  * Used by the category guard to detect and correct misroutes.
  */
 const CATEGORY_INTENT_MAP = {
-	'cotizar_computadora': ['computadora'],
-	'cotizar_producto_generico': ['impresora', 'accesorio'],
-	'cotizar_repuesto_laptop': ['repuesto_laptop'],
+	cotizar_computadora: ['computadora'],
+	cotizar_producto_generico: ['impresora', 'accesorio'],
+	cotizar_repuesto_laptop: ['repuesto_laptop'],
 };
 
 /**
  * Maps each detected category to its correct handler name (resolved at runtime).
  */
 const CATEGORY_HANDLER_KEY = {
-	'computadora': 'cotizar_computadora',
-	'repuesto_laptop': 'cotizar_repuesto_laptop',
-	'impresora': 'cotizar_producto_generico',
-	'accesorio': 'cotizar_producto_generico',
+	computadora: 'cotizar_computadora',
+	repuesto_laptop: 'cotizar_repuesto_laptop',
+	impresora: 'cotizar_producto_generico',
+	accesorio: 'cotizar_producto_generico',
 };
 
 /**
@@ -63,8 +69,11 @@ const CATEGORY_HANDLER_KEY = {
  * @returns {'computadora'|'repuesto_laptop'|'impresora'|'accesorio'|null}
  */
 function detectProductCategory(query) {
-	const norm = query.trim().toLowerCase()
-		.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+	const norm = query
+		.trim()
+		.toLowerCase()
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '');
 
 	// Numbered menu options (from formatProductCategories)
 	if (/^1$|opcion\s*1|la primera/.test(norm)) return 'computadora';
@@ -116,8 +125,7 @@ app.post('/webhook', async (req, res) => {
 		const sessionId = agent.session;
 		const intent = agent.intent;
 		const queryText = agent.query;
-		const userId =
-			req.body.originalDetectIntentRequest?.payload?.userId || 'unknown';
+		const userId = req.body.originalDetectIntentRequest?.payload?.userId || 'unknown';
 
 		console.log(`[Webhook] Session: ${sessionId}`);
 		console.log(`[Webhook] Intent: ${intent}`);
@@ -132,7 +140,7 @@ app.post('/webhook', async (req, res) => {
 				queryText,
 				intent,
 				agent.consoleMessages?.[0]?.confidence || null,
-				'messenger',
+				'messenger'
 			);
 		} catch (metricsError) {
 			console.error('[Webhook] Metrics error (non-fatal):', metricsError.message);
@@ -204,9 +212,18 @@ app.post('/webhook', async (req, res) => {
 		intentMap.set('cotizar_ver_mas', quotesHandler.handleQuoteShowMore);
 
 		// Apply override: replace the misrouted intent's handler with the correct one
-		const NON_OVERRIDABLE = ['saludo', 'despedida', 'ayuda', 'Default Fallback Intent',
-			'derivar_agente_humano', 'cancelar_proceso', 'faq_horarios', 'faq_ubicacion',
-			'faq_contacto', 'faq_redes_sociales'];
+		const NON_OVERRIDABLE = [
+			'saludo',
+			'despedida',
+			'ayuda',
+			'Default Fallback Intent',
+			'derivar_agente_humano',
+			'cancelar_proceso',
+			'faq_horarios',
+			'faq_ubicacion',
+			'faq_contacto',
+			'faq_redes_sociales',
+		];
 		if (intentOverride && !NON_OVERRIDABLE.includes(intent)) {
 			if (intentOverride === 'cancelar') {
 				console.log(`[Webhook] Override: ${intent} → cancelar_proceso`);
@@ -231,7 +248,9 @@ app.post('/webhook', async (req, res) => {
 					const correctIntentKey = CATEGORY_HANDLER_KEY[detectedCategory];
 					const correctHandler = intentMap.get(correctIntentKey);
 					if (correctHandler) {
-						console.log(`[Webhook] Category guard: ${intent} → ${correctIntentKey} (detected: ${detectedCategory})`);
+						console.log(
+							`[Webhook] Category guard: ${intent} → ${correctIntentKey} (detected: ${detectedCategory})`
+						);
 						intentMap.set(intent, correctHandler);
 					}
 				}
@@ -246,7 +265,8 @@ app.post('/webhook', async (req, res) => {
 			const repOpts = agent.context.get('cotizar_repuesto_en_curso');
 			const svcOpts = agent.context.get('cotizacion_servicio');
 
-			const isNumericSelection = /^\d{1,2}$/.test(queryText.trim()) ||
+			const isNumericSelection =
+				/^\d{1,2}$/.test(queryText.trim()) ||
 				/opci[oó]n\s*\d/i.test(queryText) ||
 				/^(la\s+)?(primera|segunda|tercera|cuarta|quinta|sexta|s[eé]ptima|octava)/i.test(queryText);
 
@@ -265,7 +285,10 @@ app.post('/webhook', async (req, res) => {
 
 			// "Show more" rescue: redirect to pagination handler when user asks
 			// for more options during an active selection flow
-			const isShowMore = /ver\s*m[aá]s|m[aá]s\s*(opciones|productos|servicios)|siguientes?|mu[eé]strame\s*m[aá]s|otras?\s*opciones?|hay\s*m[aá]s/i.test(queryText);
+			const isShowMore =
+				/ver\s*m[aá]s|m[aá]s\s*(opciones|productos|servicios)|siguientes?|mu[eé]strame\s*m[aá]s|otras?\s*opciones?|hay\s*m[aá]s/i.test(
+					queryText
+				);
 			if (isShowMore) {
 				const hasActiveOptions =
 					compOpts?.parameters?.computerOptions?.length > 0 ||
@@ -284,8 +307,7 @@ app.post('/webhook', async (req, res) => {
 		const responseDurationMs = endTime - startTime;
 
 		// M4: Record bot response without blocking on failure
-		const responseText =
-			agent.consoleMessages?.[0]?.text?.text?.[0] || 'Respuesta procesada';
+		const responseText = agent.consoleMessages?.[0]?.text?.text?.[0] || 'Respuesta procesada';
 		try {
 			await MetricsService.recordMessage(
 				sessionId,
@@ -295,7 +317,7 @@ app.post('/webhook', async (req, res) => {
 				intent,
 				null,
 				'messenger',
-				responseDurationMs,
+				responseDurationMs
 			);
 		} catch (metricsError) {
 			console.error('[Webhook] Metrics error (non-fatal):', metricsError.message);
@@ -329,8 +351,7 @@ app.post('/webhook', async (req, res) => {
 		}
 
 		res.status(500).json({
-			fulfillmentText:
-				'Lo sentimos, ocurrió un error. Por favor, intente nuevamente.',
+			fulfillmentText: 'Lo sentimos, ocurrió un error. Por favor, intente nuevamente.',
 		});
 	}
 });
@@ -363,7 +384,7 @@ app.use((req, res) => {
 /**
  * Error handler
  */
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
 	console.error('[Express] Error:', err);
 	res.status(500).json({
 		error: 'Internal Server Error',

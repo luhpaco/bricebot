@@ -46,11 +46,15 @@ const handleGreeting = (agent) => {
 	const activeFlow = getActiveFlow(agent);
 
 	if (activeFlow === 'cita' || activeFlow === 'cita_local' || activeFlow === 'cita_domicilio') {
-		agent.add('¡Hola nuevamente! 👋 Veo que tiene una cita en proceso. ¿Desea continuar con el registro?\nResponda *Sí* para continuar o *No* para cancelar.');
+		agent.add(
+			'¡Hola nuevamente! 👋 Veo que tiene una cita en proceso. ¿Desea continuar con el registro?\nResponda *Sí* para continuar o *No* para cancelar.'
+		);
 		return;
 	}
 	if (activeFlow === 'cotizacion') {
-		agent.add('¡Hola nuevamente! 👋 Veo que tiene una cotización en proceso. ¿Desea continuar con la cotización?\nResponda *Sí* para continuar o *No* para cancelar.');
+		agent.add(
+			'¡Hola nuevamente! 👋 Veo que tiene una cotización en proceso. ¿Desea continuar con la cotización?\nResponda *Sí* para continuar o *No* para cancelar.'
+		);
 		return;
 	}
 
@@ -241,7 +245,9 @@ const handleCancelarProceso = (agent) => {
 	};
 
 	const flowName = flowNames[activeFlow] || 'proceso';
-	agent.add(`He cancelado su ${flowName} sin problema. ¿Puedo ayudarle con algo más?\n\n📅 Agendar una cita\n💰 Solicitar una cotización\n📋 Información del negocio`);
+	agent.add(
+		`He cancelado su ${flowName} sin problema. ¿Puedo ayudarle con algo más?\n\n📅 Agendar una cita\n💰 Solicitar una cotización\n📋 Información del negocio`
+	);
 };
 
 module.exports = {
