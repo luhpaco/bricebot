@@ -8,7 +8,7 @@ Este chatbot automatiza el proceso de atención al cliente, permitiendo:
 
 - Responder consultas frecuentes (FAQ) ✅
 - Agendar citas de servicio técnico ✅
-- Generar cotizaciones de productos y servicios ✅
+- Generar cotizaciones de productos y servicios, con paginación de opciones («ver más») ✅
 - Derivar al usuario a un asesor humano ✅
 
 ## Tecnologías
@@ -123,33 +123,42 @@ Esto generará una URL pública como: `https://abc123.ngrok.io`
 ```
 bricebot/
 ├── fulfillment/
-│   └── src/
-│       ├── index.js              # Entry point del webhook
-│       ├── handlers/             # Manejadores de intents
-│       │   ├── faq.handler.js    # FAQ + escalamiento (Iteración 1)
-│       │   ├── appointments.handler.js # Citas (Iteración 2)
-│       │   └── quotes.handler.js # Cotizaciones (Iteración 3)
-│       ├── services/             # Lógica de negocio
-│       │   ├── metrics.service.js
-│       │   ├── calendar.service.js # Google Calendar API
-│       │   ├── availability.service.js
-│       │   └── quotes.service.js # Cotizaciones (Iteración 3)
-│       ├── models/               # Modelos de MongoDB
-│       │   ├── Conversation.js
-│       │   ├── Appointment.js
-│       │   ├── Quote.js
-│       │   ├── Product.js
-│       │   └── Service.js
-│       ├── utils/                # Funciones auxiliares
-│       │   ├── validators.js
-│       │   ├── dateHelpers.js
-│       │   └── formatters.js
-│       └── config/               # Configuración
-│           ├── constants.js
-│           ├── database.js
-│           └── dialogflow.js
+│   ├── src/
+│   │   ├── index.js              # Entry point del webhook (intentMap + override)
+│   │   ├── handlers/             # Manejadores de intents
+│   │   │   ├── faq.handler.js    # FAQ + escalamiento (Iteración 1)
+│   │   │   ├── appointments.handler.js # Citas (Iteración 2)
+│   │   │   └── quotes.handler.js # Cotizaciones (Iteración 3)
+│   │   ├── services/             # Lógica de negocio
+│   │   │   ├── metrics.service.js
+│   │   │   ├── calendar.service.js # Google Calendar API
+│   │   │   ├── availability.service.js
+│   │   │   └── quotes.service.js # Cotizaciones (Iteración 3)
+│   │   ├── models/               # Modelos de MongoDB
+│   │   │   ├── Conversation.js
+│   │   │   ├── Appointment.js
+│   │   │   ├── Quote.js
+│   │   │   ├── Product.js
+│   │   │   └── Service.js
+│   │   ├── utils/                # Funciones auxiliares
+│   │   │   ├── validators.js
+│   │   │   ├── dateHelpers.js
+│   │   │   └── formatters.js
+│   │   ├── config/               # Configuración
+│   │   │   ├── constants.js
+│   │   │   ├── database.js
+│   │   │   └── dialogflow.js
+│   │   └── scripts/             # Scripts de carga de datos
+│   │       └── seed-products.js  # Seed de productos y servicios
+│   └── tests/                    # Tests unitarios (Jest)
+├── dialogflow/                   # Intents (JSON) + entidades personalizadas
+├── seed/                         # Datasets CSV (seed-products.csv, seed-services.csv)
 ├── docs/                         # Documentación
-├── tests/                        # Tests unitarios e integración
+│   └── conversation-flows/       # Diagramas de flujos conversacionales
+├── .github/
+│   └── workflows/                # CI (GitHub Actions: lint, format, tests)
+├── .eslintrc.json                # Configuración de ESLint
+├── .prettierrc                   # Configuración de Prettier
 └── .cursor/rules/                # Reglas del proyecto
 ```
 
@@ -220,7 +229,7 @@ Este endpoint recibe las peticiones de Dialogflow y procesa los intents.
 - `cita_domicilio_confirmar_si` - Confirmar
 - `cita_domicilio_confirmar_no` - Modificar/cancelar
 
-### Iteración 3 - Cotizaciones (15 intents) ✅
+### Iteración 3 - Cotizaciones (16 intents) ✅
 
 - `cotizar_iniciar` - Iniciar flujo de cotización
 - `cotizar_producto_categoria` - Categoría de producto
@@ -233,6 +242,7 @@ Este endpoint recibe las peticiones de Dialogflow y procesa los intents.
 - `cotizar_computadora_seleccionar` - Selección de opción
 - `cotizar_repuesto_laptop` - Cotizar repuesto de laptop
 - `cotizar_repuesto_seleccionar` - Selección de repuesto
+- `cotizar_ver_mas` - Mostrar más opciones (paginación de productos/servicios)
 - `cotizar_agregar_mas` - Agregar más items
 - `cotizar_datos_cliente` - Datos del cliente
 - `cotizar_confirmar_si` - Confirmar cotización
@@ -243,7 +253,7 @@ Este endpoint recibe las peticiones de Dialogflow y procesa los intents.
 - `derivar_agente_humano` - Derivar al usuario a un asesor humano (con registro en métricas)
 - `cancelar_proceso` - Cancelar flujo activo y volver al menú (activación dual: Dialogflow NLU + override del webhook)
 
-**Total: 45 intents con webhook + `Default Welcome Intent` (nativo) = 46 en Dialogflow**
+**Total: 46 intents con webhook + `Default Welcome Intent` (nativo) = 47 en Dialogflow**
 
 ## Configurar Intents en Dialogflow
 
@@ -251,8 +261,8 @@ Este endpoint recibe las peticiones de Dialogflow y procesa los intents.
 
 En Dialogflow Console > **Entities**:
 
-- `@tipo_equipo`: PC, laptop, impresora, cámara, monitor, otro (Iteración 1)
-- `@tipo_servicio`: mantenimiento, cambio_teclado, cambio_pantalla, etc. (Iteración 1)
+- `@tipo_equipo`: PC, laptop, impresora, cámara, monitor, otro (Iteración 2)
+- `@tipo_servicio`: mantenimiento, cambio_teclado, cambio_pantalla, etc. (Iteración 2)
 - `@rango_horario`: mañana, tarde (Iteración 2)
 - `@uso_computadora`: ofimática, diseño, programación, gaming, estudio (Iteración 3)
 - `@categoria_producto`: computadora, repuesto_laptop, impresora, accesorio (Iteración 3)
@@ -280,6 +290,16 @@ Cada intent debe tener:
 
 ## Testing
 
+### Automatizado (Jest)
+
+El proyecto cuenta con una suite de pruebas unitarias en `fulfillment/tests/`, ejecutadas con **Jest** y aislando MongoDB mediante `mongodb-memory-server` (sin depender de una base real).
+
+```bash
+npm run test:unit   # Tests unitarios con reporte de cobertura
+```
+
+La configuración de Jest en `package.json` define **umbrales de cobertura** por archivo (handlers, services y utils), de modo que la suite falla si la cobertura cae por debajo de lo exigido. Ejecutar los tests antes de cada commit es parte del flujo del proyecto.
+
 ### Manual
 
 Usar el simulador de Dialogflow Console:
@@ -301,6 +321,16 @@ Los logs del servidor mostrarán:
 ```bash
 curl http://localhost:3000/health
 ```
+
+## Integración Continua (CI)
+
+El repositorio incluye un pipeline de **GitHub Actions** (`.github/workflows/ci.yml`) que se ejecuta en cada `push` y `pull_request` sobre Node.js 18. El flujo valida, en orden:
+
+1. **Lint** — `npm run lint` (ESLint)
+2. **Formato** — `npm run format:check` (Prettier)
+3. **Tests** — suite Jest con cobertura
+
+De esta forma ningún cambio se integra sin pasar las verificaciones de calidad de código y las pruebas.
 
 ## Base de Datos
 
@@ -324,10 +354,13 @@ El sistema registra automáticamente:
 ## Scripts Disponibles
 
 ```bash
-npm start          # Inicia el servidor en modo producción
-npm run dev        # Inicia con nodemon (auto-reload)
-npm test           # Ejecuta tests con Jest
-npm run lint       # Verifica el código con ESLint
+npm start            # Inicia el servidor en modo producción
+npm run dev          # Inicia con nodemon (auto-reload)
+npm test             # Ejecuta toda la suite Jest con cobertura
+npm run test:unit    # Ejecuta solo los tests unitarios (fulfillment/tests) con cobertura
+npm run lint         # Verifica el código con ESLint
+npm run format       # Formatea el código con Prettier (escribe cambios)
+npm run format:check # Verifica el formato sin modificar archivos
 node fulfillment/src/scripts/seed-products.js  # Carga catálogo inicial de productos y servicios
 ```
 
